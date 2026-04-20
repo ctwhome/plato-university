@@ -1,0 +1,14 @@
+{
+  "name": "plato-university",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Landing page for Plato University — learn to think before you learn to work.",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --hot server.ts",
+    "start": "bun run server.ts"
+  },
+  "engines": {
+    "bun": ">=1.3.0"
+  }
+}
