@@ -242,6 +242,65 @@
         background: color-mix(in oklab, var(--color-ink) 18%, transparent);
       }
     </style>
+
+    <!-- Annotation tooltip styles -->
+    <style>
+      .annotated {
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        text-decoration-color: #b8593a;
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 3px;
+        cursor: help;
+        white-space: nowrap;
+      }
+      .annotated[aria-expanded="true"] {
+        text-decoration-style: solid;
+      }
+      #plato-tooltip {
+        position: fixed;
+        z-index: 9999;
+        width: 300px;
+        max-width: calc(100vw - 24px);
+        background: #faf7f2;
+        border: 1px solid rgba(26, 26, 26, 0.15);
+        border-radius: 6px;
+        box-shadow: 0 4px 16px rgba(26, 26, 26, 0.12), 0 1px 4px rgba(26, 26, 26, 0.08);
+        padding: 14px 16px 16px;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 180ms ease-out, transform 180ms ease-out;
+      }
+      #plato-tooltip.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      #plato-tooltip .tip-name {
+        font-family: "Cormorant Garamond", ui-serif, Georgia, serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        line-height: 1.2;
+        color: #1a1a1a;
+        display: block;
+      }
+      #plato-tooltip .tip-dates {
+        font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+        color: rgba(26, 26, 26, 0.60);
+        display: block;
+        margin-top: 1px;
+        margin-bottom: 8px;
+      }
+      #plato-tooltip .tip-desc {
+        font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+        font-size: 0.8rem;
+        line-height: 1.55;
+        color: rgba(26, 26, 26, 0.82);
+      }
+    </style>
   </head>
 
   <body class="min-h-screen">
@@ -308,9 +367,9 @@
         </h2>
         <div class="font-serif text-xl md:text-2xl leading-relaxed space-y-6 text-ink/85">
           <p>
-            In 1843, Horace Mann brought the Prussian bell home. The system he copied was
-            built to produce obedient soldiers and reliable workers. Rockefeller's General
-            Education Board then scaled it across America, and Carnegie turned learning
+            In 1843, <span class="annotated" data-key="horace_mann">Horace Mann</span> brought the Prussian bell home. The system he copied was
+            built to produce obedient soldiers and reliable workers. <span class="annotated" data-key="rockefeller">Rockefeller</span>'s General
+            Education Board then scaled it across America, and <span class="annotated" data-key="carnegie">Carnegie</span> turned learning
             into a stopwatch, calling one unit an hour.
           </p>
           <p>
@@ -323,7 +382,7 @@
           <p>
             AI collapses the premium on routine specialization. The jobs you train for at
             eighteen will be automated, transformed, or invented-and-gone-already by the
-            time you graduate. And yet universities still run on the Carnegie Unit.
+            time you graduate. And yet universities still run on the <span class="annotated" data-key="carnegie">Carnegie Unit</span>.
           </p>
         </div>
       </section>
@@ -345,7 +404,7 @@
             end that proves they can think, make, and lead.
           </p>
           <p>
-            You read Plato, not summaries of Plato. You write Montaigne, not essays
+            You read <span class="annotated" data-key="plato">Plato</span>, not summaries of <span class="annotated" data-key="plato">Plato</span>. You write <span class="annotated" data-key="montaigne">Montaigne</span>, not essays
             <em>about</em> him. The examined life becomes a way of living, not an elective
             subject.
           </p>
@@ -447,7 +506,7 @@
               <ul class="font-sans text-sm leading-relaxed space-y-1.5 text-ink/80">
                 <li>Socratic method &amp; formal logic</li>
                 <li>Rhetoric and writing</li>
-                <li>The classics: Plato, Aristotle, Seneca, Epictetus, Montaigne</li>
+                <li>The classics: <span class="annotated" data-key="plato">Plato</span>, <span class="annotated" data-key="aristotle">Aristotle</span>, <span class="annotated" data-key="seneca">Seneca</span>, <span class="annotated" data-key="epictetus">Epictetus</span>, <span class="annotated" data-key="montaigne">Montaigne</span></li>
                 <li>The body: sleep, nutrition, attention, movement</li>
               </ul>
             </div>
@@ -467,7 +526,7 @@
                 <li>Systems and power</li>
                 <li>Ethics in the age of machines</li>
                 <li>AI: fluency, limits, ethics of use</li>
-                <li>Modern thinkers: Freire, Illich, hooks, Gatto</li>
+                <li>Modern thinkers: <span class="annotated" data-key="freire">Freire</span>, <span class="annotated" data-key="illich">Illich</span>, <span class="annotated" data-key="bell_hooks">hooks</span>, <span class="annotated" data-key="gatto">Gatto</span></li>
               </ul>
             </div>
           </article>
@@ -538,8 +597,8 @@
       <section class="bg-base-200/50 border-y border-ink/10">
         <div class="mx-auto max-w-3xl px-6 py-16 md:py-20 text-center">
           <p class="font-serif italic text-xl md:text-2xl lg:text-3xl leading-snug text-ink/80 text-balance">
-            In the tradition of Plato, Seneca, Montaigne, Illich, Freire, bell hooks,
-            Gatto, and the Bauhaus.
+            In the tradition of <span class="annotated" data-key="plato">Plato</span>, <span class="annotated" data-key="seneca">Seneca</span>, <span class="annotated" data-key="montaigne">Montaigne</span>, <span class="annotated" data-key="illich">Illich</span>, <span class="annotated" data-key="freire">Freire</span>, <span class="annotated" data-key="bell_hooks">bell hooks</span>,
+            <span class="annotated" data-key="gatto">Gatto</span>, and the <span class="annotated" data-key="bauhaus">Bauhaus</span>.
           </p>
         </div>
       </section>
@@ -779,5 +838,198 @@
         </p>
       </div>
     </footer>
+    <!-- Annotation tooltip logic -->
+    <script>
+    (function () {
+      var ANNOTATIONS = {
+        horace_mann: {
+          name: "Horace Mann",
+          dates: "1796–1859",
+          desc: "Secretary of the Massachusetts Board of Education who studied Prussian schools and brought their age-graded, bell-scheduled model back to America. He believed mass education required standardization; what he imported became the template for every public school in the country."
+        },
+        rockefeller: {
+          name: "Rockefeller / General Education Board",
+          dates: "est. 1902",
+          desc: "John D. Rockefeller’s philanthropic vehicle for shaping American schooling after the industrial model. Its explicit goal: produce reliable workers and consumers, not independent thinkers."
+        },
+        carnegie: {
+          name: "Carnegie / Carnegie Unit",
+          dates: "1906",
+          desc: "Andrew Carnegie funded the pension system that accidentally standardized how learning is measured—one unit equals one hour of instruction per week for a year. A century later, schools still trade in Carnegie Units."
+        },
+        plato: {
+          name: "Plato",
+          dates: "427–347 BCE",
+          desc: "Athenian philosopher who founded the first Academy and wrote The Republic—a dialogue about justice, the ideal city, and what education is actually for. His Socratic method is the intellectual ancestor of everything we’re doing."
+        },
+        aristotle: {
+          name: "Aristotle",
+          dates: "384–322 BCE",
+          desc: "Plato’s most brilliant student and most persistent critic. He founded his own school (the Lyceum), tutored Alexander the Great, and argued that knowledge must be grounded in the world we actually live in."
+        },
+        seneca: {
+          name: "Seneca",
+          dates: "4 BCE–65 CE",
+          desc: "Roman Stoic philosopher and adviser to Nero, whose Letters to Lucilius remain one of the most direct and honest guides to living ever written. On what education is for: “Non scholae sed vitae discimus”—we learn not for school, but for life."
+        },
+        epictetus: {
+          name: "Epictetus",
+          dates: "c.…50–135 CE",
+          desc: "A formerly enslaved Greek philosopher who became one of the most important Stoic teachers. His core lesson: you cannot control what happens to you, only how you respond. He never wrote anything down—his students did it for him."
+        },
+        montaigne: {
+          name: "Montaigne",
+          dates: "1533–1592",
+          desc: "French nobleman who invented the essay form by turning his own mind into the subject of serious inquiry. He read widely, thought carefully, and wrote about everything—death, friendship, education, experience—in a voice that still sounds like a living person."
+        },
+        freire: {
+          name: "Paulo Freire",
+          dates: "1921–1997",
+          desc: "Brazilian educator whose Pedagogy of the Oppressed argued that traditional schooling is an act of oppression—“banking” knowledge into passive students. Education, he insisted, should be a dialogue that builds critical consciousness."
+        },
+        illich: {
+          name: "Ivan Illich",
+          dates: "1926–2002",
+          desc: "Austrian-born philosopher whose Deschooling Society (1971) argued that schools produce the opposite of what they promise—obedience, not curiosity; certification, not learning. He proposed replacing institutions with “learning webs.”"
+        },
+        bell_hooks: {
+          name: "bell hooks",
+          dates: "1952–2021",
+          desc: "American scholar, feminist, and cultural critic whose Teaching to Transgress reimagined the classroom as a place of liberation. She argued that genuine education is always transgressive—it disturbs comfort and expands possibility."
+        },
+        gatto: {
+          name: "John Taylor Gatto",
+          dates: "1935–2018",
+          desc: "New York City schoolteacher and author of Dumbing Us Down, who won Teacher of the Year and then spent the rest of his life explaining why the school system was broken beyond repair. He quit teaching publicly in a Wall Street Journal op-ed."
+        },
+        bauhaus: {
+          name: "Bauhaus",
+          dates: "1919–1933",
+          desc: "German art and design school founded by Walter Gropius that united fine arts, crafts, and industrial design under one radical pedagogy. It produced some of the most influential designers, artists, and architects of the twentieth century—with fewer than 1,300 graduates total."
+        }
+      };
+
+      var card = document.createElement("div");
+      card.id = "plato-tooltip";
+      card.setAttribute("role", "tooltip");
+      card.setAttribute("aria-live", "polite");
+      card.innerHTML =
+        '<span class="tip-name"></span>' +
+        '<span class="tip-dates"></span>' +
+        '<p class="tip-desc"></p>';
+      document.body.appendChild(card);
+
+      var tipName  = card.querySelector(".tip-name");
+      var tipDates = card.querySelector(".tip-dates");
+      var tipDesc  = card.querySelector(".tip-desc");
+
+      var activeTarget = null;
+      var hideTimer    = null;
+
+      function populate(key) {
+        var a = ANNOTATIONS[key];
+        if (!a) return false;
+        tipName.textContent  = a.name;
+        tipDates.textContent = a.dates;
+        tipDesc.textContent  = a.desc;
+        return true;
+      }
+
+      function position(trigger) {
+        var MARGIN = 8;
+        var GAP    = 6;
+        var tr  = trigger.getBoundingClientRect();
+        var cw  = card.offsetWidth;
+        var ch  = card.offsetHeight;
+        var vw  = window.innerWidth;
+        var vh  = window.innerHeight;
+        var top  = tr.top - ch - GAP;
+        var left = tr.left + tr.width / 2 - cw / 2;
+        if (top < MARGIN) top = tr.bottom + GAP;
+        left = Math.max(MARGIN, Math.min(left, vw - cw - MARGIN));
+        top  = Math.max(MARGIN, Math.min(top,  vh - ch - MARGIN));
+        card.style.left = left + "px";
+        card.style.top  = top  + "px";
+      }
+
+      function show(trigger) {
+        clearTimeout(hideTimer);
+        var key = trigger.dataset.key;
+        if (!key || !populate(key)) return;
+        if (activeTarget && activeTarget !== trigger) {
+          activeTarget.setAttribute("aria-expanded", "false");
+        }
+        activeTarget = trigger;
+        trigger.setAttribute("aria-expanded", "true");
+        card.style.visibility = "hidden";
+        card.classList.add("is-visible");
+        position(trigger);
+        card.style.visibility = "";
+        window._platoRepos = function () { position(trigger); };
+        window.addEventListener("scroll", window._platoRepos, { passive: true });
+        window.addEventListener("resize", window._platoRepos, { passive: true });
+      }
+
+      function hide(immediate) {
+        if (!activeTarget) return;
+        window.removeEventListener("scroll", window._platoRepos);
+        window.removeEventListener("resize", window._platoRepos);
+        if (immediate) {
+          card.classList.remove("is-visible");
+          if (activeTarget) activeTarget.setAttribute("aria-expanded", "false");
+          activeTarget = null;
+        } else {
+          hideTimer = setTimeout(function () {
+            card.classList.remove("is-visible");
+            if (activeTarget) activeTarget.setAttribute("aria-expanded", "false");
+            activeTarget = null;
+          }, 80);
+        }
+      }
+
+      document.addEventListener("mouseenter", function (e) {
+        if (e.target.classList && e.target.classList.contains("annotated")) show(e.target);
+      }, true);
+
+      document.addEventListener("mouseleave", function (e) {
+        if (e.target.classList && e.target.classList.contains("annotated")) hide(false);
+      }, true);
+
+      card.addEventListener("mouseenter", function () { clearTimeout(hideTimer); });
+      card.addEventListener("mouseleave", function () { hide(false); });
+
+      document.addEventListener("click", function (e) {
+        var span = e.target.closest(".annotated");
+        if (span) {
+          e.stopPropagation();
+          if (activeTarget === span && card.classList.contains("is-visible")) hide(true);
+          else show(span);
+          return;
+        }
+        if (card.classList.contains("is-visible")) hide(true);
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && card.classList.contains("is-visible")) {
+          hide(true);
+          if (activeTarget) activeTarget.focus();
+        }
+      });
+
+      document.querySelectorAll(".annotated").forEach(function (el) {
+        if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "0");
+        el.setAttribute("role", "button");
+        el.setAttribute("aria-expanded", "false");
+        el.setAttribute("aria-haspopup", "true");
+        el.addEventListener("keydown", function (ev) {
+          if (ev.key === "Enter" || ev.key === " ") {
+            ev.preventDefault();
+            if (activeTarget === el && card.classList.contains("is-visible")) hide(true);
+            else show(el);
+          }
+        });
+      });
+    })();
+    </script>
   </body>
 </html>
