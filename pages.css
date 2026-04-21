@@ -86,9 +86,6 @@ a:hover { color: var(--ink); }
 .brand-mark {
   display: block; flex-shrink: 0;
   width: 34px; height: 34px;
-  /* <object> renders the SVG; clicks should pass through to the
-     parent <a class="brand"> so the logo still works as a home link. */
-  pointer-events: none;
 }
 .brand em { font-style: italic; color: var(--olive); font-weight: 500; }
 
