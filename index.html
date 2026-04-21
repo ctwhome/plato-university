@@ -414,33 +414,35 @@
       <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
 
       <!-- The problem -->
-      <section id="problem-section" class="mx-auto max-w-3xl px-6 py-16 md:py-24">
-        <div id="problem-card" class="bg-white rounded-2xl border border-black/[0.06] shadow-[0_4px_40px_rgba(26,26,26,0.08),0_1px_4px_rgba(26,26,26,0.04)] px-8 py-10 md:px-14 md:py-14">
-          <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta mb-6">
-            The problem
-          </p>
-          <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-8">
-            In the age of AI, we are still running a school built for the factory floor.
-          </h2>
-          <div class="font-serif text-xl md:text-2xl leading-relaxed space-y-6 text-ink/85">
-            <p>
-              In 1843, <span class="annotated" data-key="horace_mann">Horace Mann</span> brought the Prussian bell home. The system he copied was
-              built to produce obedient soldiers and reliable workers. <span class="annotated" data-key="rockefeller">Rockefeller</span>'s General
-              Education Board then scaled it across America, and <span class="annotated" data-key="carnegie">Carnegie</span> turned learning
-              into a stopwatch, calling one unit an hour.
+      <section id="problem-section" class="overflow-hidden py-16 md:py-24">
+        <div id="problem-card" class="bg-white rounded-2xl border border-black/[0.06] shadow-[0_4px_40px_rgba(26,26,26,0.08),0_1px_4px_rgba(26,26,26,0.04)] mx-auto" style="max-width: 48rem;">
+          <div class="mx-auto max-w-3xl px-8 py-10 md:px-14 md:py-14">
+            <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta mb-6">
+              The problem
             </p>
-            <p>
-              The inheritance is still with us. Age-graded rows. Fixed bells. Standardized
-              curriculum. A diploma for a career your field no longer has.
-            </p>
-            <p class="text-terracotta italic">
-              The world that system was built for no longer exists.
-            </p>
-            <p>
-              AI collapses the premium on routine specialization. The jobs you train for at
-              eighteen will be automated, transformed, or invented-and-gone-already by the
-              time you graduate. And yet universities still run on the <span class="annotated" data-key="carnegie">Carnegie Unit</span>.
-            </p>
+            <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-8">
+              In the age of AI, we are still running a school built for the factory floor.
+            </h2>
+            <div class="font-serif text-xl md:text-2xl leading-relaxed space-y-6 text-ink/85">
+              <p>
+                In 1843, <span class="annotated" data-key="horace_mann">Horace Mann</span> brought the Prussian bell home. The system he copied was
+                built to produce obedient soldiers and reliable workers. <span class="annotated" data-key="rockefeller">Rockefeller</span>'s General
+                Education Board then scaled it across America, and <span class="annotated" data-key="carnegie">Carnegie</span> turned learning
+                into a stopwatch, calling one unit an hour.
+              </p>
+              <p>
+                The inheritance is still with us. Age-graded rows. Fixed bells. Standardized
+                curriculum. A diploma for a career your field no longer has.
+              </p>
+              <p class="text-terracotta italic">
+                The world that system was built for no longer exists.
+              </p>
+              <p>
+                AI collapses the premium on routine specialization. The jobs you train for at
+                eighteen will be automated, transformed, or invented-and-gone-already by the
+                time you graduate. And yet universities still run on the <span class="annotated" data-key="carnegie">Carnegie Unit</span>.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -1133,15 +1135,17 @@
           });
         });
 
-        // ── Problem card: wipes in left → right as you scroll ─────────
-        gsap.from('#problem-card', {
-          clipPath: 'inset(0 100% 0 0 round 16px)',
-          ease: 'power2.inOut',
+        // ── Problem card: expands from contained card to full width ───
+        gsap.to('#problem-card', {
+          maxWidth: '100%',
+          borderRadius: 0,
+          boxShadow: '0 0px 0px rgba(26,26,26,0)',
+          ease: 'power1.inOut',
           scrollTrigger: {
-            trigger: '#problem-card',
-            start: 'top 85%',
-            end: 'top 25%',
-            scrub: 1.2
+            trigger: '#problem-section',
+            start: 'top 65%',
+            end: 'top 5%',
+            scrub: 1
           }
         });
 
