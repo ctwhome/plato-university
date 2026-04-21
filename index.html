@@ -9,7 +9,7 @@
     <title>Plato University · Learn to think before you learn to work.</title>
     <meta
       name="description"
-      content="Plato University is a one-year academy for the AI era. Philosophy first, portfolio last. An online core with local city hubs. Founding cohort starts September 2026 in Amsterdam."
+      content="Plato University is a one-year academy for the AI era. Philosophy first, portfolio last. An online core with local city hubs. The discovery month begins September 2026 in Amsterdam."
     />
     <meta
       name="keywords"
@@ -24,20 +24,18 @@
     <link rel="alternate" hreflang="en" href="https://platouniversity.org/" />
     <link rel="alternate" hreflang="x-default" href="https://platouniversity.org/" />
 
-    <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Open Graph -->
     <meta property="og:site_name" content="Plato University" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://platouniversity.org/" />
     <meta property="og:title" content="Plato University · Learn to think before you learn to work." />
     <meta
       property="og:description"
-      content="A one-year academy for the AI era. Philosophy first, portfolio last. Founding cohort starts September 2026 in Amsterdam."
+      content="A one-year academy for the AI era. Philosophy first, portfolio last. Discovery month begins September 2026 in Amsterdam."
     />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content="https://platouniversity.org/og-image.jpg" />
@@ -47,18 +45,16 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Plato University. Learn to think before you learn to work." />
 
-    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://platouniversity.org/" />
     <meta name="twitter:title" content="Plato University · Learn to think before you learn to work." />
     <meta
       name="twitter:description"
-      content="A one-year academy for the AI era. Philosophy first, portfolio last. Founding cohort starts September 2026 in Amsterdam."
+      content="A one-year academy for the AI era. Philosophy first, portfolio last. Discovery month begins September 2026 in Amsterdam."
     />
     <meta name="twitter:image" content="https://platouniversity.org/og-image.jpg" />
     <meta name="twitter:image:alt" content="Plato University. Learn to think before you learn to work." />
 
-    <!-- JSON-LD structured data: EducationalOrganization -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -71,7 +67,7 @@
             "url": "https://platouniversity.org/",
             "logo": "https://platouniversity.org/og-image.jpg",
             "image": "https://platouniversity.org/og-image.jpg",
-            "description": "A one-year academy for the AI era. Philosophy first, portfolio last. Online core with local city hubs. Founding cohort September 2026 in Amsterdam.",
+            "description": "A one-year academy for the AI era. Philosophy first, portfolio last. Online core with local city hubs. Discovery month September 2026 in Amsterdam.",
             "slogan": "Learn to think before you learn to work.",
             "foundingDate": "2026",
             "foundingLocation": {
@@ -173,552 +169,876 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/colors_and_type.css" />
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    />
-
-    <style type="text/tailwindcss">
-      @theme {
-        --color-cream: #faf7f2;
-        --color-ink: #1a1a1a;
-        --color-olive: #6b7a4f;
-        --color-terracotta: #b8593a;
-        --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
-        --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-      }
-    </style>
-
-    <!-- Override DaisyUI theme tokens to match Plato palette -->
     <style>
-      :root,
-      [data-theme="light"] {
-        --color-base-100: #faf7f2;
-        --color-base-200: #f2ede3;
-        --color-base-300: #e8e0d0;
-        --color-base-content: #1a1a1a;
-        --color-primary: #6b7a4f;
-        --color-primary-content: #faf7f2;
-        --color-secondary: #b8593a;
-        --color-secondary-content: #faf7f2;
-        --color-accent: #b8593a;
-        --color-accent-content: #faf7f2;
-        --color-neutral: #1a1a1a;
-        --color-neutral-content: #faf7f2;
-        --color-info: #6b7a4f;
-        --color-success: #6b7a4f;
-        --color-warning: #b8593a;
-        --color-error: #b8593a;
-        --radius-selector: 0.25rem;
-        --radius-field: 0.25rem;
-        --radius-box: 0.5rem;
+      /* Override the design system's system-font defaults
+         with the production house faces (Cormorant + Inter). */
+      :root {
+        --font-serif: "Cormorant Garamond", Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Times New Roman", ui-serif, serif;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
       }
-    </style>
 
-    <style type="text/tailwindcss">
-      html {
-        scroll-behavior: smooth;
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      a { color: inherit; text-decoration: none; }
+      button { font-family: inherit; cursor: pointer; }
+
+      .skip-link {
+        position: absolute; left: -9999px; top: auto;
+        background: var(--ink); color: var(--cream);
+        padding: 10px 14px; border-radius: var(--radius-field); z-index: 100;
+        font-family: var(--font-sans); font-size: 13px;
       }
-      body {
-        font-family: var(--font-sans);
-        background: var(--color-cream);
-        color: var(--color-ink);
-        font-feature-settings: "ss01", "cv11";
+      .skip-link:focus { left: 12px; top: 12px; }
+
+      .container    { max-width: 64rem; margin: 0 auto; padding: 0 24px; }
+      .container-sm { max-width: 48rem; margin: 0 auto; padding: 0 24px; }
+      .container-lg { max-width: 80rem; margin: 0 auto; padding: 0 24px; }
+
+      .hairline-wrap { max-width: 64rem; margin: 0 auto; padding: 0 24px; }
+      .hairline { height: 1px; background: var(--rule); }
+
+      /* ---------- Top nav (shared with /vision /theme /theme-page /thinker) ---------- */
+      .topnav {
+        position: sticky; top: 0; z-index: 40;
+        background: color-mix(in oklab, var(--cream) 92%, transparent);
+        backdrop-filter: saturate(120%);
+        -webkit-backdrop-filter: saturate(120%);
+        border-bottom: 1px solid var(--rule-softer);
       }
-      .font-serif {
+      .topnav-inner {
+        max-width: 1120px; margin: 0 auto;
+        padding: 14px 24px;
+        display: flex; align-items: center; gap: 24px;
+      }
+      .brand {
+        display: inline-flex; align-items: center; gap: 12px;
+        font-family: var(--font-serif); font-size: 20px;
+        text-decoration: none; color: var(--ink);
+        letter-spacing: -0.005em;
+      }
+      .brand-mark {
+        display: block; flex-shrink: 0;
+        width: 34px; height: 34px;
+        border-radius: 8px;
+        transition: transform var(--dur-base) var(--ease-out);
+      }
+      .brand:hover .brand-mark { transform: translateY(-1px); }
+      .brand em { font-style: italic; color: var(--olive); font-weight: 500; }
+
+      .nav-tabs { display: flex; gap: 6px; margin-left: auto; flex-wrap: wrap; }
+      .tab {
+        appearance: none; border: 0; background: transparent;
+        font-family: var(--font-sans); font-size: 12px; font-weight: 500;
+        text-transform: uppercase; letter-spacing: 0.18em;
+        color: var(--fg-3); padding: 8px 14px; border-radius: 9999px;
+        cursor: pointer; text-decoration: none;
+        transition: color var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
+      }
+      .tab:hover { color: var(--ink); background: var(--cream-2); }
+      .tab[aria-current="page"] { color: var(--ink); background: var(--cream-2); }
+      .tab .idx {
+        display: inline-block;
+        font-family: var(--font-serif); font-style: italic; font-weight: 500;
+        text-transform: none; letter-spacing: 0;
+        color: var(--terracotta); margin-right: 6px; font-size: 13px;
+      }
+      .tab.tab-cta {
+        color: var(--cream); background: var(--ink);
+        margin-left: 8px;
+      }
+      .tab.tab-cta:hover { color: var(--cream); background: var(--ink); opacity: 0.9; }
+      @media (max-width: 720px) {
+        .topnav-inner { gap: 12px; }
+        .tab { padding: 6px 10px; font-size: 11px; letter-spacing: 0.14em; }
+      }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        max-width: 56rem; margin: 0 auto;
+        padding: 64px 24px 120px;
+      }
+      .hero h1 {
+        font-family: var(--font-serif); font-weight: 500;
+        font-size: clamp(3rem, 7vw + 0.5rem, 6rem);
+        line-height: 1.02; letter-spacing: -0.012em;
+        margin: 0; text-wrap: balance;
+        color: var(--ink);
+      }
+      .hero h1 em { font-style: italic; font-weight: 500; }
+      .hero h1 .terra { color: var(--terracotta); font-style: italic; }
+      .hero .lede {
         font-family: var(--font-serif);
-        font-feature-settings: "liga", "dlig";
+        font-size: clamp(1.25rem, 1.6vw + 0.6rem, 1.875rem);
+        line-height: 1.3; color: var(--fg-2);
+        margin: 40px 0 0; max-width: 44rem;
       }
-      :focus-visible {
-        outline: 2px solid var(--color-terracotta);
-        outline-offset: 3px;
-        border-radius: 2px;
+      .hero .ctas {
+        margin-top: 44px; display: flex; gap: 12px; flex-wrap: wrap;
       }
-      .rule {
-        height: 1px;
-        background: color-mix(in oklab, var(--color-ink) 18%, transparent);
+
+      .btn {
+        font-family: var(--font-sans); font-size: 15px; font-weight: 500;
+        padding: 14px 26px; border-radius: var(--radius-field);
+        border: 1px solid transparent; display: inline-block;
+        transition: opacity var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
+        cursor: pointer;
+      }
+      .btn-primary { background: var(--ink); color: var(--cream); }
+      .btn-primary:hover { opacity: 0.9; }
+      .btn-outline { background: transparent; border-color: var(--ink); color: var(--ink); }
+      .btn-outline:hover { background: rgba(26,26,26,0.06); }
+      .btn-terra { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
+      .btn-terra:hover { opacity: 0.9; }
+
+      /* ---------- Annotated terms + tooltip ---------- */
+      .annotated {
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        text-decoration-color: var(--terracotta);
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 3px;
+        cursor: help; white-space: nowrap;
+      }
+      #tooltip {
+        position: fixed;
+        background: var(--cream);
+        border: 1px solid color-mix(in oklab, var(--ink) 15%, transparent);
+        border-radius: 6px;
+        box-shadow: var(--shadow-tip);
+        padding: 14px 16px; max-width: 310px; z-index: 99;
+        opacity: 0; pointer-events: none;
+        transform: translateY(6px);
+        transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+      }
+      #tooltip.on { opacity: 1; transform: translateY(0); }
+      #tooltip .n { font-family: var(--font-serif); font-weight: 600; font-size: 18px; line-height: 1.2; color: var(--ink); }
+      #tooltip .d { font-family: var(--font-sans); font-size: 11px; color: var(--fg-4); text-transform: uppercase; letter-spacing: 0.05em; margin: 2px 0 8px; }
+      #tooltip .p { font-family: var(--font-sans); font-size: 13px; line-height: 1.55; color: var(--fg-2); margin: 0; }
+
+      /* ---------- Featured "problem" card ---------- */
+      .problem-section { padding: 80px 0 96px; }
+      .problem-card {
+        background: #ffffff;
+        border: 1px solid color-mix(in oklab, var(--ink) 6%, transparent);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-card);
+        max-width: 48rem; margin: 0 auto;
+      }
+      .problem-card .inner { padding: 48px 32px; }
+      @media (min-width: 720px) {
+        .problem-card .inner { padding: 64px 56px; }
+      }
+      .problem-card h2 {
+        font-family: var(--font-serif); font-weight: 500;
+        font-size: clamp(1.875rem, 3vw + 0.5rem, 2.875rem);
+        line-height: 1.12; margin: 0 0 32px; letter-spacing: -0.01em;
+      }
+      .problem-card .prose p {
+        font-family: var(--font-serif);
+        font-size: clamp(1.125rem, 0.6vw + 0.9rem, 1.4rem);
+        line-height: 1.55; color: var(--fg-2);
+        margin: 0 0 22px;
+      }
+      .problem-card .prose p:last-child { margin-bottom: 0; }
+      .problem-card .prose .punch { color: var(--terracotta); font-style: italic; }
+
+      /* ---------- Generic content section ---------- */
+      .section {
+        padding: 88px 0;
+      }
+      @media (min-width: 720px) { .section { padding: 120px 0; } }
+
+      .section h2 {
+        font-family: var(--font-serif); font-weight: 500;
+        font-size: clamp(2rem, 2.6vw + 0.6rem, 3rem);
+        line-height: 1.12; letter-spacing: -0.01em;
+        margin: 0 0 28px;
+      }
+      .section h2 em { font-style: italic; }
+      .section .prose-serif {
+        font-family: var(--font-serif);
+        font-size: clamp(1.125rem, 0.7vw + 0.9rem, 1.4rem);
+        line-height: 1.55; color: var(--fg-2);
+      }
+      .section .prose-serif p { margin: 0 0 22px; }
+      .section .prose-serif p:last-child { margin-bottom: 0; }
+      .section .prose-serif .punch { color: var(--terracotta); font-style: italic; }
+
+      /* "What we're building" bullets */
+      .bullets {
+        margin: 48px 0 0; padding: 0;
+        display: grid; gap: 12px 32px;
+        grid-template-columns: 1fr 1fr;
+        font-family: var(--font-sans); font-size: 15px;
+        list-style: none;
+      }
+      @media (max-width: 600px) { .bullets { grid-template-columns: 1fr; } }
+      .bullets li { display: flex; gap: 12px; color: var(--fg-2); }
+      .bullets .arrow { color: var(--olive); }
+
+      /* ---------- Roadmap timeline ---------- */
+      .roadmap {
+        list-style: none; margin: 56px 0 0; padding: 0;
+      }
+      .roadmap li {
+        position: relative;
+        padding: 0 0 48px 40px;
+        border-left: 1px solid color-mix(in oklab, var(--ink) 15%, transparent);
+      }
+      .roadmap li:last-child {
+        padding-bottom: 0;
+        border-left-color: color-mix(in oklab, var(--ink) 10%, transparent);
+      }
+      .roadmap .dot {
+        position: absolute; left: -5px; top: 8px;
+        width: 10px; height: 10px; border-radius: 50%;
+      }
+      .roadmap h3 {
+        font-family: var(--font-serif); font-weight: 500;
+        font-size: clamp(1.5rem, 1vw + 1rem, 1.875rem);
+        margin: 0 0 10px; letter-spacing: -0.005em;
+      }
+      .roadmap p {
+        font-family: var(--font-sans); font-size: 15px; line-height: 1.6;
+        color: var(--fg-3); margin: 0; max-width: 38rem;
+      }
+      .roadmap .eb { margin-bottom: 8px; }
+
+      /* ---------- Eyebrow ---------- */
+      .eb {
+        font-family: var(--font-sans); font-size: 12px; font-weight: 500;
+        text-transform: uppercase; letter-spacing: 0.2em;
+        color: var(--olive); margin: 0 0 28px;
+      }
+      .eb--terra { color: var(--terracotta); }
+
+      /* ---------- Trimester grid ---------- */
+      .trimester-grid {
+        display: grid; gap: 24px;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 32px;
+      }
+      @media (max-width: 860px) { .trimester-grid { grid-template-columns: 1fr; } }
+      .tcard {
+        background: color-mix(in oklab, var(--cream-2) 60%, var(--cream));
+        border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+        border-radius: var(--radius-box);
+        padding: 32px;
+      }
+      .tcard h3 {
+        font-family: var(--font-serif); font-weight: 500;
+        font-size: 28px; margin: 6px 0 0; letter-spacing: -0.005em;
+      }
+      .tcard .tag {
+        font-family: var(--font-serif); font-style: italic;
+        color: var(--fg-3); font-size: 18px; margin: 6px 0 18px;
+      }
+      .tcard ul {
+        font-family: var(--font-sans); font-size: 14px; line-height: 1.6;
+        color: var(--fg-2); margin: 0; padding: 0; list-style: none;
+      }
+      .tcard ul li { padding: 3px 0; }
+      .tcard .eb { margin-bottom: 0; }
+
+      .leave-with {
+        margin-top: 56px; max-width: 48rem;
+      }
+      .leave-with .eb { margin-bottom: 12px; }
+      .leave-with p {
+        font-family: var(--font-serif);
+        font-size: clamp(1.125rem, 0.6vw + 0.9rem, 1.375rem);
+        line-height: 1.45; color: var(--fg-2); margin: 0;
+      }
+      .leave-with em { font-style: italic; color: var(--olive); }
+
+      /* ---------- Who it's for ---------- */
+      .who dl { margin: 0; }
+      .who dt {
+        font-family: var(--font-serif); font-style: italic;
+        color: var(--terracotta); font-size: 18px; margin-bottom: 4px;
+      }
+      .who dd {
+        font-family: var(--font-serif);
+        font-size: clamp(1.125rem, 0.8vw + 0.9rem, 1.5rem);
+        line-height: 1.3; color: var(--fg-2); margin: 0 0 32px;
+      }
+
+      /* ---------- Lineage strip ---------- */
+      .lineage {
+        background: color-mix(in oklab, var(--cream-2) 75%, var(--cream));
+        border-top: 1px solid var(--rule-soft);
+        border-bottom: 1px solid var(--rule-soft);
+      }
+      .lineage .inner {
+        max-width: 48rem; margin: 0 auto;
+        padding: 80px 24px; text-align: center;
+      }
+      .lineage p {
+        margin: 0;
+        font-family: var(--font-serif); font-style: italic;
+        font-size: clamp(1.125rem, 1.4vw + 0.8rem, 1.75rem);
+        line-height: 1.35; color: var(--fg-2);
+        text-wrap: balance;
+      }
+
+      /* ---------- Where it begins (founding) ---------- */
+      .founding {
+        padding: 120px 24px; text-align: center;
+        max-width: 56rem; margin: 0 auto;
+      }
+      .founding .big {
+        font-family: var(--font-serif); font-weight: 500;
+        font-size: clamp(2.5rem, 5vw + 0.5rem, 4.75rem);
+        line-height: 1.05; letter-spacing: -0.012em;
+      }
+      .founding .big p { margin: 0; }
+      .founding .big em { font-style: italic; }
+      .founding .big .n { color: var(--terracotta); }
+      .founding .big .d { color: var(--fg-3); }
+      .founding .note {
+        font-family: var(--font-sans); font-size: 14px;
+        color: var(--fg-4); margin: 40px auto 0;
+        max-width: 32rem; line-height: 1.6;
+      }
+
+      /* ---------- Apply form (inverted) ---------- */
+      .apply {
+        background: var(--ink); color: var(--cream);
+      }
+      .apply .inner {
+        max-width: 36rem; margin: 0 auto;
+        padding: 96px 24px;
+      }
+      .apply h2 {
+        font-family: var(--font-serif); font-weight: 500;
+        font-size: clamp(2rem, 3vw + 0.6rem, 3rem);
+        line-height: 1.12; margin: 0 0 24px;
+        color: var(--cream); letter-spacing: -0.01em;
+      }
+      .apply .lede {
+        font-family: var(--font-serif);
+        font-size: clamp(1.125rem, 1vw + 0.7rem, 1.375rem);
+        line-height: 1.35; color: var(--fg-inv-2); margin: 0 0 40px;
+      }
+      .apply .field-group { display: grid; gap: 12px; margin-bottom: 24px; }
+      .apply .legend {
+        font-family: var(--font-serif); font-size: 20px;
+        margin-bottom: 8px; color: var(--cream);
+      }
+      .apply .opt {
+        display: flex; align-items: center; gap: 12px;
+        font-family: var(--font-sans); font-size: 14px;
+        cursor: pointer; color: var(--cream);
+      }
+      .apply input[type="radio"] { accent-color: var(--terracotta); width: 16px; height: 16px; }
+      .apply input[type="text"],
+      .apply input[type="email"],
+      .apply textarea {
+        width: 100%; box-sizing: border-box;
+        background: transparent;
+        border: 1px solid color-mix(in oklab, var(--cream) 30%, transparent);
+        color: var(--cream);
+        padding: 14px 16px; border-radius: var(--radius-field);
+        font-family: var(--font-sans); font-size: 14px;
+      }
+      .apply input::placeholder, .apply textarea::placeholder {
+        color: var(--fg-inv-3);
+      }
+      .apply input:focus-visible, .apply textarea:focus-visible {
+        outline-color: var(--terracotta);
+        border-color: color-mix(in oklab, var(--cream) 60%, transparent);
+      }
+      .apply .submit {
+        width: 100%;
+        background: var(--terracotta); border: 1px solid var(--terracotta);
+        color: var(--cream);
+        padding: 16px;
+        border-radius: var(--radius-field);
+        font-family: var(--font-sans); font-size: 15px; font-weight: 500;
+        cursor: pointer;
+      }
+      .apply .submit:hover { opacity: 0.9; }
+      .apply .fine {
+        font-family: var(--font-sans); font-size: 11px;
+        text-align: center; color: var(--fg-inv-3); margin-top: 16px;
+      }
+
+      /* ---------- FAQ ---------- */
+      .faq { padding: 96px 0 56px; }
+      .faq-list { display: grid; gap: 10px; max-width: 48rem; margin: 0 auto; }
+      .faq-item {
+        background: color-mix(in oklab, var(--cream-2) 60%, var(--cream));
+        border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+        border-radius: var(--radius-box);
+        overflow: hidden;
+      }
+      .faq-item summary {
+        list-style: none; cursor: pointer;
+        padding: 18px 22px;
+        display: flex; justify-content: space-between; align-items: center; gap: 16px;
+        font-family: var(--font-serif); font-size: 20px; color: var(--ink);
+      }
+      .faq-item summary::-webkit-details-marker { display: none; }
+      .faq-item summary .plus {
+        color: var(--fg-4); font-family: var(--font-sans); font-weight: 300;
+        font-size: 22px; line-height: 1; transition: transform var(--dur-slow) var(--ease-out), color var(--dur-base) var(--ease-out);
+      }
+      .faq-item[open] summary .plus { transform: rotate(45deg); color: var(--terracotta); }
+      .faq-item .body {
+        padding: 0 22px 22px;
+        font-family: var(--font-sans); font-size: 15px; line-height: 1.65;
+        color: var(--fg-2);
+      }
+      .faq-item .body p { margin: 0; }
+
+      /* ---------- Footer ---------- */
+      footer.site {
+        border-top: 1px solid var(--rule-soft);
+        margin-top: 32px;
+      }
+      .footer-row {
+        display: flex; justify-content: space-between; align-items: flex-end;
+        padding: 48px 0 24px; gap: 32px; flex-wrap: wrap;
+      }
+      .footer-row .brand-lg {
+        font-family: var(--font-serif); font-size: 24px; color: var(--ink);
+      }
+      .footer-row .brand-lg em { color: var(--olive); font-style: italic; }
+      .footer-row .tagline {
+        font-family: var(--font-serif); font-style: italic;
+        color: var(--fg-4); margin-top: 4px;
+      }
+      .footer-row nav {
+        display: flex; gap: 22px; flex-wrap: wrap;
+        font-family: var(--font-sans); font-size: 13px; color: var(--fg-3);
+      }
+      .footer-row nav a:hover { color: var(--ink); }
+      .copy {
+        font-family: var(--font-sans); font-size: 12px;
+        color: var(--fg-4); padding: 0 0 32px;
       }
     </style>
   </head>
 
-  <body class="min-h-screen">
-    <a
-      href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:bg-neutral focus:text-neutral-content focus:px-3 focus:py-2 focus:rounded"
-      >Skip to content</a
-    >
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
 
-    <!-- Nav -->
-    <header class="w-full">
-      <nav
-        class="mx-auto flex max-w-5xl items-center justify-between px-6 py-6 md:py-8"
-        aria-label="Primary"
-      >
-        <a href="#top" class="font-serif text-2xl md:text-3xl tracking-tight">
-          Plato <span class="italic text-olive">University</span>
+    <nav class="topnav" aria-label="Primary">
+      <div class="topnav-inner">
+        <a class="brand" href="/" aria-label="Plato University — home">
+          <svg class="brand-mark" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+            <rect width="512" height="512" rx="96" fill="#1a1a1a"/>
+            <text x="50%" y="54%" text-anchor="middle" dominant-baseline="central"
+                  font-family="'Cormorant Garamond', Georgia, serif"
+                  font-size="360" font-weight="500" fill="#faf7f2">P</text>
+            <circle cx="378" cy="388" r="19" fill="#b8593a"/>
+          </svg>
+          <span>Plato <em>University</em></span>
         </a>
-        <a
-          href="#apply"
-          class="btn btn-ghost btn-sm font-sans tracking-wide uppercase text-xs"
-        >
-          Apply
-        </a>
-      </nav>
-    </header>
+        <div class="nav-tabs">
+          <a class="tab" href="/vision"><span class="idx">i.</span>Vision</a>
+          <a class="tab" href="/theme"><span class="idx">ii.</span>Theme</a>
+          <a class="tab" href="/theme-page"><span class="idx">iii.</span>Theme page</a>
+          <a class="tab" href="/thinker"><span class="idx">iv.</span>Thinker</a>
+          <a class="tab tab-cta" href="#apply">Apply</a>
+        </div>
+      </div>
+    </nav>
 
     <main id="main">
       <!-- Hero -->
-      <section id="top" class="mx-auto max-w-4xl px-6 pt-10 pb-24 md:pt-24 md:pb-40">
-        <p class="font-sans text-xs md:text-sm uppercase tracking-[0.2em] text-olive mb-8">
-          Founding cohort · September 2026 · Amsterdam
-        </p>
-        <h1
-          class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight text-balance"
-        >
-          The world doesn't need more
-          <span class="italic">specialists.</span>
-          <br class="hidden md:block" />
-          It needs <span class="text-terracotta italic">thinkers.</span>
-        </h1>
-        <p
-          class="font-serif text-xl md:text-2xl lg:text-3xl mt-8 md:mt-12 max-w-3xl leading-snug text-ink/80"
-        >
-          Plato University is a one-year academy for the AI era.
-          <br />
+      <section id="top" class="hero">
+        <p class="eb">Discovery month · September 2026 · Amsterdam</p>
+        <h1>The world doesn't need more <em>specialists.</em><br>It needs <span class="terra">thinkers.</span></h1>
+        <p class="lede">
+          Plato University is a one-year academy for the AI era.<br>
           Philosophy first. Portfolio last. No debt. No diploma.
         </p>
-        <div class="mt-10 md:mt-14 flex flex-col sm:flex-row gap-3">
-          <a href="#apply" class="btn btn-neutral btn-lg font-sans">Apply</a>
-          <a href="#apply" class="btn btn-outline btn-lg font-sans">Teach with us</a>
+        <div class="ctas">
+          <a href="#apply" class="btn btn-primary">Apply</a>
+          <a href="#apply" class="btn btn-outline">Teach with us</a>
         </div>
       </section>
 
-      <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
+      <div class="hairline-wrap"><div class="hairline"></div></div>
 
-      <!-- The problem -->
-      <section class="mx-auto max-w-3xl px-6 py-20 md:py-32">
-        <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta mb-6">
-          The problem
-        </p>
-        <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-8">
-          In the age of AI, we are still running a school built for the factory floor.
-        </h2>
-        <div class="font-serif text-xl md:text-2xl leading-relaxed space-y-6 text-ink/85">
-          <p>
-            In 1843, Horace Mann brought the Prussian bell home. The system he copied was
-            built to produce obedient soldiers and reliable workers. Rockefeller's General
-            Education Board then scaled it across America, and Carnegie turned learning
-            into a stopwatch, calling one unit an hour.
-          </p>
-          <p>
-            The inheritance is still with us. Age-graded rows. Fixed bells. Standardized
-            curriculum. A diploma for a career your field no longer has.
-          </p>
-          <p class="text-terracotta italic">
-            The world that system was built for no longer exists.
-          </p>
-          <p>
-            AI collapses the premium on routine specialization. The jobs you train for at
-            eighteen will be automated, transformed, or invented-and-gone-already by the
-            time you graduate. And yet universities still run on the Carnegie Unit.
-          </p>
+      <!-- Featured problem card -->
+      <section class="problem-section">
+        <div class="container">
+          <div class="problem-card">
+            <div class="inner">
+              <p class="eb eb--terra">The problem</p>
+              <h2>In the age of AI, we are still running a school built for the factory floor.</h2>
+              <div class="prose">
+                <p>
+                  In 1843, <span class="annotated" data-key="mann">Horace Mann</span>
+                  brought the Prussian bell home. The system he copied was built to produce
+                  obedient soldiers and reliable workers.
+                  <span class="annotated" data-key="rockefeller">Rockefeller</span>'s General
+                  Education Board then scaled it across America, and
+                  <span class="annotated" data-key="carnegie">Carnegie</span> turned learning
+                  into a stopwatch, calling one unit an hour.
+                </p>
+                <p>
+                  The inheritance is still with us. Age-graded rows. Fixed bells. Standardized
+                  curriculum. A diploma for a career your field no longer has.
+                </p>
+                <p class="punch">
+                  The world that system was built for no longer exists.
+                </p>
+                <p>
+                  AI collapses the premium on routine specialization. The jobs you train for at
+                  eighteen will be automated, transformed, or invented-and-gone-already by the
+                  time you graduate. And yet universities still run on the
+                  <span class="annotated" data-key="carnegie">Carnegie Unit</span>.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
+      <div class="hairline-wrap"><div class="hairline"></div></div>
 
       <!-- What we're building -->
-      <section class="mx-auto max-w-3xl px-6 py-20 md:py-32">
-        <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive mb-6">
-          What we're building
-        </p>
-        <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-10">
-          Learn to think before you learn to work.
-        </h2>
-        <div class="font-serif text-xl md:text-2xl leading-relaxed space-y-6 text-ink/85">
-          <p>
-            A one-year academy where philosophy, not job-training, is the core. A local
-            city community where students actually meet face to face. A portfolio at the
-            end that proves they can think, make, and lead.
-          </p>
-          <p>
-            You read Plato, not summaries of Plato. You write Montaigne, not essays
-            <em>about</em> him. The examined life becomes a way of living, not an elective
-            subject.
-          </p>
+      <section class="section">
+        <div class="container-sm">
+          <p class="eb">What we're building</p>
+          <h2>Learn to think before you learn to work.</h2>
+          <div class="prose-serif">
+            <p>
+              A one-year academy where philosophy, not job-training, is the core. A local
+              city community where students actually meet face to face. A portfolio at the
+              end that proves they can think, make, and lead.
+            </p>
+            <p>
+              You read <span class="annotated" data-key="plato">Plato</span>, not summaries
+              of <span class="annotated" data-key="plato">Plato</span>. You write
+              <span class="annotated" data-key="montaigne">Montaigne</span>, not essays
+              <em>about</em> him. The examined life becomes a way of living, not an elective
+              subject.
+            </p>
+          </div>
+          <ul class="bullets">
+            <li><span class="arrow">→</span> Primary sources, not summaries</li>
+            <li><span class="arrow">→</span> Online core + local city hubs</li>
+            <li><span class="arrow">→</span> Portfolio over diploma</li>
+            <li><span class="arrow">→</span> All ages, all edges</li>
+            <li><span class="arrow">→</span> AI as a tool, not a master</li>
+            <li><span class="arrow">→</span> No managers, only mentors</li>
+          </ul>
         </div>
-
-        <ul class="mt-12 grid gap-x-8 gap-y-4 sm:grid-cols-2 font-sans text-base">
-          <li class="flex gap-3"><span class="text-olive">→</span> Primary sources, not summaries</li>
-          <li class="flex gap-3"><span class="text-olive">→</span> Online core + local city hubs</li>
-          <li class="flex gap-3"><span class="text-olive">→</span> Portfolio over diploma</li>
-          <li class="flex gap-3"><span class="text-olive">→</span> All ages, all edges</li>
-          <li class="flex gap-3"><span class="text-olive">→</span> AI as a tool, not a master</li>
-          <li class="flex gap-3"><span class="text-olive">→</span> No managers, only mentors</li>
-        </ul>
       </section>
 
-      <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
+      <div class="hairline-wrap"><div class="hairline"></div></div>
 
-      <!-- The one-year program -->
-      <section class="mx-auto max-w-6xl px-6 py-20 md:py-32">
-        <div class="max-w-3xl">
-          <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive mb-6">
-            The one-year program
+      <!-- Roadmap -->
+      <section class="section">
+        <div class="container-sm">
+          <p class="eb">The plan, honestly</p>
+          <h2>We start small.<br>We build from proof.</h2>
+          <p class="prose-serif">
+            A full one-year academy is the shape. A discovery month is where we begin.
           </p>
-          <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-6">
-            Three trimesters.
-            <span class="italic">Four months each.</span>
-          </h2>
-          <p class="font-serif text-xl md:text-2xl text-ink/80 mb-14 leading-snug">
-            Online core with weekly in-person sessions in your city hub.
-          </p>
+          <ol class="roadmap">
+            <li>
+              <span class="dot" style="background: var(--terracotta);"></span>
+              <p class="eb eb--terra">September 2026 · Where we are</p>
+              <h3>The discovery month</h3>
+              <p>Four sessions over four weeks. A small group in Amsterdam — and online. Not a course. A mutual interview.</p>
+            </li>
+            <li>
+              <span class="dot" style="background: var(--olive);"></span>
+              <p class="eb">2027 · If it earns it</p>
+              <h3>The six-month pilot</h3>
+              <p>A structured program with the founding cohort — curriculum, mentors, a city hub, the first portfolio artifacts.</p>
+            </li>
+            <li>
+              <span class="dot" style="background: color-mix(in oklab, var(--olive) 40%, transparent);"></span>
+              <p class="eb" style="color: color-mix(in oklab, var(--olive) 60%, transparent);">2028 · The full version</p>
+              <h3 style="color: var(--fg-3);">The one-year academy</h3>
+              <p>Three trimesters. The full program described below.</p>
+            </li>
+            <li>
+              <span class="dot" style="background: color-mix(in oklab, var(--ink) 15%, transparent);"></span>
+              <p class="eb" style="color: var(--fg-5);">Long term · The real ambition</p>
+              <h3 style="color: var(--fg-4);">A three-year university</h3>
+              <p>A genuine alternative to the industrial university — accreditation optional, depth non-negotiable.</p>
+            </li>
+          </ol>
         </div>
+      </section>
 
-        <div class="grid gap-6 md:gap-8 md:grid-cols-3">
-          <article class="card bg-base-200/60 shadow-none border border-ink/10">
-            <div class="card-body p-8">
-              <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta">
-                Trimester 1 · Months 1–4
-              </p>
-              <h3 class="card-title font-serif text-3xl mt-2">Foundations</h3>
-              <p class="font-serif italic text-lg text-ink/70 mb-4">You learn to think.</p>
-              <ul class="font-sans text-sm leading-relaxed space-y-1.5 text-ink/80">
+      <div class="hairline-wrap"><div class="hairline"></div></div>
+
+      <!-- Trimester grid -->
+      <section class="section">
+        <div class="container">
+          <div style="max-width: 48rem;">
+            <p class="eb">The one-year program</p>
+            <h2>Three trimesters.<br><em>Four months each.</em></h2>
+            <p class="prose-serif" style="margin-bottom: 16px;">
+              Online core with weekly in-person sessions in your city hub.
+            </p>
+          </div>
+          <div class="trimester-grid">
+            <article class="tcard">
+              <p class="eb eb--terra">Trimester 1 · Months 1–4</p>
+              <h3>Foundations</h3>
+              <p class="tag">You learn to think.</p>
+              <ul>
                 <li>Socratic method &amp; formal logic</li>
                 <li>Rhetoric and writing</li>
-                <li>The classics: Plato, Aristotle, Seneca, Epictetus, Montaigne</li>
+                <li>The classics: <span class="annotated" data-key="plato">Plato</span>, Aristotle, <span class="annotated" data-key="seneca">Seneca</span>, Epictetus, <span class="annotated" data-key="montaigne">Montaigne</span></li>
                 <li>The body: sleep, nutrition, attention, movement</li>
               </ul>
-            </div>
-          </article>
-
-          <article class="card bg-base-200/60 shadow-none border border-ink/10">
-            <div class="card-body p-8">
-              <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta">
-                Trimester 2 · Months 5–8
-              </p>
-              <h3 class="card-title font-serif text-3xl mt-2">The world as it is</h3>
-              <p class="font-serif italic text-lg text-ink/70 mb-4">
-                You learn how the world actually works.
-              </p>
-              <ul class="font-sans text-sm leading-relaxed space-y-1.5 text-ink/80">
+            </article>
+            <article class="tcard">
+              <p class="eb eb--terra">Trimester 2 · Months 5–8</p>
+              <h3>The world as it is</h3>
+              <p class="tag">You learn how the world actually works.</p>
+              <ul>
                 <li>Economics, and why money moves the way it does</li>
                 <li>Systems and power</li>
                 <li>Ethics in the age of machines</li>
                 <li>AI: fluency, limits, ethics of use</li>
-                <li>Modern thinkers: Freire, Illich, hooks, Gatto</li>
+                <li>Modern thinkers: <span class="annotated" data-key="freire">Freire</span>, <span class="annotated" data-key="illich">Illich</span>, <span class="annotated" data-key="hooks">hooks</span>, <span class="annotated" data-key="gatto">Gatto</span></li>
               </ul>
-            </div>
-          </article>
-
-          <article class="card bg-base-200/60 shadow-none border border-ink/10">
-            <div class="card-body p-8">
-              <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta">
-                Trimester 3 · Months 9–12
-              </p>
-              <h3 class="card-title font-serif text-3xl mt-2">Ship something</h3>
-              <p class="font-serif italic text-lg text-ink/70 mb-4">You learn by making.</p>
-              <ul class="font-sans text-sm leading-relaxed space-y-1.5 text-ink/80">
+            </article>
+            <article class="tcard">
+              <p class="eb eb--terra">Trimester 3 · Months 9–12</p>
+              <h3>Ship something</h3>
+              <p class="tag">You learn by making.</p>
+              <ul>
                 <li>Directed personal project with a mentor</li>
                 <li>Public defense of your work</li>
                 <li>Portfolio documentation, the artifact you leave with</li>
               </ul>
-            </div>
-          </article>
-        </div>
-
-        <div class="mt-14 md:mt-16 max-w-3xl">
-          <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive mb-4">
-            What you leave with
-          </p>
-          <p class="font-serif text-xl md:text-2xl text-ink/85 leading-snug">
-            A portfolio of your thinking, writing, and making. A defended capstone. A mentor
-            network. A cohort that will be your peers for decades. No debt. No diploma.
-            <span class="italic">And that's the point.</span>
-          </p>
+            </article>
+          </div>
+          <div class="leave-with">
+            <p class="eb">What you leave with</p>
+            <p>
+              A portfolio of your thinking, writing, and making. A defended capstone. A mentor
+              network. A cohort that will be your peers for decades. No debt. No diploma.
+              <em>And that's the point.</em>
+            </p>
+          </div>
         </div>
       </section>
 
-      <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
+      <div class="hairline-wrap"><div class="hairline"></div></div>
 
       <!-- Who it's for -->
-      <section class="mx-auto max-w-3xl px-6 py-20 md:py-32">
-        <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive mb-6">
-          Who it's for
-        </p>
-        <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-12">
-          Anyone who would rather be a thinker than a cog.
-        </h2>
-
-        <dl class="space-y-8 font-serif text-xl md:text-2xl leading-snug text-ink/85">
-          <div>
-            <dt class="font-serif italic text-terracotta text-lg mb-1">The 19-year-old</dt>
+      <section class="section who">
+        <div class="container-sm">
+          <p class="eb">Who it's for</p>
+          <h2>Anyone who would rather be a thinker than a cog.</h2>
+          <dl>
+            <dt>The 19-year-old</dt>
             <dd>who can't stomach four more years of standardized school.</dd>
-          </div>
-          <div>
-            <dt class="font-serif italic text-terracotta text-lg mb-1">The 25-year-old</dt>
-            <dd>
-              who graduated three years ago and already watched their field get eaten by
-              AI.
-            </dd>
-          </div>
-          <div>
-            <dt class="font-serif italic text-terracotta text-lg mb-1">The 35-year-old</dt>
+            <dt>The 25-year-old</dt>
+            <dd>who graduated three years ago and already watched their field get eaten by AI.</dd>
+            <dt>The 35-year-old</dt>
             <dd>career-switcher who wants to rebuild their thinking from the ground up.</dd>
-          </div>
-          <div>
-            <dt class="font-serif italic text-terracotta text-lg mb-1">The 55-year-old</dt>
+            <dt>The 55-year-old</dt>
             <dd>who has a career but lost the plot, and wants to find it again.</dd>
-          </div>
-        </dl>
+          </dl>
+        </div>
       </section>
 
-      <!-- Lineage strip -->
-      <section class="bg-base-200/50 border-y border-ink/10">
-        <div class="mx-auto max-w-3xl px-6 py-16 md:py-20 text-center">
-          <p class="font-serif italic text-xl md:text-2xl lg:text-3xl leading-snug text-ink/80 text-balance">
-            In the tradition of Plato, Seneca, Montaigne, Illich, Freire, bell hooks,
-            Gatto, and the Bauhaus.
+      <!-- Lineage -->
+      <section class="lineage">
+        <div class="inner">
+          <p>
+            In the tradition of
+            <span class="annotated" data-key="plato">Plato</span>,
+            <span class="annotated" data-key="seneca">Seneca</span>,
+            <span class="annotated" data-key="montaigne">Montaigne</span>,
+            <span class="annotated" data-key="illich">Illich</span>,
+            <span class="annotated" data-key="freire">Freire</span>,
+            <span class="annotated" data-key="hooks">bell hooks</span>,
+            <span class="annotated" data-key="gatto">Gatto</span>,
+            and the <span class="annotated" data-key="bauhaus">Bauhaus</span>.
           </p>
         </div>
       </section>
 
-      <!-- Founding cohort -->
-      <section class="mx-auto max-w-4xl px-6 py-20 md:py-32 text-center">
-        <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta mb-8">
-          The founding cohort
-        </p>
-        <div class="font-serif text-5xl md:text-7xl leading-[1.05] tracking-tight space-y-2">
-          <p><span class="text-terracotta">30</span> students.</p>
-          <p><span class="text-terracotta">10</span> mentors.</p>
-          <p class="italic">September 2026.</p>
-          <p class="text-ink/70">Amsterdam is hub #1.</p>
+      <!-- Where it begins -->
+      <section class="founding">
+        <p class="eb eb--terra">Where it begins</p>
+        <div class="big">
+          <p><em>September 2026.</em></p>
+          <p><span class="n">One</span> month.</p>
+          <p><span class="n">Four</span> sessions.</p>
+          <p class="d">Amsterdam is hub #1.</p>
         </div>
-        <p class="font-sans text-sm text-ink/60 mt-10 max-w-lg mx-auto">
-          We are looking for founding students and founding mentors. If that's you,
-          tell us below.
+        <p class="note">
+          Not a course — a mutual interview. We are looking for the people who will become
+          the founding cohort.
         </p>
       </section>
 
-      <!-- Form -->
-      <section id="apply" class="bg-ink text-cream">
-        <div class="mx-auto max-w-2xl px-6 py-20 md:py-28">
-          <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta mb-6">
-            Apply · Teach · Follow along
-          </p>
-          <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-6">
-            Tell us who you are.
-          </h2>
-          <p class="font-serif text-xl text-cream/70 mb-10 leading-snug">
-            We read everything. We reply to everyone in the founding cohort window.
+      <!-- Apply -->
+      <section id="apply" class="apply">
+        <div class="inner">
+          <p class="eb eb--terra">Apply · Teach · Follow along</p>
+          <h2>Tell us who you are.</h2>
+          <p class="lede">
+            We read everything. We reply to everyone in the discovery-month window.
           </p>
 
-          <form
-            action="https://formspree.io/f/xgorzbpk"
-            method="POST"
-            class="space-y-6"
-          >
-            <input
-              type="hidden"
-              name="_subject"
-              value="New Plato University inquiry"
-            />
+          <form action="https://formspree.io/f/xgorzbpk" method="POST">
+            <input type="hidden" name="_subject" value="New Plato University inquiry" />
 
-            <fieldset class="space-y-3">
-              <legend class="font-serif text-xl mb-2">I'm interested as a…</legend>
-              <label class="flex items-center gap-3 cursor-pointer">
-                <input
-                  type="radio"
-                  name="role"
-                  value="student"
-                  required
-                  class="radio radio-sm border-cream/40 checked:bg-terracotta"
-                />
+            <div class="field-group">
+              <div class="legend">I'm interested as a…</div>
+              <label class="opt">
+                <input type="radio" name="role" value="student" required />
                 <span>Student</span>
               </label>
-              <label class="flex items-center gap-3 cursor-pointer">
-                <input
-                  type="radio"
-                  name="role"
-                  value="mentor"
-                  class="radio radio-sm border-cream/40 checked:bg-terracotta"
-                />
+              <label class="opt">
+                <input type="radio" name="role" value="mentor" />
                 <span>Mentor / teacher</span>
               </label>
-              <label class="flex items-center gap-3 cursor-pointer">
-                <input
-                  type="radio"
-                  name="role"
-                  value="curious"
-                  class="radio radio-sm border-cream/40 checked:bg-terracotta"
-                />
+              <label class="opt">
+                <input type="radio" name="role" value="curious" />
                 <span>Just curious. Keep me posted.</span>
-              </label>
-            </fieldset>
-
-            <div class="space-y-3">
-              <label class="block">
-                <span class="sr-only">Your name</span>
-                <input
-                  name="name"
-                  required
-                  placeholder="Your name"
-                  autocomplete="name"
-                  class="input input-bordered w-full bg-transparent border-cream/30 text-cream placeholder:text-cream/50"
-                />
-              </label>
-              <label class="block">
-                <span class="sr-only">Email</span>
-                <input
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="Email"
-                  autocomplete="email"
-                  class="input input-bordered w-full bg-transparent border-cream/30 text-cream placeholder:text-cream/50"
-                />
-              </label>
-              <label class="block">
-                <span class="sr-only">City you live in</span>
-                <input
-                  name="city"
-                  placeholder="City you live in"
-                  autocomplete="address-level2"
-                  class="input input-bordered w-full bg-transparent border-cream/30 text-cream placeholder:text-cream/50"
-                />
-              </label>
-              <label class="block">
-                <span class="sr-only">Why now?</span>
-                <textarea
-                  name="why"
-                  placeholder="Why now? (optional, a few sentences)"
-                  rows="5"
-                  class="textarea textarea-bordered w-full bg-transparent border-cream/30 text-cream placeholder:text-cream/50"
-                ></textarea>
               </label>
             </div>
 
-            <button type="submit" class="btn btn-lg w-full bg-terracotta border-terracotta text-cream hover:bg-terracotta/90 hover:border-terracotta/90">
-              Send
-            </button>
+            <div class="field-group">
+              <label>
+                <span class="sr-only" style="position:absolute;left:-9999px;">Your name</span>
+                <input type="text" name="name" placeholder="Your name" required autocomplete="name" />
+              </label>
+              <label>
+                <span class="sr-only" style="position:absolute;left:-9999px;">Email</span>
+                <input type="email" name="email" placeholder="Email" required autocomplete="email" />
+              </label>
+              <label>
+                <span class="sr-only" style="position:absolute;left:-9999px;">City you live in</span>
+                <input type="text" name="city" placeholder="City you live in" autocomplete="address-level2" />
+              </label>
+              <label>
+                <span class="sr-only" style="position:absolute;left:-9999px;">Why now?</span>
+                <textarea name="why" rows="5" placeholder="Why now? (optional, a few sentences)"></textarea>
+              </label>
+            </div>
 
-            <p class="font-sans text-xs text-cream/50 text-center pt-2">
-              No spam. No newsletter you didn't ask for.
-            </p>
+            <button type="submit" class="submit">Send</button>
+            <p class="fine">No spam. No newsletter you didn't ask for.</p>
           </form>
         </div>
       </section>
 
       <!-- FAQ -->
-      <section class="mx-auto max-w-3xl px-6 py-20 md:py-32">
-        <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive mb-6">
-          Frequently asked
-        </p>
-        <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-10">
-          The obvious questions, answered honestly.
-        </h2>
-
-        <div class="space-y-3">
-          <div class="collapse collapse-plus bg-base-200/60 border border-ink/10">
-            <input type="checkbox" />
-            <div class="collapse-title font-serif text-xl">Is this accredited?</div>
-            <div class="collapse-content font-sans text-base leading-relaxed text-ink/80">
-              <p>
-                No, and that is the point. We graduate thinkers with a portfolio and a
-                defended project, not a diploma designed for an economy that no longer
-                exists. If you need a credential to put on LinkedIn, this isn't for you.
-              </p>
-            </div>
-          </div>
-
-          <div class="collapse collapse-plus bg-base-200/60 border border-ink/10">
-            <input type="checkbox" />
-            <div class="collapse-title font-serif text-xl">What does it cost?</div>
-            <div class="collapse-content font-sans text-base leading-relaxed text-ink/80">
-              <p>
-                Founding cohort pricing is shared directly with accepted applicants. No
-                student will be turned away for inability to pay in year one. Patrons and
-                scholarships fill the gap.
-              </p>
-            </div>
-          </div>
-
-          <div class="collapse collapse-plus bg-base-200/60 border border-ink/10">
-            <input type="checkbox" />
-            <div class="collapse-title font-serif text-xl">Where does it happen?</div>
-            <div class="collapse-content font-sans text-base leading-relaxed text-ink/80">
-              <p>
-                The online core (seminars, readings, writing, and feedback) is accessible
-                from anywhere. Weekly in-person sessions happen at your city hub.
-                Amsterdam is hub #1. Any city with five or more students becomes its own.
-              </p>
-            </div>
-          </div>
-
-          <div class="collapse collapse-plus bg-base-200/60 border border-ink/10">
-            <input type="checkbox" />
-            <div class="collapse-title font-serif text-xl">Who's teaching?</div>
-            <div class="collapse-content font-sans text-base leading-relaxed text-ink/80">
-              <p>
-                Founding mentors are working philosophers, writers, builders, and
-                teachers who believe in what we're doing. If that sounds like you, apply
-                above as a mentor. We are actively looking.
-              </p>
-            </div>
-          </div>
-
-          <div class="collapse collapse-plus bg-base-200/60 border border-ink/10">
-            <input type="checkbox" />
-            <div class="collapse-title font-serif text-xl">What do I leave with?</div>
-            <div class="collapse-content font-sans text-base leading-relaxed text-ink/80">
-              <p>
-                A portfolio of your writing, thinking, and making. A defended capstone
-                project. A mentor network. And a cohort that will be your peers for
-                decades.
-              </p>
-            </div>
+      <section class="faq">
+        <div class="container-sm">
+          <p class="eb">Frequently asked</p>
+          <h2>The obvious questions, answered honestly.</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Is this accredited? <span class="plus" aria-hidden="true">+</span></summary>
+              <div class="body">
+                <p>No, and that is the point. We graduate thinkers with a portfolio and a defended project, not a diploma designed for an economy that no longer exists. If you need a credential to put on LinkedIn, this isn't for you.</p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>What does it cost? <span class="plus" aria-hidden="true">+</span></summary>
+              <div class="body">
+                <p>Founding cohort pricing is shared directly with accepted applicants. No student will be turned away for inability to pay in year one. Patrons and scholarships fill the gap.</p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>Where does it happen? <span class="plus" aria-hidden="true">+</span></summary>
+              <div class="body">
+                <p>The online core (seminars, readings, writing, and feedback) is accessible from anywhere. Weekly in-person sessions happen at your city hub. Amsterdam is hub #1. Any city with five or more students becomes its own.</p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>Who's teaching? <span class="plus" aria-hidden="true">+</span></summary>
+              <div class="body">
+                <p>Founding mentors are working philosophers, writers, builders, and teachers who believe in what we're doing. If that sounds like you, apply above as a mentor. We are actively looking.</p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>What do I leave with? <span class="plus" aria-hidden="true">+</span></summary>
+              <div class="body">
+                <p>A portfolio of your writing, thinking, and making. A defended capstone project. A mentor network. And a cohort that will be your peers for decades.</p>
+              </div>
+            </details>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-ink/10 mt-10">
-      <div
-        class="mx-auto max-w-5xl px-6 py-12 flex flex-col md:flex-row md:items-end md:justify-between gap-8"
-      >
-        <div>
-          <p class="font-serif text-2xl">
-            Plato <span class="italic text-olive">University</span>
-          </p>
-          <p class="font-serif italic text-ink/60 mt-1">
-            Learn to think before you learn to work.
-          </p>
+    <footer class="site">
+      <div class="container">
+        <div class="footer-row">
+          <div>
+            <div class="brand-lg">Plato <em>University</em></div>
+            <div class="tagline">Learn to think before you learn to work.</div>
+          </div>
+          <nav aria-label="Footer">
+            <a href="/vision">Vision</a>
+            <a href="/theme">Theme</a>
+            <a href="/theme-page">Theme page</a>
+            <a href="/thinker">Thinker</a>
+            <a href="mailto:hello@platouniversity.org">hello@platouniversity.org</a>
+          </nav>
         </div>
-        <nav class="font-sans text-sm text-ink/70 flex flex-wrap gap-x-6 gap-y-2" aria-label="Footer">
-          <a
-            class="hover:text-ink"
-            href="https://github.com/ctwhome/plato-university/blob/claude/plato-university-critical-thinking-q52Pp/docs/vision.md"
-            >Vision</a
-          >
-          <a
-            class="hover:text-ink"
-            href="https://github.com/ctwhome/plato-university/blob/claude/plato-university-critical-thinking-q52Pp/docs/research.md"
-            >Research</a
-          >
-          <a class="hover:text-ink" href="mailto:hello@platouniversity.org"
-            >hello@platouniversity.org</a
-          >
-        </nav>
-      </div>
-      <div class="mx-auto max-w-5xl px-6 pb-10">
-        <p class="font-sans text-xs text-ink/50">
-          © 2026 Plato University. Amsterdam.
-        </p>
+        <p class="copy">© 2026 Plato University. Amsterdam.</p>
       </div>
     </footer>
+
+    <div id="tooltip" role="tooltip" aria-hidden="true"></div>
+
+    <script>
+      // ---------- Annotated terms tooltip ----------
+      const ANNOT = {
+        mann:        { n: "Horace Mann",                   d: "1796 – 1859",   p: "US Secretary of Education for Massachusetts who studied Prussian schools in 1843 and brought their age-graded, bell-scheduled model home." },
+        carnegie:    { n: "Andrew Carnegie · Carnegie Unit", d: "1906",         p: "The Carnegie Foundation pension system accidentally standardized American schooling — one unit equals one hour of instruction per week, for a school year." },
+        rockefeller: { n: "John D. Rockefeller",            d: "1839 – 1937",   p: "His General Education Board scaled the industrial school model across America in the early twentieth century." },
+        plato:       { n: "Plato",                          d: "427 – 347 BCE", p: "Athenian philosopher who founded the first Academy. The Socratic method is the intellectual ancestor of this school." },
+        seneca:      { n: "Seneca",                         d: "4 BCE – 65 CE", p: "Roman Stoic whose Letters to Lucilius are one of the most direct guides to living ever written." },
+        montaigne:   { n: "Michel de Montaigne",            d: "1533 – 1592",   p: "French essayist whose Essais invented the personal essay form. He wrote to think, not to perform." },
+        illich:      { n: "Ivan Illich",                    d: "1926 – 2002",   p: "Austrian critic of compulsory schooling. Tools for Conviviality argues that institutions outgrow their purposes." },
+        freire:      { n: "Paulo Freire",                   d: "1921 – 1997",   p: "Brazilian educator whose Pedagogy of the Oppressed reframes teaching as dialogue, not deposit." },
+        hooks:       { n: "bell hooks",                     d: "1952 – 2021",   p: "American writer and educator. Teaching to Transgress treats the classroom as a place of liberation." },
+        gatto:       { n: "John Taylor Gatto",              d: "1935 – 2018",   p: "Three-time NYC Teacher of the Year who quit and wrote Dumbing Us Down — an indictment of compulsory schooling from the inside." },
+        bauhaus:     { n: "Bauhaus",                        d: "1919 – 1933",   p: "German art and design school that dissolved the line between fine art and craft. Its model influenced design education for a century." }
+      };
+
+      const tip = document.getElementById('tooltip');
+      function showTip(el) {
+        const a = ANNOT[el.dataset.key]; if (!a) return;
+        tip.innerHTML =
+          '<div class="n">' + a.n + '</div>' +
+          '<div class="d">' + a.d + '</div>' +
+          '<p class="p">' + a.p + '</p>';
+        tip.classList.add('on');
+        const r = el.getBoundingClientRect();
+        const th = tip.offsetHeight, tw = tip.offsetWidth;
+        let top = r.top - th - 10;
+        let left = r.left + r.width / 2 - tw / 2;
+        if (top < 8) top = r.bottom + 10;
+        left = Math.max(8, Math.min(left, window.innerWidth - tw - 8));
+        tip.style.top = top + 'px';
+        tip.style.left = left + 'px';
+      }
+      function hideTip() { tip.classList.remove('on'); }
+
+      document.querySelectorAll('.annotated').forEach(el => {
+        el.addEventListener('mouseenter', () => showTip(el));
+        el.addEventListener('mouseleave', hideTip);
+        el.addEventListener('focus',     () => showTip(el));
+        el.addEventListener('blur',      hideTip);
+        el.setAttribute('tabindex', '0');
+      });
+      window.addEventListener('scroll', hideTip, { passive: true });
+    </script>
   </body>
 </html>
