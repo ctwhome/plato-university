@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Plato University">
   <rect width="512" height="512" rx="96" fill="#1a1a1a"/>
-  <g fill="none" stroke="#faf7f2" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+  <g fill="none" stroke="#faf7f2" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M380.3 210.1L325.1 131.2"/>
     <path d="M307.9 147.7L325.1 131.2"/>
     <path d="M351.0 364.3L277.7 380.8"/>
