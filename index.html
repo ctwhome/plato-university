@@ -1121,35 +1121,37 @@
           });
         });
 
-        // ── 1. Section fade-up on scroll ───────────────────────────────
+        // ── 1. Section scale-reveal on scroll (no fade, no movement) ──
         gsap.utils.toArray('main section:not(#top)').forEach(function (sec) {
           gsap.from(sec, {
-            opacity: 0, y: 44,
-            duration: 0.9, ease: 'power2.out',
+            scale: 0.95,
+            transformOrigin: 'top center',
+            duration: 0.75, ease: 'power3.out',
             immediateRender: false,
-            scrollTrigger: { trigger: sec, start: 'top 86%', once: true }
+            scrollTrigger: { trigger: sec, start: 'top 88%', once: true }
           });
         });
 
-        // ── 2. Hero stagger on page load ───────────────────────────────
+        // ── 2. Hero assemble on page load (minimal movement, snappy) ───
         gsap.set([
           '#top > p:nth-child(1)',
           '#top > h1',
           '#top > p:nth-child(3)',
           '#top > div'
-        ], { opacity: 0, y: 22 });
+        ], { opacity: 0, y: 8 });
         gsap.timeline({ defaults: { ease: 'power3.out' } })
-          .to('#top > p:nth-child(1)', { opacity: 1, y: 0, duration: 0.7 }, 0.1)
-          .to('#top > h1',             { opacity: 1, y: 0, duration: 1.0 }, 0.28)
-          .to('#top > p:nth-child(3)', { opacity: 1, y: 0, duration: 0.8 }, 0.72)
-          .to('#top > div',            { opacity: 1, y: 0, duration: 0.6 }, 1.08);
+          .to('#top > p:nth-child(1)', { opacity: 1, y: 0, duration: 0.45 }, 0.1)
+          .to('#top > h1',             { opacity: 1, y: 0, duration: 0.6  }, 0.22)
+          .to('#top > p:nth-child(3)', { opacity: 1, y: 0, duration: 0.45 }, 0.58)
+          .to('#top > div',            { opacity: 1, y: 0, duration: 0.4  }, 0.82);
 
-        // ── 3. Roadmap items slide in from left, dots pop ──────────────
+        // ── 3. Roadmap items scale in, dots pop ────────────────────────
         gsap.utils.toArray('#roadmap-ol > li').forEach(function (item) {
           var dot = item.querySelector('.rounded-full');
           gsap.from(item, {
-            opacity: 0, x: -30,
-            duration: 0.7, ease: 'power2.out',
+            scale: 0.96,
+            transformOrigin: 'left center',
+            duration: 0.6, ease: 'power3.out',
             immediateRender: false,
             scrollTrigger: { trigger: item, start: 'top 87%', once: true }
           });
@@ -1174,13 +1176,14 @@
           });
         });
 
-        // ── 5. Trimester card stagger ──────────────────────────────────
+        // ── 5. Trimester card stagger — scale, no float ────────────────
         gsap.from('#trimester-grid > article', {
-          opacity: 0, y: 40,
-          duration: 0.8, ease: 'power2.out',
-          stagger: 0.15,
+          scale: 0.93,
+          transformOrigin: 'top center',
+          duration: 0.7, ease: 'power3.out',
+          stagger: 0.12,
           immediateRender: false,
-          scrollTrigger: { trigger: '#trimester-grid', start: 'top 80%', once: true }
+          scrollTrigger: { trigger: '#trimester-grid', start: 'top 82%', once: true }
         });
 
         // ── 6. Dual trailing cursor (desktop only) ────────────────────
