@@ -621,6 +621,88 @@
 
       <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
 
+      <!-- The Thinker -->
+      <section id="thinker" class="mx-auto max-w-3xl px-6 py-20 md:py-32">
+        <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive mb-6">
+          What you become
+        </p>
+        <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-8">
+          A Thinker. Not a credential.<br class="hidden md:block" />
+          A way of seeing.
+        </h2>
+        <p class="font-serif text-xl md:text-2xl leading-relaxed text-ink/85 mb-16">
+          The only distinction Plato University confers is the one no transcript can
+          measure: how you think. Not a grade. Not a diploma. A recognition — earned
+          in dialogue, proven in practice — that you have become a different kind of person.
+        </p>
+
+        <!-- Thinker seal -->
+        <div class="flex justify-center mb-16 md:mb-20">
+          <div id="thinker-badge">
+            <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 width="200" height="200" role="img" aria-label="Plato University — Thinker distinction">
+              <!-- Outer ring -->
+              <circle cx="120" cy="120" r="114" stroke="#b8593a" stroke-width="2"/>
+              <!-- Inner ring -->
+              <circle cx="120" cy="120" r="97" stroke="#b8593a" stroke-width="0.75"/>
+
+              <!-- Circular text on top arc (radius ≈ 105.5, between rings) -->
+              <defs>
+                <path id="thinker-arc" d="M 14.5,120 A 105.5,105.5 0 0,1 225.5,120"/>
+              </defs>
+              <text font-family="Inter, ui-sans-serif, sans-serif" font-size="9"
+                    letter-spacing="3.5" fill="#b8593a">
+                <textPath href="#thinker-arc" startOffset="50%" text-anchor="middle">
+                  PLATO UNIVERSITY · MMXXVI
+                </textPath>
+              </text>
+
+              <!-- Eye symbol — centered at (120, 104) -->
+              <path d="M 80,104 C 85,78 155,78 160,104 C 155,130 85,130 80,104 Z"
+                    stroke="#b8593a" stroke-width="1.5"/>
+              <!-- Iris -->
+              <circle cx="120" cy="104" r="14" stroke="#b8593a" stroke-width="1.5"/>
+              <!-- Pupil -->
+              <circle cx="120" cy="104" r="5.5" fill="#b8593a"/>
+
+              <!-- Decorative rule -->
+              <line x1="90" y1="140" x2="150" y2="140" stroke="#b8593a" stroke-width="0.75"/>
+
+              <!-- THINKER label -->
+              <text x="120" y="157" font-family="Cormorant Garamond, Georgia, serif"
+                    font-size="18" letter-spacing="6" fill="#b8593a"
+                    text-anchor="middle" font-weight="500">THINKER</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Qualities -->
+        <ul id="thinker-list" class="space-y-7 font-serif text-xl md:text-2xl leading-snug text-ink/85">
+          <li class="flex gap-5">
+            <span class="text-terracotta shrink-0 select-none mt-0.5">—</span>
+            <span>Reads the whole thing. Not the summary, not the thread, not the highlights. <em>The original.</em></span>
+          </li>
+          <li class="flex gap-5">
+            <span class="text-terracotta shrink-0 select-none mt-0.5">—</span>
+            <span>Sits with a question before reaching for an answer. Never rushes to a conclusion.</span>
+          </li>
+          <li class="flex gap-5">
+            <span class="text-terracotta shrink-0 select-none mt-0.5">—</span>
+            <span>Applies critical thinking to everything — including their own assumptions.</span>
+          </li>
+          <li class="flex gap-5">
+            <span class="text-terracotta shrink-0 select-none mt-0.5">—</span>
+            <span>Meditates. Not because it is fashionable. Because stillness is where real thinking begins.</span>
+          </li>
+          <li class="flex gap-5">
+            <span class="text-terracotta shrink-0 select-none mt-0.5">—</span>
+            <span>Sees the world with open eyes — curious, unhurried, and awake to what is actually there.</span>
+          </li>
+        </ul>
+      </section>
+
+      <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
+
       <!-- Who it's for -->
       <section class="mx-auto max-w-3xl px-6 py-20 md:py-32">
         <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive mb-6">
@@ -1190,7 +1272,35 @@
           });
         });
 
-        // ── 5. Trimester card stagger — scrubbed ──────────────────────
+        // ── 5. Thinker badge — scale + fade reveal ────────────────────
+        gsap.from('#thinker-badge', {
+          opacity: 0,
+          scale: 0.82,
+          rotation: -8,
+          transformOrigin: 'center center',
+          ease: 'power3.out',
+          duration: 1.0,
+          scrollTrigger: {
+            trigger: '#thinker-badge',
+            start: 'top 88%',
+            toggleActions: 'play none none none'
+          }
+        });
+
+        gsap.from('#thinker-list > li', {
+          opacity: 0,
+          y: 14,
+          stagger: 0.13,
+          ease: 'power2.out',
+          duration: 0.55,
+          scrollTrigger: {
+            trigger: '#thinker-list',
+            start: 'top 88%',
+            toggleActions: 'play none none none'
+          }
+        });
+
+        // ── 6. Trimester card stagger — scrubbed ──────────────────────
         gsap.from('#trimester-grid > article', {
           scale: 0.93,
           transformOrigin: 'top center',
