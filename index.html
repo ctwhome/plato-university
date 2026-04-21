@@ -864,64 +864,64 @@
       </div>
     </footer>
     <!-- GSAP + ScrollTrigger for scroll-driven highlight animation -->
-    <script src=”https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js”></script>
-    <script src=”https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js”></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
     <!-- Annotation tooltip + scroll highlight logic -->
     <script>
     (function () {
       var ANNOTATIONS = {
         horace_mann: {
-          name: “Horace Mann”, dates: “1796–1859”, wiki: “Horace_Mann”,
-          desc: “Secretary of the Massachusetts Board of Education who studied Prussian schools and brought their age-graded, bell-scheduled model back to America. He believed mass education required standardization; what he imported became the template for every public school in the country.”
+          name: "Horace Mann", dates: "1796–1859", wiki: "Horace_Mann",
+          desc: "Secretary of the Massachusetts Board of Education who studied Prussian schools and brought their age-graded, bell-scheduled model back to America. He believed mass education required standardization; what he imported became the template for every public school in the country."
         },
         rockefeller: {
-          name: “Rockefeller / General Education Board”, dates: “est. 1902”, wiki: “John_D._Rockefeller”,
-          desc: “John D. Rockefeller’s philanthropic vehicle for shaping American schooling after the industrial model. Its explicit goal: produce reliable workers and consumers, not independent thinkers.”
+          name: "Rockefeller / General Education Board", dates: "est. 1902", wiki: "John_D._Rockefeller",
+          desc: "John D. Rockefeller's philanthropic vehicle for shaping American schooling after the industrial model. Its explicit goal: produce reliable workers and consumers, not independent thinkers."
         },
         carnegie: {
-          name: “Carnegie / Carnegie Unit”, dates: “1906”, wiki: “Andrew_Carnegie”,
-          desc: “Andrew Carnegie funded the pension system that accidentally standardized how learning is measured—one unit equals one hour of instruction per week for a year. A century later, schools still trade in Carnegie Units.”
+          name: "Carnegie / Carnegie Unit", dates: "1906", wiki: "Andrew_Carnegie",
+          desc: "Andrew Carnegie funded the pension system that accidentally standardized how learning is measured—one unit equals one hour of instruction per week for a year. A century later, schools still trade in Carnegie Units."
         },
         plato: {
-          name: “Plato”, dates: “427–347 BCE”, wiki: “Plato”,
-          desc: “Athenian philosopher who founded the first Academy and wrote The Republic—a dialogue about justice, the ideal city, and what education is actually for. His Socratic method is the intellectual ancestor of everything we’re doing.”
+          name: "Plato", dates: "427–347 BCE", wiki: "Plato",
+          desc: "Athenian philosopher who founded the first Academy and wrote The Republic—a dialogue about justice, the ideal city, and what education is actually for. His Socratic method is the intellectual ancestor of everything we're doing."
         },
         aristotle: {
-          name: “Aristotle”, dates: “384–322 BCE”, wiki: “Aristotle”,
-          desc: “Plato’s most brilliant student and most persistent critic. He founded his own school (the Lyceum), tutored Alexander the Great, and argued that knowledge must be grounded in the world we actually live in.”
+          name: "Aristotle", dates: "384–322 BCE", wiki: "Aristotle",
+          desc: "Plato's most brilliant student and most persistent critic. He founded his own school (the Lyceum), tutored Alexander the Great, and argued that knowledge must be grounded in the world we actually live in."
         },
         seneca: {
-          name: “Seneca”, dates: “4 BCE–65 CE”, wiki: “Seneca_the_Younger”,
-          desc: “Roman Stoic philosopher and adviser to Nero, whose Letters to Lucilius remain one of the most direct and honest guides to living ever written. On what education is for: “Non scholae sed vitae discimus”—we learn not for school, but for life.”
+          name: "Seneca", dates: "4 BCE–65 CE", wiki: "Seneca_the_Younger",
+          desc: "Roman Stoic philosopher and adviser to Nero, whose Letters to Lucilius remain one of the most direct and honest guides to living ever written. On what education is for: \"Non scholae sed vitae discimus\"—we learn not for school, but for life."
         },
         epictetus: {
-          name: “Epictetus”, dates: “c.…50–135 CE”, wiki: “Epictetus”,
-          desc: “A formerly enslaved Greek philosopher who became one of the most important Stoic teachers. His core lesson: you cannot control what happens to you, only how you respond. He never wrote anything down—his students did it for him.”
+          name: "Epictetus", dates: "c.…50–135 CE", wiki: "Epictetus",
+          desc: "A formerly enslaved Greek philosopher who became one of the most important Stoic teachers. His core lesson: you cannot control what happens to you, only how you respond. He never wrote anything down—his students did it for him."
         },
         montaigne: {
-          name: “Montaigne”, dates: “1533–1592”, wiki: “Michel_de_Montaigne”,
-          desc: “French nobleman who invented the essay form by turning his own mind into the subject of serious inquiry. He read widely, thought carefully, and wrote about everything—death, friendship, education, experience—in a voice that still sounds like a living person.”
+          name: "Montaigne", dates: "1533–1592", wiki: "Michel_de_Montaigne",
+          desc: "French nobleman who invented the essay form by turning his own mind into the subject of serious inquiry. He read widely, thought carefully, and wrote about everything—death, friendship, education, experience—in a voice that still sounds like a living person."
         },
         freire: {
-          name: “Paulo Freire”, dates: “1921–1997”, wiki: “Paulo_Freire”,
-          desc: “Brazilian educator whose Pedagogy of the Oppressed argued that traditional schooling is an act of oppression—“banking” knowledge into passive students. Education, he insisted, should be a dialogue that builds critical consciousness.”
+          name: "Paulo Freire", dates: "1921–1997", wiki: "Paulo_Freire",
+          desc: "Brazilian educator whose Pedagogy of the Oppressed argued that traditional schooling is an act of oppression—\"banking\" knowledge into passive students. Education, he insisted, should be a dialogue that builds critical consciousness."
         },
         illich: {
-          name: “Ivan Illich”, dates: “1926–2002”, wiki: “Ivan_Illich”,
-          desc: “Austrian-born philosopher whose Deschooling Society (1971) argued that schools produce the opposite of what they promise—obedience, not curiosity; certification, not learning. He proposed replacing institutions with “learning webs.””
+          name: "Ivan Illich", dates: "1926–2002", wiki: "Ivan_Illich",
+          desc: "Austrian-born philosopher whose Deschooling Society (1971) argued that schools produce the opposite of what they promise—obedience, not curiosity; certification, not learning. He proposed replacing institutions with \"learning webs.\""
         },
         bell_hooks: {
-          name: “bell hooks”, dates: “1952–2021”, wiki: “Bell_hooks”,
-          desc: “American scholar, feminist, and cultural critic whose Teaching to Transgress reimagined the classroom as a place of liberation. She argued that genuine education is always transgressive—it disturbs comfort and expands possibility.”
+          name: "bell hooks", dates: "1952–2021", wiki: "Bell_hooks",
+          desc: "American scholar, feminist, and cultural critic whose Teaching to Transgress reimagined the classroom as a place of liberation. She argued that genuine education is always transgressive—it disturbs comfort and expands possibility."
         },
         gatto: {
-          name: “John Taylor Gatto”, dates: “1935–2018”, wiki: “John_Taylor_Gatto”,
-          desc: “New York City schoolteacher and author of Dumbing Us Down, who won Teacher of the Year and then spent the rest of his life explaining why the school system was broken beyond repair. He quit teaching publicly in a Wall Street Journal op-ed.”
+          name: "John Taylor Gatto", dates: "1935–2018", wiki: "John_Taylor_Gatto",
+          desc: "New York City schoolteacher and author of Dumbing Us Down, who won Teacher of the Year and then spent the rest of his life explaining why the school system was broken beyond repair. He quit teaching publicly in a Wall Street Journal op-ed."
         },
         bauhaus: {
-          name: “Bauhaus”, dates: “1919–1933”, wiki: “Bauhaus”,
-          desc: “German art and design school founded by Walter Gropius that united fine arts, crafts, and industrial design under one radical pedagogy. It produced some of the most influential designers, artists, and architects of the twentieth century—with fewer than 1,300 graduates total.”
+          name: "Bauhaus", dates: "1919–1933", wiki: "Bauhaus",
+          desc: "German art and design school founded by Walter Gropius that united fine arts, crafts, and industrial design under one radical pedagogy. It produced some of the most influential designers, artists, and architects of the twentieth century—with fewer than 1,300 graduates total."
         }
       };
 
@@ -931,7 +931,7 @@
         if (imgCache[key] !== undefined) return Promise.resolve(imgCache[key]);
         var wiki = ANNOTATIONS[key] && ANNOTATIONS[key].wiki;
         if (!wiki) return Promise.resolve(null);
-        return fetch(‘https://en.wikipedia.org/api/rest_v1/page/summary/’ + wiki)
+        return fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + wiki)
           .then(function (r) { return r.json(); })
           .then(function (d) {
             var url = (d.thumbnail && d.thumbnail.source) || null;
@@ -942,25 +942,25 @@
       }
 
       // ── Build card DOM ───────────────────────────────────────────────
-      var card = document.createElement(‘div’);
-      card.id = ‘plato-tooltip’;
-      card.setAttribute(‘role’, ‘tooltip’);
-      card.setAttribute(‘aria-live’, ‘polite’);
+      var card = document.createElement('div');
+      card.id = 'plato-tooltip';
+      card.setAttribute('role', 'tooltip');
+      card.setAttribute('aria-live', 'polite');
       card.innerHTML =
-        ‘<div class=”tip-header”>’ +
-          ‘<div class=”tip-header-text”>’ +
-            ‘<span class=”tip-name”></span>’ +
-            ‘<span class=”tip-dates”></span>’ +
-          ‘</div>’ +
-          ‘<img class=”tip-img” alt=”” />’ +
-        ‘</div>’ +
-        ‘<p class=”tip-desc”></p>’;
+        '<div class="tip-header">' +
+          '<div class="tip-header-text">' +
+            '<span class="tip-name"></span>' +
+            '<span class="tip-dates"></span>' +
+          '</div>' +
+          '<img class="tip-img" alt="" />' +
+        '</div>' +
+        '<p class="tip-desc"></p>';
       document.body.appendChild(card);
 
-      var tipName  = card.querySelector(‘.tip-name’);
-      var tipDates = card.querySelector(‘.tip-dates’);
-      var tipDesc  = card.querySelector(‘.tip-desc’);
-      var tipImg   = card.querySelector(‘.tip-img’);
+      var tipName  = card.querySelector('.tip-name');
+      var tipDates = card.querySelector('.tip-dates');
+      var tipDesc  = card.querySelector('.tip-desc');
+      var tipImg   = card.querySelector('.tip-img');
 
       // ── State ────────────────────────────────────────────────────────
       var activeTarget = null;
@@ -972,8 +972,8 @@
         tipName.textContent  = a.name;
         tipDates.textContent = a.dates;
         tipDesc.textContent  = a.desc;
-        tipImg.style.display = ‘none’;
-        tipImg.src = ‘’;
+        tipImg.style.display = 'none';
+        tipImg.src = '';
         return true;
       }
 
@@ -987,8 +987,8 @@
         if (top < MARGIN) top = tr.bottom + GAP;
         left = Math.max(MARGIN, Math.min(left, vw - cw - MARGIN));
         top  = Math.max(MARGIN, Math.min(top,  vh - ch - MARGIN));
-        card.style.left = left + ‘px’;
-        card.style.top  = top  + ‘px’;
+        card.style.left = left + 'px';
+        card.style.top  = top  + 'px';
       }
 
       function show(trigger) {
@@ -996,23 +996,23 @@
         var key = trigger.dataset.key;
         if (!key || !populate(key)) return;
         if (activeTarget && activeTarget !== trigger) {
-          activeTarget.setAttribute(‘aria-expanded’, ‘false’);
+          activeTarget.setAttribute('aria-expanded', 'false');
         }
         activeTarget = trigger;
-        trigger.setAttribute(‘aria-expanded’, ‘true’);
-        card.style.visibility = ‘hidden’;
-        card.classList.add(‘is-visible’);
+        trigger.setAttribute('aria-expanded', 'true');
+        card.style.visibility = 'hidden';
+        card.classList.add('is-visible');
         position(trigger);
-        card.style.visibility = ‘’;
+        card.style.visibility = '';
         window._platoRepos = function () { position(trigger); };
-        window.addEventListener(‘scroll’, window._platoRepos, { passive: true });
-        window.addEventListener(‘resize’, window._platoRepos, { passive: true });
+        window.addEventListener('scroll', window._platoRepos, { passive: true });
+        window.addEventListener('resize', window._platoRepos, { passive: true });
         // Async: fetch and insert Wikipedia image
         getWikiImage(key).then(function (url) {
           if (activeTarget !== trigger) return;
           if (url) {
             tipImg.src = url;
-            tipImg.style.display = ‘block’;
+            tipImg.style.display = 'block';
             position(trigger);
           }
         });
@@ -1020,55 +1020,55 @@
 
       function hide(immediate) {
         if (!activeTarget) return;
-        window.removeEventListener(‘scroll’, window._platoRepos);
-        window.removeEventListener(‘resize’, window._platoRepos);
+        window.removeEventListener('scroll', window._platoRepos);
+        window.removeEventListener('resize', window._platoRepos);
         if (immediate) {
-          card.classList.remove(‘is-visible’);
-          if (activeTarget) activeTarget.setAttribute(‘aria-expanded’, ‘false’);
+          card.classList.remove('is-visible');
+          if (activeTarget) activeTarget.setAttribute('aria-expanded', 'false');
           activeTarget = null;
         } else {
           hideTimer = setTimeout(function () {
-            card.classList.remove(‘is-visible’);
-            if (activeTarget) activeTarget.setAttribute(‘aria-expanded’, ‘false’);
+            card.classList.remove('is-visible');
+            if (activeTarget) activeTarget.setAttribute('aria-expanded', 'false');
             activeTarget = null;
           }, 80);
         }
       }
 
       // ── Event delegation ─────────────────────────────────────────────
-      document.addEventListener(‘mouseenter’, function (e) {
-        if (e.target.classList && e.target.classList.contains(‘annotated’)) show(e.target);
+      document.addEventListener('mouseenter', function (e) {
+        if (e.target.classList && e.target.classList.contains('annotated')) show(e.target);
       }, true);
-      document.addEventListener(‘mouseleave’, function (e) {
-        if (e.target.classList && e.target.classList.contains(‘annotated’)) hide(false);
+      document.addEventListener('mouseleave', function (e) {
+        if (e.target.classList && e.target.classList.contains('annotated')) hide(false);
       }, true);
-      card.addEventListener(‘mouseenter’, function () { clearTimeout(hideTimer); });
-      card.addEventListener(‘mouseleave’, function () { hide(false); });
-      document.addEventListener(‘click’, function (e) {
-        var span = e.target.closest(‘.annotated’);
+      card.addEventListener('mouseenter', function () { clearTimeout(hideTimer); });
+      card.addEventListener('mouseleave', function () { hide(false); });
+      document.addEventListener('click', function (e) {
+        var span = e.target.closest('.annotated');
         if (span) {
           e.stopPropagation();
-          if (activeTarget === span && card.classList.contains(‘is-visible’)) hide(true);
+          if (activeTarget === span && card.classList.contains('is-visible')) hide(true);
           else show(span);
           return;
         }
-        if (card.classList.contains(‘is-visible’)) hide(true);
+        if (card.classList.contains('is-visible')) hide(true);
       });
-      document.addEventListener(‘keydown’, function (e) {
-        if (e.key === ‘Escape’ && card.classList.contains(‘is-visible’)) {
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && card.classList.contains('is-visible')) {
           hide(true);
           if (activeTarget) activeTarget.focus();
         }
       });
-      document.querySelectorAll(‘.annotated’).forEach(function (el) {
-        if (!el.hasAttribute(‘tabindex’)) el.setAttribute(‘tabindex’, ‘0’);
-        el.setAttribute(‘role’, ‘button’);
-        el.setAttribute(‘aria-expanded’, ‘false’);
-        el.setAttribute(‘aria-haspopup’, ‘true’);
-        el.addEventListener(‘keydown’, function (ev) {
-          if (ev.key === ‘Enter’ || ev.key === ‘ ‘) {
+      document.querySelectorAll('.annotated').forEach(function (el) {
+        if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+        el.setAttribute('role', 'button');
+        el.setAttribute('aria-expanded', 'false');
+        el.setAttribute('aria-haspopup', 'true');
+        el.addEventListener('keydown', function (ev) {
+          if (ev.key === 'Enter' || ev.key === ' ') {
             ev.preventDefault();
-            if (activeTarget === el && card.classList.contains(‘is-visible’)) hide(true);
+            if (activeTarget === el && card.classList.contains('is-visible')) hide(true);
             else show(el);
           }
         });
@@ -1077,15 +1077,15 @@
       // ── GSAP scroll-triggered highlighter sweep ──────────────────────
       if (window.gsap && window.ScrollTrigger) {
         gsap.registerPlugin(ScrollTrigger);
-        document.querySelectorAll(‘.annotated’).forEach(function (el) {
+        document.querySelectorAll('.annotated').forEach(function (el) {
           gsap.to(el, {
-            backgroundSize: ‘100% 55%’,
+            backgroundSize: '100% 55%',
             duration: 0.65,
-            ease: ‘power2.inOut’,
+            ease: 'power2.inOut',
             scrollTrigger: {
               trigger: el,
-              start: ‘top 88%’,
-              toggleActions: ‘play none none none’
+              start: 'top 88%',
+              toggleActions: 'play none none none'
             }
           });
         });
