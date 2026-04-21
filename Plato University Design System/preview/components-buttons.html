@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_shared.css">
+<style>
+body { padding: 24px; }
+.grid { display: grid; grid-template-columns: repeat(3, auto); gap: 12px 14px; align-items: center; justify-content: start; }
+.btn { font-family: var(--font-sans); font-size: 14px; font-weight: 500; padding: 12px 22px; border-radius: 4px; cursor: pointer; border: 1px solid transparent; transition: opacity .18s, background .18s; }
+.btn.neutral { background: var(--ink); color: var(--cream); }
+.btn.neutral:hover { opacity: 0.9; }
+.btn.outline { background: transparent; border-color: var(--ink); color: var(--ink); }
+.btn.terra { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
+.btn.ghost { background: transparent; color: var(--ink); text-transform: uppercase; letter-spacing: 0.14em; font-size: 11px; padding: 8px 14px; border-radius: 3px; }
+.btn.ghost:hover { background: rgba(26,26,26,0.06); }
+.btn.lg { padding: 14px 28px; font-size: 15px; }
+.lab { font-family: var(--font-sans); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-4); }
+</style></head>
+<body>
+<div class="grid">
+<span class="lab">Primary</span><button class="btn neutral lg">Apply</button><span class="lab" style="grid-column:3;">ink / cream</span>
+<span class="lab">Secondary</span><button class="btn outline lg">Teach with us</button><span class="lab" style="grid-column:3;">outline ink</span>
+<span class="lab">Urgent</span><button class="btn terra lg">Send</button><span class="lab" style="grid-column:3;">terracotta / cream</span>
+<span class="lab">Ghost</span><button class="btn ghost">APPLY</button><span class="lab" style="grid-column:3;">nav · uppercase</span>
+</div>
+</body></html>

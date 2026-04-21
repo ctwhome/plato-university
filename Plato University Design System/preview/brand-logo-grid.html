@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_shared.css">
+<style>
+body { padding: 20px; background: var(--cream); }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.cell { border: 1px solid var(--rule-softer); border-radius: 8px; padding: 14px; display: flex; align-items: center; justify-content: center; height: 110px; }
+.cell.dark { background: var(--ink); }
+.cell.olive { background: var(--olive); }
+.cell.terra { background: var(--terracotta); }
+.mark { width: 62px; height: 62px; border-radius: 12px; position: relative; display: grid; place-items: center; }
+.mark.a { background: var(--ink); }
+.mark.b { background: var(--cream); }
+.mark.c { background: var(--olive); }
+.mark.d { background: var(--terracotta); }
+.mark .p { font-family: var(--font-serif); font-weight: 500; font-size: 48px; line-height: 1; margin-left: -2px; }
+.mark.a .p, .mark.c .p, .mark.d .p { color: var(--cream); }
+.mark.b .p { color: var(--ink); }
+.mark .dot { position: absolute; width: 6px; height: 6px; border-radius: 50%; right: 13px; bottom: 13px; }
+.mark.a .dot, .mark.b .dot { background: var(--terracotta); }
+.mark.c .dot, .mark.d .dot { background: var(--cream); }
+.lab { font-family: var(--font-sans); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-4); text-align: center; margin-top: 8px; }
+</style></head>
+<body>
+<div class="grid">
+  <div><div class="cell"><div class="mark a"><span class="p">P</span><span class="dot"></span></div></div><div class="lab">Ink on cream</div></div>
+  <div><div class="cell dark"><div class="mark b"><span class="p">P</span><span class="dot"></span></div></div><div class="lab">Cream on ink</div></div>
+  <div><div class="cell olive"><div class="mark b"><span class="p">P</span><span class="dot"></span></div></div><div class="lab">On olive</div></div>
+  <div><div class="cell terra"><div class="mark b"><span class="p">P</span><span class="dot"></span></div></div><div class="lab">On terracotta</div></div>
+</div>
+</body></html>

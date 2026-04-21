@@ -1,0 +1,258 @@
+/* =============================================================
+   Plato University · Colors & Type
+   Sourced from ctwhome/plato-university (index.html @theme + daisyUI overrides).
+   Consume these tokens from any HTML artifact in this system.
+   ============================================================= */
+
+/* ---------- Fonts (via Google Fonts) --------------------------
+   Loaded from CDN by each HTML file. If you need to host locally,
+   drop .woff2 files in fonts/ and re-declare the @font-face rules.
+   -------------------------------------------------------------- */
+/* No webfonts. Brand uses system-installed fonts only:
+   Serif: Georgia (ships on macOS, Windows, iOS, Android via fallback).
+   Sans:  -apple-system / Segoe UI / Roboto (native UI stack per OS).
+   This keeps the system zero-dependency and offline-safe. */
+
+:root {
+  /* ---------- Brand palette --------------------------------- */
+  --cream:       #faf7f2;  /* page background, on-dark text      */
+  --cream-2:     #f2ede3;  /* subtle surface, card alt bg        */
+  --cream-3:     #e8e0d0;  /* base-300, dividers, pressed        */
+  --ink:         #1a1a1a;  /* primary text, dark surface         */
+  --olive:       #6b7a4f;  /* primary accent, italic marks       */
+  --terracotta:  #b8593a;  /* secondary/danger accent, highlights*/
+
+  /* ---------- Foreground on cream --------------------------- */
+  --fg-1: var(--ink);                        /* body, headings   */
+  --fg-2: color-mix(in oklab, var(--ink) 85%, transparent);  /* body text/prose */
+  --fg-3: color-mix(in oklab, var(--ink) 70%, transparent);  /* secondary copy  */
+  --fg-4: color-mix(in oklab, var(--ink) 55%, transparent);  /* tertiary / meta */
+  --fg-5: color-mix(in oklab, var(--ink) 35%, transparent);  /* disabled / dim  */
+
+  /* ---------- Foreground on ink ----------------------------- */
+  --fg-inv-1: var(--cream);
+  --fg-inv-2: color-mix(in oklab, var(--cream) 70%, transparent);
+  --fg-inv-3: color-mix(in oklab, var(--cream) 50%, transparent);
+
+  /* ---------- Semantic color roles -------------------------- */
+  --bg:            var(--cream);
+  --bg-sunk:       var(--cream-2);
+  --bg-sunk-2:     #e8e0d0;
+  --bg-inverse:    var(--ink);
+  --primary:       var(--olive);
+  --primary-fg:    var(--cream);
+  --secondary:     var(--terracotta);
+  --secondary-fg:  var(--cream);
+  --accent:        var(--terracotta);
+  --success:       var(--olive);
+  --warning:       var(--terracotta);
+  --error:         var(--terracotta);
+  --info:          var(--olive);
+  --rule:          color-mix(in oklab, var(--ink) 18%, transparent);
+  --rule-soft:     color-mix(in oklab, var(--ink) 10%, transparent);
+  --rule-softer:   color-mix(in oklab, var(--ink) 6%,  transparent);
+  --highlight:     rgba(255, 210, 80, 0.48);  /* scroll sweep */
+
+  /* ---------- Font families --------------------------------- */
+  --font-serif:   Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Times New Roman", ui-serif, serif;
+  --font-sans:    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+
+  /* ---------- Type scale ------------------------------------
+     A serif-led editorial scale. Display and headings use
+     Cormorant Garamond; UI and prose use Inter.                 */
+  --fs-display-1: clamp(3.25rem, 7vw + 1rem, 6rem);   /* hero H1 */
+  --fs-display-2: clamp(2.5rem, 5.5vw + 1rem, 4.5rem);/* section H1 */
+  --fs-h1: clamp(2.25rem, 3.5vw + 1rem, 3rem);
+  --fs-h2: clamp(1.75rem, 2.25vw + 1rem, 2.25rem);
+  --fs-h3: clamp(1.375rem, 1.5vw + 1rem, 1.625rem);
+  --fs-h4: 1.25rem;
+  --fs-lead: clamp(1.25rem, 0.8vw + 1rem, 1.5rem);
+  --fs-body: 1rem;
+  --fs-sm:   0.875rem;
+  --fs-xs:   0.75rem;
+  --fs-eyebrow: 0.75rem;                                /* uppercase meta */
+
+  --lh-tight: 1.02;
+  --lh-heading: 1.1;
+  --lh-snug: 1.25;
+  --lh-body: 1.55;
+  --lh-relaxed: 1.7;
+
+  --tracking-eyebrow: 0.2em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+
+  /* ---------- Radii / spacing / shadow ---------------------- */
+  --radius-selector: 0.25rem;  /* checkbox, small chips          */
+  --radius-field:    0.25rem;  /* inputs, buttons                */
+  --radius-box:      0.5rem;   /* cards, sheets                  */
+  --radius-lg:       1rem;     /* featured cards                 */
+  --radius-xl:       1.5rem;   /* the "problem" card             */
+  --radius-pill:     9999px;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --shadow-sm:   0 1px 2px rgba(26,26,26,0.06);
+  --shadow-card: 0 4px 40px rgba(26,26,26,0.08), 0 1px 4px rgba(26,26,26,0.04);
+  --shadow-tip:  0 4px 20px rgba(26,26,26,0.13), 0 1px 4px rgba(26,26,26,0.08);
+
+  /* ---------- Motion ---------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 280ms;
+}
+
+/* ---------- Global typographic defaults ---------------------- */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--fg-1);
+  background: var(--bg);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Convenience classes for the two type stacks */
+.font-serif { font-family: var(--font-serif); font-feature-settings: "liga", "dlig"; }
+.font-sans  { font-family: var(--font-sans); }
+.font-mono  { font-family: var(--font-mono); }
+
+/* ---------- Semantic type roles ------------------------------ */
+h1, .h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-1);
+}
+h2, .h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+}
+h3, .h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+}
+h4, .h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+}
+
+.display-1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--fs-display-1);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+}
+.display-2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--fs-display-2);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.lead {
+  font-family: var(--font-serif);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-snug);
+  color: var(--fg-2);
+}
+
+p, .body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-2);
+}
+
+.prose-serif {
+  font-family: var(--font-serif);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-2);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--olive);
+}
+.eyebrow--terracotta { color: var(--terracotta); }
+
+.italic-accent {
+  font-style: italic;
+  color: var(--olive);
+}
+.terracotta-accent {
+  color: var(--terracotta);
+  font-style: italic;
+}
+
+code, .code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--cream-2);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-selector);
+}
+
+/* ---------- Focus ring (terracotta) ------------------------- */
+:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- Divider rule ------------------------------------ */
+.rule {
+  height: 1px;
+  background: var(--rule);
+  width: 100%;
+}
+.rule--soft { background: var(--rule-soft); }
+
+/* ---------- Annotated term (dotted underline) --------------- */
+.annotated {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--terracotta);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  cursor: help;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

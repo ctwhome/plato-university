@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_shared.css">
+<style>
+body { padding: 22px; }
+.stack { display: grid; gap: 8px; }
+.it { background: rgba(242,237,227,0.6); border: 1px solid rgba(26,26,26,0.1); border-radius: 8px; padding: 16px 18px; }
+.it .row { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-serif); font-size: 18px; }
+.it .plus { font-family: var(--font-sans); font-size: 18px; color: var(--fg-3); font-weight: 300; }
+.it.open .plus { transform: rotate(45deg); color: var(--terracotta); }
+.it.open .body { display: block; }
+.it .body { display: none; margin-top: 10px; font-family: var(--font-sans); font-size: 13px; line-height: 1.55; color: rgba(26,26,26,0.78); }
+</style></head>
+<body>
+<div class="stack">
+  <div class="it open">
+    <div class="row"><span>Is this accredited?</span><span class="plus">+</span></div>
+    <div class="body">No, and that is the point. We graduate thinkers with a portfolio and a defended project, not a diploma designed for an economy that no longer exists.</div>
+  </div>
+  <div class="it"><div class="row"><span>What does it cost?</span><span class="plus">+</span></div></div>
+  <div class="it"><div class="row"><span>Where does it happen?</span><span class="plus">+</span></div></div>
+</div>
+</body></html>

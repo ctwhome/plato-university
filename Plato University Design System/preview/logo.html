@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_shared.css">
+<style>
+body { display: flex; align-items: center; justify-content: center; padding: 20px 40px; }
+.lockup { display: flex; align-items: center; gap: 20px; }
+.mark { width: 80px; height: 80px; background: var(--ink); border-radius: 15px; display: grid; place-items: center; position: relative; }
+.mark .p { font-family: var(--font-serif); font-weight: 500; font-size: 62px; color: var(--cream); line-height: 1; margin-left: -2px; }
+.mark .dot { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: var(--terracotta); right: 18px; bottom: 18px; }
+.wordmark { font-family: var(--font-serif); font-weight: 500; font-size: 44px; line-height: 1; letter-spacing: -0.01em; }
+.wordmark em { font-style: italic; color: var(--olive); font-weight: 500; }
+.tag { font-family: var(--font-serif); font-style: italic; color: var(--fg-3); font-size: 15px; margin-top: 6px; }
+</style></head>
+<body>
+<div class="lockup">
+  <div class="mark"><span class="p">P</span><span class="dot"></span></div>
+  <div>
+    <div class="wordmark">Plato <em>University</em></div>
+    <div class="tag">Learn to think before you learn to work.</div>
+  </div>
+</div>
+</body></html>

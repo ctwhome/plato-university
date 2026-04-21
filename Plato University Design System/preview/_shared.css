@@ -1,0 +1,33 @@
+/* Shared styles for preview cards */
+@import url("../colors_and_type.css");
+
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg-1);
+  padding: 24px;
+  box-sizing: border-box;
+}
+.card-wrap { width: 100%; }
+.grid { display: grid; gap: 12px; }
+.row { display: flex; gap: 12px; align-items: center; }
+.swatch {
+  height: 64px;
+  border-radius: var(--radius-field);
+  display: flex;
+  align-items: flex-end;
+  padding: 8px 10px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.2;
+  border: 1px solid var(--rule-softer);
+}
+.swatch .name { font-weight: 600; display: block; }
+.swatch .hex { opacity: 0.7; font-family: var(--font-mono); font-size: 10px; }
+.label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fg-4);
+}

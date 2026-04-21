@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_shared.css">
+<style>
+body { padding: 24px 28px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.big { font-family: var(--font-serif); font-weight: 500; font-size: 40px; line-height: 1.05; letter-spacing: -0.01em; }
+.big em { color: var(--terracotta); }
+.num { font-family: var(--font-serif); font-size: 46px; line-height: 1.05; }
+.num em { color: var(--terracotta); font-style: normal; }
+.cap { font-family: var(--font-sans); font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--fg-4); margin-top: 8px; }
+.hair { height: 1px; background: rgba(26,26,26,0.18); margin: 14px 0; }
+.italic-kick { font-family: var(--font-serif); font-style: italic; color: var(--olive); font-size: 22px; }
+</style></head>
+<body>
+<div class="grid">
+<div>
+  <div class="big">Ship <em>something.</em></div>
+  <div class="cap">Italic-hinge heading</div>
+</div>
+<div>
+  <div class="num"><em>One</em> month. <em>Four</em> sessions.</div>
+  <div class="cap">Terracotta-numeral display</div>
+</div>
+<div>
+  <div class="hair"></div>
+  <div class="italic-kick">Four months each.</div>
+  <div class="cap">Italic kicker</div>
+</div>
+<div>
+  <div class="hair"></div>
+  <div style="font-family:var(--font-serif);font-style:italic;color:var(--fg-3);font-size:17px;">— And that's the point.</div>
+  <div class="cap">Em-dash punchline</div>
+</div>
+</div>
+</body></html>
