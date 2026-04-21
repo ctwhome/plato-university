@@ -242,6 +242,121 @@
         background: color-mix(in oklab, var(--color-ink) 18%, transparent);
       }
     </style>
+
+    <!-- Annotation tooltip styles -->
+    <style>
+      .annotated {
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        text-decoration-color: #b8593a;
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 3px;
+        cursor: help;
+        white-space: nowrap;
+        /* Scroll-triggered highlighter sweep */
+        background: linear-gradient(rgba(255, 210, 80, 0.48) 0 0) no-repeat;
+        background-size: 0% 55%;
+        background-position: 0% 80%;
+        border-radius: 2px;
+      }
+      .annotated[aria-expanded="true"] {
+        text-decoration-style: solid;
+      }
+      #plato-tooltip {
+        position: fixed;
+        z-index: 9999;
+        width: 310px;
+        max-width: calc(100vw - 24px);
+        background: #faf7f2;
+        border: 1px solid rgba(26, 26, 26, 0.15);
+        border-radius: 6px;
+        box-shadow: 0 4px 20px rgba(26, 26, 26, 0.13), 0 1px 4px rgba(26, 26, 26, 0.08);
+        padding: 14px 16px 16px;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 180ms ease-out, transform 180ms ease-out;
+      }
+      #plato-tooltip.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      #plato-tooltip .tip-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+      #plato-tooltip .tip-header-text {
+        flex: 1;
+        min-width: 0;
+      }
+      #plato-tooltip .tip-img {
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
+        border-radius: 4px;
+        flex-shrink: 0;
+        display: none;
+        background: rgba(26, 26, 26, 0.06);
+      }
+      #plato-tooltip .tip-name {
+        font-family: "Cormorant Garamond", ui-serif, Georgia, serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        line-height: 1.2;
+        color: #1a1a1a;
+        display: block;
+      }
+      #plato-tooltip .tip-dates {
+        font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+        color: rgba(26, 26, 26, 0.60);
+        display: block;
+        margin-top: 2px;
+        margin-bottom: 0;
+      }
+      #plato-tooltip .tip-desc {
+        font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+        font-size: 0.8rem;
+        line-height: 1.55;
+        color: rgba(26, 26, 26, 0.82);
+        margin: 0;
+      }
+
+      /* Dual trailing cursor — desktop only */
+      #plato-cursor-dot {
+        position: fixed; top: 0; left: 0;
+        width: 6px; height: 6px;
+        background: #b8593a;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99999;
+        opacity: 0;
+        will-change: transform;
+      }
+      #plato-cursor-ring {
+        position: fixed; top: 0; left: 0;
+        width: 26px; height: 26px;
+        border: 1.5px solid rgba(184, 89, 58, 0.55);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99998;
+        opacity: 0;
+        will-change: transform;
+        transition: width 0.22s ease, height 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
+      }
+      #plato-cursor-ring.is-hovering {
+        width: 46px; height: 46px;
+        border-color: rgba(184, 89, 58, 0.35);
+        background-color: rgba(184, 89, 58, 0.06);
+      }
+      @media (hover: none), (pointer: coarse) {
+        #plato-cursor-dot, #plato-cursor-ring { display: none !important; }
+      }
+    </style>
   </head>
 
   <body class="min-h-screen">
@@ -273,7 +388,7 @@
       <!-- Hero -->
       <section id="top" class="mx-auto max-w-4xl px-6 pt-10 pb-24 md:pt-24 md:pb-40">
         <p class="font-sans text-xs md:text-sm uppercase tracking-[0.2em] text-olive mb-8">
-          Founding cohort · September 2026 · Amsterdam
+          Discovery month · September 2026 · Amsterdam
         </p>
         <h1
           class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight text-balance"
@@ -299,32 +414,36 @@
       <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
 
       <!-- The problem -->
-      <section class="mx-auto max-w-3xl px-6 py-20 md:py-32">
-        <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta mb-6">
-          The problem
-        </p>
-        <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-8">
-          In the age of AI, we are still running a school built for the factory floor.
-        </h2>
-        <div class="font-serif text-xl md:text-2xl leading-relaxed space-y-6 text-ink/85">
-          <p>
-            In 1843, Horace Mann brought the Prussian bell home. The system he copied was
-            built to produce obedient soldiers and reliable workers. Rockefeller's General
-            Education Board then scaled it across America, and Carnegie turned learning
-            into a stopwatch, calling one unit an hour.
-          </p>
-          <p>
-            The inheritance is still with us. Age-graded rows. Fixed bells. Standardized
-            curriculum. A diploma for a career your field no longer has.
-          </p>
-          <p class="text-terracotta italic">
-            The world that system was built for no longer exists.
-          </p>
-          <p>
-            AI collapses the premium on routine specialization. The jobs you train for at
-            eighteen will be automated, transformed, or invented-and-gone-already by the
-            time you graduate. And yet universities still run on the Carnegie Unit.
-          </p>
+      <section id="problem-section" class="overflow-hidden py-16 md:py-24">
+        <div id="problem-card" class="bg-white rounded-2xl border border-black/[0.06] shadow-[0_4px_40px_rgba(26,26,26,0.08),0_1px_4px_rgba(26,26,26,0.04)] mx-auto" style="max-width: 48rem;">
+          <div class="mx-auto max-w-3xl px-8 py-10 md:px-14 md:py-14">
+            <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta mb-6">
+              The problem
+            </p>
+            <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-8">
+              In the age of AI, we are still running a school built for the factory floor.
+            </h2>
+            <div class="font-serif text-xl md:text-2xl leading-relaxed space-y-6 text-ink/85">
+              <p>
+                In 1843, <span class="annotated" data-key="horace_mann">Horace Mann</span> brought the Prussian bell home. The system he copied was
+                built to produce obedient soldiers and reliable workers. <span class="annotated" data-key="rockefeller">Rockefeller</span>'s General
+                Education Board then scaled it across America, and <span class="annotated" data-key="carnegie">Carnegie</span> turned learning
+                into a stopwatch, calling one unit an hour.
+              </p>
+              <p>
+                The inheritance is still with us. Age-graded rows. Fixed bells. Standardized
+                curriculum. A diploma for a career your field no longer has.
+              </p>
+              <p class="text-terracotta italic">
+                The world that system was built for no longer exists.
+              </p>
+              <p>
+                AI collapses the premium on routine specialization. The jobs you train for at
+                eighteen will be automated, transformed, or invented-and-gone-already by the
+                time you graduate. And yet universities still run on the <span class="annotated" data-key="carnegie">Carnegie Unit</span>.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -345,7 +464,7 @@
             end that proves they can think, make, and lead.
           </p>
           <p>
-            You read Plato, not summaries of Plato. You write Montaigne, not essays
+            You read <span class="annotated" data-key="plato">Plato</span>, not summaries of <span class="annotated" data-key="plato">Plato</span>. You write <span class="annotated" data-key="montaigne">Montaigne</span>, not essays
             <em>about</em> him. The examined life becomes a way of living, not an elective
             subject.
           </p>
@@ -359,6 +478,64 @@
           <li class="flex gap-3"><span class="text-olive">→</span> AI as a tool, not a master</li>
           <li class="flex gap-3"><span class="text-olive">→</span> No managers, only mentors</li>
         </ul>
+      </section>
+
+      <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
+
+      <!-- The road ahead -->
+      <section class="mx-auto max-w-3xl px-6 py-20 md:py-32">
+        <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive mb-6">
+          The plan, honestly
+        </p>
+        <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-6">
+          We start small.<br class="hidden md:block" />
+          We build from proof.
+        </h2>
+        <p class="font-serif text-xl md:text-2xl text-ink/80 leading-snug mb-16">
+          A three-year university is the vision. A one-month cohort is where we begin.
+          Here is the road between them.
+        </p>
+
+        <ol id="roadmap-ol" class="space-y-0">
+          <li class="relative pl-10 pb-12 border-l border-ink/15">
+            <span class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-terracotta"></span>
+            <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta mb-2">September 2026 · Where we are</p>
+            <h3 class="font-serif text-2xl md:text-3xl mb-3">The discovery month</h3>
+            <p class="font-sans text-base text-ink/75 leading-relaxed">
+              Four sessions over four weeks. A small group in Amsterdam — and online. This is not a course.
+              It is a mutual interview: we find out if we can think together, and you find out if this is
+              worth a year of your life.
+            </p>
+          </li>
+          <li class="relative pl-10 pb-12 border-l border-ink/15">
+            <span class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-olive"></span>
+            <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive mb-2">2027 · If it earns it</p>
+            <h3 class="font-serif text-2xl md:text-3xl mb-3">The six-month pilot</h3>
+            <p class="font-sans text-base text-ink/75 leading-relaxed">
+              If the discovery month produces real conversations and a waitlist, we run a six-month
+              structured program with the founding cohort — curriculum, mentors, a city hub, and your
+              first real portfolio artifacts.
+            </p>
+          </li>
+          <li class="relative pl-10 pb-12 border-l border-ink/15">
+            <span class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-olive/40"></span>
+            <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive/60 mb-2">2028 · The full version</p>
+            <h3 class="font-serif text-2xl md:text-3xl mb-3 text-ink/70">The one-year academy</h3>
+            <p class="font-sans text-base text-ink/60 leading-relaxed">
+              Three trimesters. The full program described below. If it works, this is what Plato
+              University becomes for the long run.
+            </p>
+          </li>
+          <li class="relative pl-10 border-l border-ink/10">
+            <span class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-ink/15"></span>
+            <p class="font-sans text-xs uppercase tracking-[0.2em] text-ink/35 mb-2">Long term · The real ambition</p>
+            <h3 class="font-serif text-2xl md:text-3xl mb-3 text-ink/45">A three-year university</h3>
+            <p class="font-sans text-base text-ink/45 leading-relaxed">
+              A genuine alternative to the industrial university — accreditation optional, depth
+              non-negotiable. We'll know if we get there. We'll know much sooner if we won't.
+            </p>
+          </li>
+        </ol>
       </section>
 
       <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
@@ -378,7 +555,7 @@
           </p>
         </div>
 
-        <div class="grid gap-6 md:gap-8 md:grid-cols-3">
+        <div id="trimester-grid" class="grid gap-6 md:gap-8 md:grid-cols-3">
           <article class="card bg-base-200/60 shadow-none border border-ink/10">
             <div class="card-body p-8">
               <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta">
@@ -389,7 +566,7 @@
               <ul class="font-sans text-sm leading-relaxed space-y-1.5 text-ink/80">
                 <li>Socratic method &amp; formal logic</li>
                 <li>Rhetoric and writing</li>
-                <li>The classics: Plato, Aristotle, Seneca, Epictetus, Montaigne</li>
+                <li>The classics: <span class="annotated" data-key="plato">Plato</span>, <span class="annotated" data-key="aristotle">Aristotle</span>, <span class="annotated" data-key="seneca">Seneca</span>, <span class="annotated" data-key="epictetus">Epictetus</span>, <span class="annotated" data-key="montaigne">Montaigne</span></li>
                 <li>The body: sleep, nutrition, attention, movement</li>
               </ul>
             </div>
@@ -409,7 +586,7 @@
                 <li>Systems and power</li>
                 <li>Ethics in the age of machines</li>
                 <li>AI: fluency, limits, ethics of use</li>
-                <li>Modern thinkers: Freire, Illich, hooks, Gatto</li>
+                <li>Modern thinkers: <span class="annotated" data-key="freire">Freire</span>, <span class="annotated" data-key="illich">Illich</span>, <span class="annotated" data-key="bell_hooks">hooks</span>, <span class="annotated" data-key="gatto">Gatto</span></li>
               </ul>
             </div>
           </article>
@@ -480,8 +657,8 @@
       <section class="bg-base-200/50 border-y border-ink/10">
         <div class="mx-auto max-w-3xl px-6 py-16 md:py-20 text-center">
           <p class="font-serif italic text-xl md:text-2xl lg:text-3xl leading-snug text-ink/80 text-balance">
-            In the tradition of Plato, Seneca, Montaigne, Illich, Freire, bell hooks,
-            Gatto, and the Bauhaus.
+            In the tradition of <span class="annotated" data-key="plato">Plato</span>, <span class="annotated" data-key="seneca">Seneca</span>, <span class="annotated" data-key="montaigne">Montaigne</span>, <span class="annotated" data-key="illich">Illich</span>, <span class="annotated" data-key="freire">Freire</span>, <span class="annotated" data-key="bell_hooks">bell hooks</span>,
+            <span class="annotated" data-key="gatto">Gatto</span>, and the <span class="annotated" data-key="bauhaus">Bauhaus</span>.
           </p>
         </div>
       </section>
@@ -489,17 +666,18 @@
       <!-- Founding cohort -->
       <section class="mx-auto max-w-4xl px-6 py-20 md:py-32 text-center">
         <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta mb-8">
-          The founding cohort
+          Where it begins
         </p>
         <div class="font-serif text-5xl md:text-7xl leading-[1.05] tracking-tight space-y-2">
-          <p><span class="text-terracotta">30</span> students.</p>
-          <p><span class="text-terracotta">10</span> mentors.</p>
           <p class="italic">September 2026.</p>
+          <p><span class="text-terracotta">One</span> month.</p>
+          <p><span class="text-terracotta">Four</span> sessions.</p>
           <p class="text-ink/70">Amsterdam is hub #1.</p>
         </div>
-        <p class="font-sans text-sm text-ink/60 mt-10 max-w-lg mx-auto">
-          We are looking for founding students and founding mentors. If that's you,
-          tell us below.
+        <p class="font-sans text-sm text-ink/60 mt-10 max-w-lg mx-auto leading-relaxed">
+          Not a course — a mutual interview. We are looking for the people who will become
+          the founding cohort. If you read this page and can't stop thinking about it,
+          that's probably you.
         </p>
       </section>
 
@@ -720,5 +898,344 @@
         </p>
       </div>
     </footer>
+    <!-- GSAP + ScrollTrigger for scroll-driven highlight animation -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+    <!-- Annotation tooltip + scroll highlight logic -->
+    <script>
+    (function () {
+      var ANNOTATIONS = {
+        horace_mann: {
+          name: "Horace Mann", dates: "1796–1859", wiki: "Horace_Mann",
+          desc: "Secretary of the Massachusetts Board of Education who studied Prussian schools and brought their age-graded, bell-scheduled model back to America. He believed mass education required standardization; what he imported became the template for every public school in the country."
+        },
+        rockefeller: {
+          name: "Rockefeller / General Education Board", dates: "est. 1902", wiki: "John_D._Rockefeller",
+          desc: "John D. Rockefeller's philanthropic vehicle for shaping American schooling after the industrial model. Its explicit goal: produce reliable workers and consumers, not independent thinkers."
+        },
+        carnegie: {
+          name: "Carnegie / Carnegie Unit", dates: "1906", wiki: "Andrew_Carnegie",
+          desc: "Andrew Carnegie funded the pension system that accidentally standardized how learning is measured—one unit equals one hour of instruction per week for a year. A century later, schools still trade in Carnegie Units."
+        },
+        plato: {
+          name: "Plato", dates: "427–347 BCE", wiki: "Plato",
+          desc: "Athenian philosopher who founded the first Academy and wrote The Republic—a dialogue about justice, the ideal city, and what education is actually for. His Socratic method is the intellectual ancestor of everything we're doing."
+        },
+        aristotle: {
+          name: "Aristotle", dates: "384–322 BCE", wiki: "Aristotle",
+          desc: "Plato's most brilliant student and most persistent critic. He founded his own school (the Lyceum), tutored Alexander the Great, and argued that knowledge must be grounded in the world we actually live in."
+        },
+        seneca: {
+          name: "Seneca", dates: "4 BCE–65 CE", wiki: "Seneca_the_Younger",
+          desc: "Roman Stoic philosopher and adviser to Nero, whose Letters to Lucilius remain one of the most direct and honest guides to living ever written. On what education is for: \"Non scholae sed vitae discimus\"—we learn not for school, but for life."
+        },
+        epictetus: {
+          name: "Epictetus", dates: "c.…50–135 CE", wiki: "Epictetus",
+          desc: "A formerly enslaved Greek philosopher who became one of the most important Stoic teachers. His core lesson: you cannot control what happens to you, only how you respond. He never wrote anything down—his students did it for him."
+        },
+        montaigne: {
+          name: "Montaigne", dates: "1533–1592", wiki: "Michel_de_Montaigne",
+          desc: "French nobleman who invented the essay form by turning his own mind into the subject of serious inquiry. He read widely, thought carefully, and wrote about everything—death, friendship, education, experience—in a voice that still sounds like a living person."
+        },
+        freire: {
+          name: "Paulo Freire", dates: "1921–1997", wiki: "Paulo_Freire",
+          desc: "Brazilian educator whose Pedagogy of the Oppressed argued that traditional schooling is an act of oppression—\"banking\" knowledge into passive students. Education, he insisted, should be a dialogue that builds critical consciousness."
+        },
+        illich: {
+          name: "Ivan Illich", dates: "1926–2002", wiki: "Ivan_Illich",
+          desc: "Austrian-born philosopher whose Deschooling Society (1971) argued that schools produce the opposite of what they promise—obedience, not curiosity; certification, not learning. He proposed replacing institutions with \"learning webs.\""
+        },
+        bell_hooks: {
+          name: "bell hooks", dates: "1952–2021", wiki: "Bell_hooks",
+          desc: "American scholar, feminist, and cultural critic whose Teaching to Transgress reimagined the classroom as a place of liberation. She argued that genuine education is always transgressive—it disturbs comfort and expands possibility."
+        },
+        gatto: {
+          name: "John Taylor Gatto", dates: "1935–2018", wiki: "John_Taylor_Gatto",
+          desc: "New York City schoolteacher and author of Dumbing Us Down, who won Teacher of the Year and then spent the rest of his life explaining why the school system was broken beyond repair. He quit teaching publicly in a Wall Street Journal op-ed."
+        },
+        bauhaus: {
+          name: "Bauhaus", dates: "1919–1933", wiki: "Bauhaus",
+          desc: "German art and design school founded by Walter Gropius that united fine arts, crafts, and industrial design under one radical pedagogy. It produced some of the most influential designers, artists, and architects of the twentieth century—with fewer than 1,300 graduates total."
+        }
+      };
+
+      // ── Wikipedia image cache ────────────────────────────────────────
+      var imgCache = {};
+      function getWikiImage(key) {
+        if (imgCache[key] !== undefined) return Promise.resolve(imgCache[key]);
+        var wiki = ANNOTATIONS[key] && ANNOTATIONS[key].wiki;
+        if (!wiki) return Promise.resolve(null);
+        return fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + wiki)
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            var url = (d.thumbnail && d.thumbnail.source) || null;
+            imgCache[key] = url;
+            return url;
+          })
+          .catch(function () { imgCache[key] = null; return null; });
+      }
+
+      // ── Build card DOM ───────────────────────────────────────────────
+      var card = document.createElement('div');
+      card.id = 'plato-tooltip';
+      card.setAttribute('role', 'tooltip');
+      card.setAttribute('aria-live', 'polite');
+      card.innerHTML =
+        '<div class="tip-header">' +
+          '<div class="tip-header-text">' +
+            '<span class="tip-name"></span>' +
+            '<span class="tip-dates"></span>' +
+          '</div>' +
+          '<img class="tip-img" alt="" />' +
+        '</div>' +
+        '<p class="tip-desc"></p>';
+      document.body.appendChild(card);
+
+      var tipName  = card.querySelector('.tip-name');
+      var tipDates = card.querySelector('.tip-dates');
+      var tipDesc  = card.querySelector('.tip-desc');
+      var tipImg   = card.querySelector('.tip-img');
+
+      // ── State ────────────────────────────────────────────────────────
+      var activeTarget = null;
+      var hideTimer    = null;
+
+      function populate(key) {
+        var a = ANNOTATIONS[key];
+        if (!a) return false;
+        tipName.textContent  = a.name;
+        tipDates.textContent = a.dates;
+        tipDesc.textContent  = a.desc;
+        tipImg.style.display = 'none';
+        tipImg.src = '';
+        return true;
+      }
+
+      function position(trigger) {
+        var MARGIN = 8, GAP = 6;
+        var tr = trigger.getBoundingClientRect();
+        var cw = card.offsetWidth, ch = card.offsetHeight;
+        var vw = window.innerWidth,  vh = window.innerHeight;
+        var top  = tr.top - ch - GAP;
+        var left = tr.left + tr.width / 2 - cw / 2;
+        if (top < MARGIN) top = tr.bottom + GAP;
+        left = Math.max(MARGIN, Math.min(left, vw - cw - MARGIN));
+        top  = Math.max(MARGIN, Math.min(top,  vh - ch - MARGIN));
+        card.style.left = left + 'px';
+        card.style.top  = top  + 'px';
+      }
+
+      function show(trigger) {
+        clearTimeout(hideTimer);
+        var key = trigger.dataset.key;
+        if (!key || !populate(key)) return;
+        if (activeTarget && activeTarget !== trigger) {
+          activeTarget.setAttribute('aria-expanded', 'false');
+        }
+        activeTarget = trigger;
+        trigger.setAttribute('aria-expanded', 'true');
+        card.style.visibility = 'hidden';
+        card.classList.add('is-visible');
+        position(trigger);
+        card.style.visibility = '';
+        window._platoRepos = function () { position(trigger); };
+        window.addEventListener('scroll', window._platoRepos, { passive: true });
+        window.addEventListener('resize', window._platoRepos, { passive: true });
+        // Async: fetch and insert Wikipedia image
+        getWikiImage(key).then(function (url) {
+          if (activeTarget !== trigger) return;
+          if (url) {
+            tipImg.src = url;
+            tipImg.style.display = 'block';
+            position(trigger);
+          }
+        });
+      }
+
+      function hide(immediate) {
+        if (!activeTarget) return;
+        window.removeEventListener('scroll', window._platoRepos);
+        window.removeEventListener('resize', window._platoRepos);
+        if (immediate) {
+          card.classList.remove('is-visible');
+          if (activeTarget) activeTarget.setAttribute('aria-expanded', 'false');
+          activeTarget = null;
+        } else {
+          hideTimer = setTimeout(function () {
+            card.classList.remove('is-visible');
+            if (activeTarget) activeTarget.setAttribute('aria-expanded', 'false');
+            activeTarget = null;
+          }, 80);
+        }
+      }
+
+      // ── Event delegation ─────────────────────────────────────────────
+      document.addEventListener('mouseenter', function (e) {
+        if (e.target.classList && e.target.classList.contains('annotated')) show(e.target);
+      }, true);
+      document.addEventListener('mouseleave', function (e) {
+        if (e.target.classList && e.target.classList.contains('annotated')) hide(false);
+      }, true);
+      card.addEventListener('mouseenter', function () { clearTimeout(hideTimer); });
+      card.addEventListener('mouseleave', function () { hide(false); });
+      document.addEventListener('click', function (e) {
+        var span = e.target.closest('.annotated');
+        if (span) {
+          e.stopPropagation();
+          if (activeTarget === span && card.classList.contains('is-visible')) hide(true);
+          else show(span);
+          return;
+        }
+        if (card.classList.contains('is-visible')) hide(true);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && card.classList.contains('is-visible')) {
+          hide(true);
+          if (activeTarget) activeTarget.focus();
+        }
+      });
+      document.querySelectorAll('.annotated').forEach(function (el) {
+        if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+        el.setAttribute('role', 'button');
+        el.setAttribute('aria-expanded', 'false');
+        el.setAttribute('aria-haspopup', 'true');
+        el.addEventListener('keydown', function (ev) {
+          if (ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            if (activeTarget === el && card.classList.contains('is-visible')) hide(true);
+            else show(el);
+          }
+        });
+      });
+
+      // ── GSAP scroll-triggered highlighter sweep ──────────────────────
+      if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll('.annotated').forEach(function (el) {
+          gsap.to(el, {
+            backgroundSize: '100% 55%',
+            duration: 0.65,
+            ease: 'power2.inOut',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none none'
+            }
+          });
+        });
+
+        // ── 1. Section scale-reveal — scroll-scrubbed ─────────────────
+        gsap.utils.toArray('main section:not(#top):not(#problem-section)').forEach(function (sec) {
+          gsap.from(sec, {
+            scale: 0.95,
+            transformOrigin: 'top center',
+            ease: 'power2.out',
+            scrollTrigger: { trigger: sec, start: 'top 92%', end: 'top 52%', scrub: 0.8 }
+          });
+        });
+
+        // ── Problem card: expands from contained card to full width ───
+        gsap.to('#problem-card', {
+          maxWidth: '100%',
+          borderRadius: 0,
+          boxShadow: '0 0px 0px rgba(26,26,26,0)',
+          ease: 'power1.inOut',
+          scrollTrigger: {
+            trigger: '#problem-section',
+            start: 'top 65%',
+            end: 'top 5%',
+            scrub: 1
+          }
+        });
+
+        // ── 2. Hero assemble on page load (minimal movement, snappy) ───
+        gsap.set([
+          '#top > p:nth-child(1)',
+          '#top > h1',
+          '#top > p:nth-child(3)',
+          '#top > div'
+        ], { opacity: 0, y: 8 });
+        gsap.timeline({ defaults: { ease: 'power3.out' } })
+          .to('#top > p:nth-child(1)', { opacity: 1, y: 0, duration: 0.45 }, 0.1)
+          .to('#top > h1',             { opacity: 1, y: 0, duration: 0.6  }, 0.22)
+          .to('#top > p:nth-child(3)', { opacity: 1, y: 0, duration: 0.45 }, 0.58)
+          .to('#top > div',            { opacity: 1, y: 0, duration: 0.4  }, 0.82);
+
+        // ── 3. Roadmap items + dots — scroll-scrubbed ─────────────────
+        gsap.utils.toArray('#roadmap-ol > li').forEach(function (item) {
+          var dot = item.querySelector('.rounded-full');
+          gsap.from(item, {
+            scale: 0.96,
+            transformOrigin: 'left center',
+            ease: 'power2.out',
+            scrollTrigger: { trigger: item, start: 'top 92%', end: 'top 68%', scrub: 0.6 }
+          });
+          if (dot) {
+            gsap.from(dot, {
+              scale: 0,
+              ease: 'power2.out',
+              scrollTrigger: { trigger: item, start: 'top 92%', end: 'top 75%', scrub: 0.6 }
+            });
+          }
+        });
+
+        // ── 4. Divider draw left → right — scrubbed ───────────────────
+        gsap.utils.toArray('.rule').forEach(function (rule) {
+          gsap.from(rule, {
+            scaleX: 0,
+            transformOrigin: 'left center',
+            ease: 'none',
+            scrollTrigger: { trigger: rule, start: 'top 92%', end: 'top 38%', scrub: 1.2 }
+          });
+        });
+
+        // ── 5. Trimester card stagger — scrubbed ──────────────────────
+        gsap.from('#trimester-grid > article', {
+          scale: 0.93,
+          transformOrigin: 'top center',
+          stagger: 0.18,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '#trimester-grid',
+            start: 'top 85%',
+            end: 'center 65%',
+            scrub: 1
+          }
+        });
+
+        // ── 6. Dual trailing cursor (desktop only) ────────────────────
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+          var dot = document.createElement('div');
+          dot.id = 'plato-cursor-dot';
+          var ring = document.createElement('div');
+          ring.id = 'plato-cursor-ring';
+          document.body.appendChild(dot);
+          document.body.appendChild(ring);
+
+          gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
+          var xDot  = gsap.quickTo(dot,  'x', { duration: 0.08 });
+          var yDot  = gsap.quickTo(dot,  'y', { duration: 0.08 });
+          var xRing = gsap.quickTo(ring, 'x', { duration: 0.48, ease: 'power3' });
+          var yRing = gsap.quickTo(ring, 'y', { duration: 0.48, ease: 'power3' });
+
+          window.addEventListener('mousemove', function (e) {
+            gsap.to([dot, ring], { opacity: 1, duration: 0.3, overwrite: 'auto' });
+            xDot(e.clientX);  yDot(e.clientY);
+            xRing(e.clientX); yRing(e.clientY);
+          }, { passive: true });
+
+          document.documentElement.addEventListener('mouseleave', function () {
+            gsap.to([dot, ring], { opacity: 0, duration: 0.4 });
+          });
+
+          document.querySelectorAll('a, button, .annotated').forEach(function (el) {
+            el.addEventListener('mouseenter', function () { ring.classList.add('is-hovering'); });
+            el.addEventListener('mouseleave', function () { ring.classList.remove('is-hovering'); });
+          });
+        }
+      }
+    })();
+    </script>
   </body>
 </html>
