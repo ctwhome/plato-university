@@ -325,6 +325,37 @@
         color: rgba(26, 26, 26, 0.82);
         margin: 0;
       }
+
+      /* Dual trailing cursor — desktop only */
+      #plato-cursor-dot {
+        position: fixed; top: 0; left: 0;
+        width: 6px; height: 6px;
+        background: #b8593a;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99999;
+        opacity: 0;
+        will-change: transform;
+      }
+      #plato-cursor-ring {
+        position: fixed; top: 0; left: 0;
+        width: 26px; height: 26px;
+        border: 1.5px solid rgba(184, 89, 58, 0.55);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99998;
+        opacity: 0;
+        will-change: transform;
+        transition: width 0.22s ease, height 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
+      }
+      #plato-cursor-ring.is-hovering {
+        width: 46px; height: 46px;
+        border-color: rgba(184, 89, 58, 0.35);
+        background-color: rgba(184, 89, 58, 0.06);
+      }
+      @media (hover: none), (pointer: coarse) {
+        #plato-cursor-dot, #plato-cursor-ring { display: none !important; }
+      }
     </style>
   </head>
 
@@ -461,7 +492,7 @@
           Here is the road between them.
         </p>
 
-        <ol class="space-y-0">
+        <ol id="roadmap-ol" class="space-y-0">
           <li class="relative pl-10 pb-12 border-l border-ink/15">
             <span class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-terracotta"></span>
             <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta mb-2">September 2026 · Where we are</p>
@@ -520,7 +551,7 @@
           </p>
         </div>
 
-        <div class="grid gap-6 md:gap-8 md:grid-cols-3">
+        <div id="trimester-grid" class="grid gap-6 md:gap-8 md:grid-cols-3">
           <article class="card bg-base-200/60 shadow-none border border-ink/10">
             <div class="card-body p-8">
               <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta">
@@ -1089,6 +1120,99 @@
             }
           });
         });
+
+        // ── 1. Section fade-up on scroll ───────────────────────────────
+        gsap.utils.toArray('main section:not(#top)').forEach(function (sec) {
+          gsap.from(sec, {
+            opacity: 0, y: 44,
+            duration: 0.9, ease: 'power2.out',
+            immediateRender: false,
+            scrollTrigger: { trigger: sec, start: 'top 86%', once: true }
+          });
+        });
+
+        // ── 2. Hero stagger on page load ───────────────────────────────
+        gsap.set([
+          '#top > p:nth-child(1)',
+          '#top > h1',
+          '#top > p:nth-child(3)',
+          '#top > div'
+        ], { opacity: 0, y: 22 });
+        gsap.timeline({ defaults: { ease: 'power3.out' } })
+          .to('#top > p:nth-child(1)', { opacity: 1, y: 0, duration: 0.7 }, 0.1)
+          .to('#top > h1',             { opacity: 1, y: 0, duration: 1.0 }, 0.28)
+          .to('#top > p:nth-child(3)', { opacity: 1, y: 0, duration: 0.8 }, 0.72)
+          .to('#top > div',            { opacity: 1, y: 0, duration: 0.6 }, 1.08);
+
+        // ── 3. Roadmap items slide in from left, dots pop ──────────────
+        gsap.utils.toArray('#roadmap-ol > li').forEach(function (item) {
+          var dot = item.querySelector('.rounded-full');
+          gsap.from(item, {
+            opacity: 0, x: -30,
+            duration: 0.7, ease: 'power2.out',
+            immediateRender: false,
+            scrollTrigger: { trigger: item, start: 'top 87%', once: true }
+          });
+          if (dot) {
+            gsap.from(dot, {
+              scale: 0,
+              duration: 0.45, ease: 'back.out(2.5)',
+              immediateRender: false,
+              scrollTrigger: { trigger: item, start: 'top 87%', once: true }
+            });
+          }
+        });
+
+        // ── 4. Divider draw left → right ──────────────────────────────
+        gsap.utils.toArray('.rule').forEach(function (rule) {
+          gsap.from(rule, {
+            scaleX: 0,
+            transformOrigin: 'left center',
+            duration: 1.1, ease: 'power2.inOut',
+            immediateRender: false,
+            scrollTrigger: { trigger: rule, start: 'top 92%', once: true }
+          });
+        });
+
+        // ── 5. Trimester card stagger ──────────────────────────────────
+        gsap.from('#trimester-grid > article', {
+          opacity: 0, y: 40,
+          duration: 0.8, ease: 'power2.out',
+          stagger: 0.15,
+          immediateRender: false,
+          scrollTrigger: { trigger: '#trimester-grid', start: 'top 80%', once: true }
+        });
+
+        // ── 6. Dual trailing cursor (desktop only) ────────────────────
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+          var dot = document.createElement('div');
+          dot.id = 'plato-cursor-dot';
+          var ring = document.createElement('div');
+          ring.id = 'plato-cursor-ring';
+          document.body.appendChild(dot);
+          document.body.appendChild(ring);
+
+          gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
+          var xDot  = gsap.quickTo(dot,  'x', { duration: 0.08 });
+          var yDot  = gsap.quickTo(dot,  'y', { duration: 0.08 });
+          var xRing = gsap.quickTo(ring, 'x', { duration: 0.48, ease: 'power3' });
+          var yRing = gsap.quickTo(ring, 'y', { duration: 0.48, ease: 'power3' });
+
+          window.addEventListener('mousemove', function (e) {
+            gsap.to([dot, ring], { opacity: 1, duration: 0.3, overwrite: 'auto' });
+            xDot(e.clientX);  yDot(e.clientY);
+            xRing(e.clientX); yRing(e.clientY);
+          }, { passive: true });
+
+          document.documentElement.addEventListener('mouseleave', function () {
+            gsap.to([dot, ring], { opacity: 0, duration: 0.4 });
+          });
+
+          document.querySelectorAll('a, button, .annotated').forEach(function (el) {
+            el.addEventListener('mouseenter', function () { ring.classList.add('is-hovering'); });
+            el.addEventListener('mouseleave', function () { ring.classList.remove('is-hovering'); });
+          });
+        }
       }
     })();
     </script>
