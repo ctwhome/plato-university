@@ -41,6 +41,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/pages.css" />
+    <link rel="stylesheet" href="/motion.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -87,7 +88,7 @@
         </div>
       </section>
 
-      <section style="padding-top: 40px;">
+      <section class="m-reveal" style="padding-top: 40px;">
         <div class="wrap-md prose">
           <p>
             The modern university was built to produce a very particular kind of person:
@@ -109,12 +110,12 @@
         </div>
       </section>
 
-      <div class="rule-line" style="margin: 40px auto 24px;"></div>
+      <div class="rule-line m-rule" style="margin: 40px auto 24px;"></div>
 
-      <section>
+      <section class="m-reveal">
         <div class="wrap-md">
           <p class="eyebrow-block">The thesis, in four movements</p>
-          <div class="thesis-stack">
+          <div class="thesis-stack m-stagger">
             <div>
               <span class="num">i.</span>
               <h3>AI has made "how to do the job" the cheap part.</h3>
@@ -170,9 +171,9 @@
         </div>
       </section>
 
-      <div class="rule-line"></div>
+      <div class="rule-line m-rule"></div>
 
-      <section>
+      <section class="m-reveal">
         <div class="wrap-md">
           <blockquote class="pull-quote">
             Learn to think before you learn to work.
@@ -181,12 +182,12 @@
         </div>
       </section>
 
-      <div class="rule-line"></div>
+      <div class="rule-line m-rule"></div>
 
-      <section>
+      <section class="m-reveal">
         <div class="wrap-md">
           <p class="eyebrow-block">What we're building</p>
-          <ul class="principles">
+          <ul class="principles m-stagger">
             <li>
               <span class="arrow">→</span>
               <div><b>Philosophy first, portfolio last.</b><span>The first trimester reads. The last trimester ships.</span></div>
@@ -215,7 +216,7 @@
         </div>
       </section>
 
-      <section class="inverse-block">
+      <section class="inverse-block m-reveal">
         <div class="wrap-md">
           <p class="small" style="margin-bottom: 32px;">What we are against · what we are for</p>
           <h2>
@@ -254,5 +255,9 @@
         <p class="legal">&ldquo;Plato University&rdquo; is the project's working name. It is not an accredited Dutch <em>universiteit</em>; it is a private academy. The legal entity behind the project is operated by Jesse Gonzalez (KvK 70565783).</p>
       </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="/motion.js" defer></script>
   </body>
 </html>

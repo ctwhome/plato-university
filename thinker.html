@@ -41,6 +41,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/pages.css" />
+    <link rel="stylesheet" href="/motion.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -67,7 +68,7 @@
     </nav>
 
     <main id="main">
-      <section class="thinker-hero">
+      <section class="thinker-hero m-reveal">
         <div class="wrap-md">
           <p class="eyebrow">What you become</p>
           <h1>
@@ -111,10 +112,10 @@
         </svg>
       </div>
 
-      <section style="padding-top: 56px;">
+      <section class="m-reveal" style="padding-top: 56px;">
         <div class="wrap-md">
           <p class="eyebrow-block is-terracotta">The five marks of a Thinker</p>
-          <ul class="thinker-list">
+          <ul class="thinker-list m-stagger">
             <li>
               <span class="dash">—</span>
               <span class="body">Reads the whole thing. Not the summary, not the thread, not the highlights. <em>The original.</em></span>
@@ -139,9 +140,9 @@
         </div>
       </section>
 
-      <div class="rule-line"></div>
+      <div class="rule-line m-rule"></div>
 
-      <section>
+      <section class="m-reveal">
         <div class="wrap-md">
           <blockquote class="pull-quote">
             The credential is the person.
@@ -165,5 +166,9 @@
         <p class="legal">&ldquo;Plato University&rdquo; is the project's working name. It is not an accredited Dutch <em>universiteit</em>; it is a private academy. The legal entity behind the project is operated by Jesse Gonzalez (KvK 70565783).</p>
       </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="/motion.js" defer></script>
   </body>
 </html>

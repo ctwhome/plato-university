@@ -182,6 +182,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/colors_and_type.css" />
+    <link rel="stylesheet" href="/motion.css" />
 
     <style>
       /* Override the design system's system-font defaults
@@ -332,13 +333,29 @@
       /* ---------- Featured "problem" card ---------- */
       .problem-section { padding: 80px 0 96px; }
       .problem-card {
+        position: relative;
+        max-width: 54rem; margin: 0 auto;
+        isolation: isolate;
+      }
+      /* The white box is a separate layer so it can grow on scroll
+         without reflowing the text. GSAP tweens its max-width from
+         48rem → 54rem via the .m-grow primitive. */
+      .problem-card-bg {
+        position: absolute; inset: 0;
+        margin: 0 auto;
+        max-width: 48rem;
         background: #ffffff;
         border: 1px solid color-mix(in oklab, var(--ink) 6%, transparent);
         border-radius: var(--radius-xl);
         box-shadow: var(--shadow-card);
-        max-width: 48rem; margin: 0 auto;
+        z-index: -1;
+        will-change: max-width;
       }
-      .problem-card .inner { padding: 48px 32px; }
+      .problem-card .inner {
+        max-width: 48rem; margin: 0 auto;
+        padding: 48px 32px;
+        position: relative;
+      }
       @media (min-width: 720px) {
         .problem-card .inner { padding: 64px 56px; }
       }
@@ -685,23 +702,24 @@
         </div>
       </section>
 
-      <div class="hairline-wrap"><div class="hairline"></div></div>
+      <div class="hairline-wrap"><div class="hairline m-rule"></div></div>
 
       <!-- Featured problem card -->
       <section class="problem-section">
         <div class="container">
           <div class="problem-card">
+            <div class="problem-card-bg m-grow" aria-hidden="true"></div>
             <div class="inner">
               <p class="eb eb--terra">The problem</p>
               <h2>In the age of AI, we are still running a school built for the factory floor.</h2>
               <div class="prose">
                 <p>
-                  In 1843, <span class="annot" data-key="mann">Horace Mann</span>
+                  In 1843, <span class="annot m-annot-sweep" data-key="mann">Horace Mann</span>
                   brought the Prussian bell home. The system he copied was built to produce
                   obedient soldiers and reliable workers.
-                  <span class="annot" data-key="rockefeller">Rockefeller</span>'s General
+                  <span class="annot m-annot-sweep" data-key="rockefeller">Rockefeller</span>'s General
                   Education Board then scaled it across America, and
-                  <span class="annot" data-key="carnegie">Carnegie</span> turned learning
+                  <span class="annot m-annot-sweep" data-key="carnegie">Carnegie</span> turned learning
                   into a stopwatch, calling one unit an hour.
                 </p>
                 <p>
@@ -715,7 +733,7 @@
                   AI collapses the premium on routine specialization. The jobs you train for at
                   eighteen will be automated, transformed, or invented-and-gone-already by the
                   time you graduate. And yet universities still run on the
-                  <span class="annot" data-key="carnegie">Carnegie Unit</span>.
+                  <span class="annot m-annot-sweep" data-key="carnegie">Carnegie Unit</span>.
                 </p>
               </div>
             </div>
@@ -723,10 +741,10 @@
         </div>
       </section>
 
-      <div class="hairline-wrap"><div class="hairline"></div></div>
+      <div class="hairline-wrap"><div class="hairline m-rule"></div></div>
 
       <!-- What we're building -->
-      <section class="section">
+      <section class="section m-reveal">
         <div class="container-sm">
           <p class="eb">What we're building</p>
           <h2>Learn to think before you learn to work.</h2>
@@ -744,7 +762,7 @@
               subject.
             </p>
           </div>
-          <ul class="bullets">
+          <ul class="bullets m-stagger">
             <li><span class="arrow">→</span> Primary sources, not summaries</li>
             <li><span class="arrow">→</span> Online core + local city hubs</li>
             <li><span class="arrow">→</span> Portfolio over diploma</li>
@@ -755,17 +773,17 @@
         </div>
       </section>
 
-      <div class="hairline-wrap"><div class="hairline"></div></div>
+      <div class="hairline-wrap"><div class="hairline m-rule"></div></div>
 
       <!-- Roadmap -->
-      <section class="section">
+      <section class="section m-reveal">
         <div class="container-sm">
           <p class="eb">The plan, honestly</p>
           <h2>We start small.<br>We build from proof.</h2>
           <p class="prose-serif">
             We do not pretend to be a full one-year academy yet. Here is the actual arc.
           </p>
-          <ol class="roadmap">
+          <ol class="roadmap m-stagger">
             <li>
               <span class="dot" style="background: var(--terracotta);"></span>
               <p class="eb eb--terra">September 2026 · Where we are</p>
@@ -788,10 +806,10 @@
         </div>
       </section>
 
-      <div class="hairline-wrap"><div class="hairline"></div></div>
+      <div class="hairline-wrap"><div class="hairline m-rule"></div></div>
 
       <!-- Trimester grid -->
-      <section class="section">
+      <section class="section m-reveal">
         <div class="container">
           <div style="max-width: 48rem;">
             <p class="eb">The one-year program · what we're building toward</p>
@@ -800,7 +818,7 @@
               Online core with weekly in-person sessions in your city hub. The shape we're building toward — <a href="/year" style="color: var(--olive); border-bottom: 1px solid var(--olive);">read the year →</a>
             </p>
           </div>
-          <div class="trimester-grid">
+          <div class="trimester-grid m-stagger">
             <article class="tcard">
               <p class="eb eb--terra">Trimester 1 · Months 1–4</p>
               <h3>Foundations</h3>
@@ -846,10 +864,10 @@
         </div>
       </section>
 
-      <div class="hairline-wrap"><div class="hairline"></div></div>
+      <div class="hairline-wrap"><div class="hairline m-rule"></div></div>
 
       <!-- Who it's for -->
-      <section class="section who">
+      <section class="section who m-reveal">
         <div class="container-sm">
           <p class="eb">Who it's for</p>
           <h2>Anyone who would rather be a thinker than a cog.</h2>
@@ -867,7 +885,7 @@
       </section>
 
       <!-- Lineage -->
-      <section class="lineage">
+      <section class="lineage m-lineage">
         <div class="inner">
           <p>
             In the tradition of
@@ -884,9 +902,9 @@
       </section>
 
       <!-- The first month -->
-      <section class="founding">
+      <section class="founding m-reveal">
         <p class="eb eb--terra">The founding cohort</p>
-        <div class="big">
+        <div class="big m-stagger">
           <p><em>September 2026.</em></p>
           <p><span class="n">One</span> month.</p>
           <p><span class="n">Four</span> sessions.</p>
@@ -899,7 +917,7 @@
       </section>
 
       <!-- Apply -->
-      <section id="apply" class="apply">
+      <section id="apply" class="apply m-reveal">
         <div class="inner">
           <p class="eb eb--terra">Apply · Teach · Follow along</p>
           <h2>Tell us who you are.</h2>
@@ -1064,5 +1082,9 @@
       });
       window.addEventListener('scroll', hideTip, { passive: true });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="/motion.js" defer></script>
   </body>
 </html>

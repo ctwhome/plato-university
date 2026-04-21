@@ -41,6 +41,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/pages.css" />
+    <link rel="stylesheet" href="/motion.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -67,7 +68,7 @@
     </nav>
 
     <main id="main">
-      <section class="vision-hero">
+      <section class="vision-hero m-reveal">
         <div class="wrap-lg">
           <p class="eyebrow-block is-terracotta">About <span class="bullet">·</span> the project</p>
           <h1>
@@ -88,7 +89,7 @@
         </div>
       </section>
 
-      <section style="padding-top: 40px;">
+      <section class="m-reveal" style="padding-top: 40px;">
         <div class="wrap-md prose">
           <p>
             We are building the school we wish we had been given. Not a research
@@ -106,12 +107,12 @@
         </div>
       </section>
 
-      <div class="rule-line" style="margin: 40px auto 24px;"></div>
+      <div class="rule-line m-rule" style="margin: 40px auto 24px;"></div>
 
-      <section>
+      <section class="m-reveal">
         <div class="wrap-md">
           <p class="eyebrow-block">The project, in facts</p>
-          <ul class="principles">
+          <ul class="principles m-stagger">
             <li>
               <span class="arrow">→</span>
               <div><b>One year. Three trimesters.</b><span>Foundations · The World as It Is · Ship Something. See <a href="/year">the year</a> for the reading list.</span></div>
@@ -136,9 +137,9 @@
         </div>
       </section>
 
-      <div class="rule-line"></div>
+      <div class="rule-line m-rule"></div>
 
-      <section>
+      <section class="m-reveal">
         <div class="wrap-md">
           <p class="eyebrow-block">How we're organized</p>
           <div class="prose">
@@ -164,7 +165,7 @@
         </div>
       </section>
 
-      <section class="inverse-block">
+      <section class="inverse-block m-reveal">
         <div class="wrap-md">
           <p class="small" style="margin-bottom: 32px;">Reach us</p>
           <h2>
@@ -201,5 +202,9 @@
         <p class="legal">&ldquo;Plato University&rdquo; is the project's working name. It is not an accredited Dutch <em>universiteit</em>; it is a private academy. The legal entity behind the project is operated by Jesse Gonzalez (KvK 70565783).</p>
       </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="/motion.js" defer></script>
   </body>
 </html>

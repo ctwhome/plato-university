@@ -41,6 +41,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/pages.css" />
+    <link rel="stylesheet" href="/motion.css" />
     <style>
       /* Honest-framing note — small italic strip above the meta */
       .timing-note {
@@ -95,7 +96,7 @@
             A note on timing. September 2026 is the <strong>one-month trial</strong> — four sessions in Amsterdam to find the founding cohort. What follows on this page is the program we're shaping with them. <a href="/#apply">Apply via the home page →</a>
           </p>
 
-          <div class="meta">
+          <div class="meta m-stagger">
             <span>Theme <b>Thinking in the Age of the Machine</b></span>
             <span>Discipline <b>Philosophy, close reading, practice</b></span>
             <span>Max cohort size <b>30</b></span>
@@ -103,9 +104,9 @@
         </div>
       </section>
 
-      <div class="rule-line"></div>
+      <div class="rule-line m-rule"></div>
 
-      <section>
+      <section class="m-reveal">
         <div class="wrap-xl tp-why">
           <h2>Why <em>this</em><br>question,<br>this year.</h2>
           <div class="body">
@@ -130,13 +131,13 @@
         </div>
       </section>
 
-      <section>
+      <section class="m-reveal">
         <div class="wrap-xl">
           <p class="eyebrow-block is-terracotta" style="text-align:center; margin-bottom: 12px;">How the theme moves</p>
           <h2 class="section-h2" style="text-align:center; margin: 0 auto; max-width: 720px;">
             Three trimesters. Three moves. One argument.
           </h2>
-          <div class="moves">
+          <div class="moves m-stagger">
             <div class="move">
               <span class="kicker">Trimester I · Foundations</span>
               <span class="n">01</span>
@@ -171,15 +172,15 @@
         </div>
       </section>
 
-      <div class="rule-line"></div>
+      <div class="rule-line m-rule"></div>
 
-      <section>
+      <section class="m-reveal">
         <div class="wrap-xl">
           <p class="eyebrow-block">Three lenses on the theme</p>
           <h2 class="section-h2" style="max-width: 720px;">
             We don't ask the question once. We ask it from three angles.
           </h2>
-          <div class="lenses">
+          <div class="lenses m-stagger">
             <div class="lens">
               <span class="tag">Philosophical</span>
               <h3>What kind of thing <em>is</em> a mind?</h3>
@@ -214,11 +215,11 @@
       </section>
 
       <!-- Curricular spec -->
-      <section>
+      <section class="m-reveal">
         <div class="wrap-md">
           <p class="eyebrow-block is-terracotta">The twelve questions</p>
           <h2 class="section-h2">Each seminar answers one.</h2>
-          <div class="questions">
+          <div class="questions m-stagger">
             <div class="q"><span class="num">i.</span><span class="text">Can a machine think? What would it take to know?</span></div>
             <div class="q"><span class="num">ii.</span><span class="text">Is the mind a kind of computation, or only sometimes?</span></div>
             <div class="q"><span class="num">iii.</span><span class="text">What is judgment, and can it be automated?</span></div>
@@ -235,13 +236,13 @@
         </div>
       </section>
 
-      <div class="rule-line"></div>
+      <div class="rule-line m-rule"></div>
 
-      <section>
+      <section class="m-reveal">
         <div class="wrap-md">
           <p class="eyebrow-block">The founding reading list</p>
           <h2 class="section-h2">Twelve books. Read <em>closely</em>. Discussed weekly.</h2>
-          <ul class="reading-list">
+          <ul class="reading-list m-stagger">
             <li><span class="n">i.</span><span class="t">Phaedrus<span class="sub">Plato — c. 370 BCE</span></span><span class="a">Term I</span></li>
             <li><span class="n">ii.</span><span class="t">Meditations on First Philosophy<span class="sub">Descartes — 1641</span></span><span class="a">Term I</span></li>
             <li><span class="n">iii.</span><span class="t">The Concept of Mind<span class="sub">Gilbert Ryle — 1949</span></span><span class="a">Term I</span></li>
@@ -258,13 +259,13 @@
         </div>
       </section>
 
-      <div class="rule-line"></div>
+      <div class="rule-line m-rule"></div>
 
-      <section>
+      <section class="m-reveal">
         <div class="wrap-lg">
           <p class="eyebrow-block">The shape of the year</p>
           <h2 class="section-h2">Four months each. One theme throughout.</h2>
-          <div class="shape-grid">
+          <div class="shape-grid m-stagger">
             <div class="cell">
               <div class="k">Students</div>
               <div class="v">Thirty <em>— max.</em></div>
@@ -292,7 +293,7 @@
         </div>
       </section>
 
-      <section class="quotebar">
+      <section class="quotebar m-reveal">
         <div class="wrap-md" style="text-align:center;">
           <blockquote>
             "The unexamined life is not worth living."<br>
@@ -302,7 +303,7 @@
         </div>
       </section>
 
-      <section class="cta">
+      <section class="cta m-reveal">
         <div class="wrap-md">
           <p style="font-family:var(--font-sans); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta); margin: 0 0 24px;">Applications open <span style="color: color-mix(in oklab, var(--cream) 60%, transparent); margin-left:8px;">— through 30 June 2026</span></p>
           <h2>Apply to the founding cohort.</h2>
@@ -335,5 +336,9 @@
         <p class="legal">&ldquo;Plato University&rdquo; is the project's working name. It is not an accredited Dutch <em>universiteit</em>; it is a private academy. The legal entity behind the project is operated by Jesse Gonzalez (KvK 70565783).</p>
       </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="/motion.js" defer></script>
   </body>
 </html>

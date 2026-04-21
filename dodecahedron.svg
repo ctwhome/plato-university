@@ -1,0 +1,49 @@
+<!-- Plato University — dodecahedron mark
+
+     Canonical regular dodecahedron (20 vertices, 30 edges) projected
+     orthographically after a 22° pitch and 28° yaw, so all 30 edges
+     are visible without strong foreshortening. Each edge is its own
+     <path> so GSAP can draw them in with a small stagger.
+
+     This file is the source of truth. The same markup is inlined in
+     the hero of each motion-enabled page (index, vision, year,
+     thinker, about). Keep the two in sync if you change the geometry.
+-->
+<svg viewBox="-100 -100 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
+  <g class="dodec-group">
+    <!-- A-edges: cube-corner ↔ (±1/φ, ±φ, 0) -->
+    <path d="M77.69 -28.70 L43.21 -78.00" />
+    <path d="M32.45 -67.70 L43.21 -78.00" />
+    <path d="M59.38 67.70 L13.57 78.00" />
+    <path d="M14.14 28.70 L13.57 78.00" />
+    <path d="M-14.14 -28.70 L-13.57 -78.00" />
+    <path d="M-59.38 -67.70 L-13.57 -78.00" />
+    <path d="M-32.45 67.70 L-43.21 78.00" />
+    <path d="M-77.69 28.70 L-43.21 78.00" />
+    <!-- B-edges: cube-corner ↔ (0, ±1/φ, ±φ) -->
+    <path d="M77.69 -28.70 L42.22 1.77" />
+    <path d="M32.45 -67.70 L-30.94 -61.36" />
+    <path d="M59.38 67.70 L30.94 61.36" />
+    <path d="M14.14 28.70 L-42.22 -1.77" />
+    <path d="M-14.14 -28.70 L42.22 1.77" />
+    <path d="M-59.38 -67.70 L-30.94 -61.36" />
+    <path d="M-32.45 67.70 L30.94 61.36" />
+    <path d="M-77.69 28.70 L-42.22 -1.77" />
+    <!-- C-edges: cube-corner ↔ (±φ, 0, ±1/φ) -->
+    <path d="M77.69 -28.70 L88.24 12.06" />
+    <path d="M32.45 -67.70 L60.27 -12.06" />
+    <path d="M59.38 67.70 L88.24 12.06" />
+    <path d="M14.14 28.70 L60.27 -12.06" />
+    <path d="M-14.14 -28.70 L-60.27 12.06" />
+    <path d="M-59.38 -67.70 L-88.24 -12.06" />
+    <path d="M-32.45 67.70 L-60.27 12.06" />
+    <path d="M-77.69 28.70 L-88.24 -12.06" />
+    <!-- D/E/F-edges: the three pairs of "belt" edges -->
+    <path d="M42.22 1.77 L30.94 61.36" />
+    <path d="M-30.94 -61.36 L-42.22 -1.77" />
+    <path d="M43.21 -78.00 L-13.57 -78.00" />
+    <path d="M13.57 78.00 L-43.21 78.00" />
+    <path d="M88.24 12.06 L60.27 -12.06" />
+    <path d="M-60.27 12.06 L-88.24 -12.06" />
+  </g>
+</svg>
