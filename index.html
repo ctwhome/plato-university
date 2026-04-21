@@ -1121,14 +1121,13 @@
           });
         });
 
-        // ── 1. Section scale-reveal on scroll (no fade, no movement) ──
+        // ── 1. Section scale-reveal — scroll-scrubbed ─────────────────
         gsap.utils.toArray('main section:not(#top)').forEach(function (sec) {
           gsap.from(sec, {
             scale: 0.95,
             transformOrigin: 'top center',
-            duration: 0.75, ease: 'power3.out',
-            immediateRender: false,
-            scrollTrigger: { trigger: sec, start: 'top 88%', once: true }
+            ease: 'power2.out',
+            scrollTrigger: { trigger: sec, start: 'top 92%', end: 'top 52%', scrub: 0.8 }
           });
         });
 
@@ -1145,45 +1144,46 @@
           .to('#top > p:nth-child(3)', { opacity: 1, y: 0, duration: 0.45 }, 0.58)
           .to('#top > div',            { opacity: 1, y: 0, duration: 0.4  }, 0.82);
 
-        // ── 3. Roadmap items scale in, dots pop ────────────────────────
+        // ── 3. Roadmap items + dots — scroll-scrubbed ─────────────────
         gsap.utils.toArray('#roadmap-ol > li').forEach(function (item) {
           var dot = item.querySelector('.rounded-full');
           gsap.from(item, {
             scale: 0.96,
             transformOrigin: 'left center',
-            duration: 0.6, ease: 'power3.out',
-            immediateRender: false,
-            scrollTrigger: { trigger: item, start: 'top 87%', once: true }
+            ease: 'power2.out',
+            scrollTrigger: { trigger: item, start: 'top 92%', end: 'top 68%', scrub: 0.6 }
           });
           if (dot) {
             gsap.from(dot, {
               scale: 0,
-              duration: 0.45, ease: 'back.out(2.5)',
-              immediateRender: false,
-              scrollTrigger: { trigger: item, start: 'top 87%', once: true }
+              ease: 'power2.out',
+              scrollTrigger: { trigger: item, start: 'top 92%', end: 'top 75%', scrub: 0.6 }
             });
           }
         });
 
-        // ── 4. Divider draw left → right ──────────────────────────────
+        // ── 4. Divider draw left → right — scrubbed ───────────────────
         gsap.utils.toArray('.rule').forEach(function (rule) {
           gsap.from(rule, {
             scaleX: 0,
             transformOrigin: 'left center',
-            duration: 1.1, ease: 'power2.inOut',
-            immediateRender: false,
-            scrollTrigger: { trigger: rule, start: 'top 92%', once: true }
+            ease: 'none',
+            scrollTrigger: { trigger: rule, start: 'top 92%', end: 'top 38%', scrub: 1.2 }
           });
         });
 
-        // ── 5. Trimester card stagger — scale, no float ────────────────
+        // ── 5. Trimester card stagger — scrubbed ──────────────────────
         gsap.from('#trimester-grid > article', {
           scale: 0.93,
           transformOrigin: 'top center',
-          duration: 0.7, ease: 'power3.out',
-          stagger: 0.12,
-          immediateRender: false,
-          scrollTrigger: { trigger: '#trimester-grid', start: 'top 82%', once: true }
+          stagger: 0.18,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '#trimester-grid',
+            start: 'top 85%',
+            end: 'center 65%',
+            scrub: 1
+          }
         });
 
         // ── 6. Dual trailing cursor (desktop only) ────────────────────
