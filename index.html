@@ -9,7 +9,7 @@
     <title>Plato University · Learn to think before you learn to work.</title>
     <meta
       name="description"
-      content="Plato University is a one-year academy for the AI era. Philosophy first, portfolio last. An online core with local city hubs. The discovery month begins September 2026 in Amsterdam."
+      content="Plato University is a one-year academy for the AI era. Philosophy first, portfolio last. We start with a one-month trial in September 2026 in Amsterdam — the founding cohort that helps us shape the full year."
     />
     <meta
       name="keywords"
@@ -35,7 +35,7 @@
     <meta property="og:title" content="Plato University · Learn to think before you learn to work." />
     <meta
       property="og:description"
-      content="A one-year academy for the AI era. Philosophy first, portfolio last. Discovery month begins September 2026 in Amsterdam."
+      content="A one-year academy for the AI era. Philosophy first, portfolio last. We start with a one-month trial in September 2026 in Amsterdam."
     />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content="https://platouniversity.org/og-image.jpg" />
@@ -50,7 +50,7 @@
     <meta name="twitter:title" content="Plato University · Learn to think before you learn to work." />
     <meta
       name="twitter:description"
-      content="A one-year academy for the AI era. Philosophy first, portfolio last. Discovery month begins September 2026 in Amsterdam."
+      content="A one-year academy for the AI era. Philosophy first, portfolio last. We start with a one-month trial in September 2026 in Amsterdam."
     />
     <meta name="twitter:image" content="https://platouniversity.org/og-image.jpg" />
     <meta name="twitter:image:alt" content="Plato University. Learn to think before you learn to work." />
@@ -67,7 +67,7 @@
             "url": "https://platouniversity.org/",
             "logo": "https://platouniversity.org/og-image.jpg",
             "image": "https://platouniversity.org/og-image.jpg",
-            "description": "A one-year academy for the AI era. Philosophy first, portfolio last. Online core with local city hubs. Discovery month September 2026 in Amsterdam.",
+            "description": "A one-year academy for the AI era. Philosophy first, portfolio last. Online core with local city hubs. We start with a one-month trial in September 2026 in Amsterdam — the founding cohort that helps shape the year.",
             "slogan": "Learn to think before you learn to work.",
             "foundingDate": "2026",
             "foundingLocation": {
@@ -94,29 +94,41 @@
           },
           {
             "@type": "Course",
-            "name": "Plato University · One-Year Academy",
-            "description": "A one-year program in three trimesters: Foundations (Socratic method, logic, rhetoric, the classics, the body), The World as It Is (economics, systems, ethics, AI, modern thinkers), and Ship Something (directed project with a mentor, public defense, portfolio).",
+            "name": "Plato University · One-Year Program",
+            "description": "The eventual one-year program — three trimesters: Foundations (Socratic method, logic, rhetoric, the classics, the body), The World as It Is (economics, systems, ethics, AI, modern thinkers), and Ship Something (directed project with a mentor, public defense, portfolio). The first cohort begins with a one-month trial in September 2026.",
             "provider": { "@id": "https://platouniversity.org/#org" },
             "educationalLevel": "Post-secondary",
-            "inLanguage": "en",
-            "hasCourseInstance": {
-              "@type": "CourseInstance",
-              "courseMode": "Blended",
-              "startDate": "2026-09",
-              "location": {
-                "@type": "Place",
-                "name": "Amsterdam",
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "Amsterdam",
-                  "addressCountry": "NL"
-                }
+            "inLanguage": "en"
+          },
+          {
+            "@type": "EducationEvent",
+            "name": "Plato University · The First Month",
+            "description": "A one-month trial: four sessions over four weeks, in Amsterdam and online. The founding cohort — a mutual interview to find the people who will help us build the one-year program.",
+            "startDate": "2026-09",
+            "endDate": "2026-09",
+            "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+            "location": {
+              "@type": "Place",
+              "name": "Amsterdam",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Amsterdam",
+                "addressCountry": "NL"
               }
-            }
+            },
+            "organizer": { "@id": "https://platouniversity.org/#org" }
           },
           {
             "@type": "FAQPage",
             "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What's actually happening in September 2026?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "One month. Four sessions in Amsterdam — and online. The founding cohort. We are not running the full one-year program yet — September is where we meet the small group who will help us build it. The full program is described under 'The year'."
+                }
+              },
               {
                 "@type": "Question",
                 "name": "Is this accredited?",
@@ -199,7 +211,7 @@
       .hairline-wrap { max-width: 64rem; margin: 0 auto; padding: 0 24px; }
       .hairline { height: 1px; background: var(--rule); }
 
-      /* ---------- Top nav (shared with /vision /theme /theme-page /thinker) ---------- */
+      /* ---------- Top nav (shared with /vision /year /thinker) ---------- */
       .topnav {
         position: sticky; top: 0; z-index: 40;
         background: color-mix(in oklab, var(--cream) 92%, transparent);
@@ -639,9 +651,8 @@
         </a>
         <div class="nav-tabs">
           <a class="tab" href="/vision"><span class="idx">i.</span>Vision</a>
-          <a class="tab" href="/theme"><span class="idx">ii.</span>Theme</a>
-          <a class="tab" href="/theme-page"><span class="idx">iii.</span>Theme page</a>
-          <a class="tab" href="/thinker"><span class="idx">iv.</span>Thinker</a>
+          <a class="tab" href="/year"><span class="idx">ii.</span>The year</a>
+          <a class="tab" href="/thinker"><span class="idx">iii.</span>Thinker</a>
           <a class="tab tab-cta" href="#apply">Apply</a>
         </div>
       </div>
@@ -650,7 +661,7 @@
     <main id="main">
       <!-- Hero -->
       <section id="top" class="hero">
-        <p class="eb">Discovery month · September 2026 · Amsterdam</p>
+        <p class="eb">The first month · September 2026 · Amsterdam</p>
         <h1>The world doesn't need more <em>specialists.</em><br>It needs <span class="terra">thinkers.</span></h1>
         <p class="lede">
           Plato University is a one-year academy for the AI era.<br>
@@ -740,32 +751,26 @@
           <p class="eb">The plan, honestly</p>
           <h2>We start small.<br>We build from proof.</h2>
           <p class="prose-serif">
-            A full one-year academy is the shape. A discovery month is where we begin.
+            We do not pretend to be a full one-year academy yet. Here is the actual arc.
           </p>
           <ol class="roadmap">
             <li>
               <span class="dot" style="background: var(--terracotta);"></span>
               <p class="eb eb--terra">September 2026 · Where we are</p>
-              <h3>The discovery month</h3>
-              <p>Four sessions over four weeks. A small group in Amsterdam — and online. Not a course. A mutual interview.</p>
+              <h3>The first month</h3>
+              <p>Four sessions over four weeks. A small group in Amsterdam — and online. The founding cohort: a mutual interview to find the people who help us build year one.</p>
             </li>
             <li>
               <span class="dot" style="background: var(--olive);"></span>
-              <p class="eb">2027 · If it earns it</p>
-              <h3>The six-month pilot</h3>
-              <p>A structured program with the founding cohort — curriculum, mentors, a city hub, the first portfolio artifacts.</p>
-            </li>
-            <li>
-              <span class="dot" style="background: color-mix(in oklab, var(--olive) 40%, transparent);"></span>
-              <p class="eb" style="color: color-mix(in oklab, var(--olive) 60%, transparent);">2028 · The full version</p>
-              <h3 style="color: var(--fg-3);">The one-year academy</h3>
-              <p>Three trimesters. The full program described below.</p>
+              <p class="eb">The shape we're building toward</p>
+              <h3>A one-year program</h3>
+              <p>Three trimesters. Thirty students. One theme — Thinking in the Age of the Machine. Twelve books, twelve seminar questions, one defended capstone. <a href="/year" style="color: var(--olive); border-bottom: 1px solid var(--olive);">Read the year →</a></p>
             </li>
             <li>
               <span class="dot" style="background: color-mix(in oklab, var(--ink) 15%, transparent);"></span>
-              <p class="eb" style="color: var(--fg-5);">Long term · The real ambition</p>
-              <h3 style="color: var(--fg-4);">A three-year university</h3>
-              <p>A genuine alternative to the industrial university — accreditation optional, depth non-negotiable.</p>
+              <p class="eb" style="color: var(--fg-5);">Long term · The ambition</p>
+              <h3 style="color: var(--fg-3);">A three-year university</h3>
+              <p>A genuine alternative to the industrial university — accreditation optional, depth non-negotiable. When we earn it.</p>
             </li>
           </ol>
         </div>
@@ -777,10 +782,10 @@
       <section class="section">
         <div class="container">
           <div style="max-width: 48rem;">
-            <p class="eb">The one-year program</p>
+            <p class="eb">The one-year program · what we're building toward</p>
             <h2>Three trimesters.<br><em>Four months each.</em></h2>
             <p class="prose-serif" style="margin-bottom: 16px;">
-              Online core with weekly in-person sessions in your city hub.
+              Online core with weekly in-person sessions in your city hub. The shape we're building toward — <a href="/year" style="color: var(--olive); border-bottom: 1px solid var(--olive);">read the year →</a>
             </p>
           </div>
           <div class="trimester-grid">
@@ -866,18 +871,18 @@
         </div>
       </section>
 
-      <!-- Where it begins -->
+      <!-- The first month -->
       <section class="founding">
-        <p class="eb eb--terra">Where it begins</p>
+        <p class="eb eb--terra">The founding cohort</p>
         <div class="big">
           <p><em>September 2026.</em></p>
           <p><span class="n">One</span> month.</p>
           <p><span class="n">Four</span> sessions.</p>
-          <p class="d">Amsterdam is hub #1.</p>
+          <p class="d">Amsterdam.</p>
         </div>
         <p class="note">
-          Not a course — a mutual interview. We are looking for the people who will become
-          the founding cohort.
+          Not the full year — not yet. The first month. A small group who help us figure out
+          what year one becomes. If that sounds like you, apply below.
         </p>
       </section>
 
@@ -887,7 +892,7 @@
           <p class="eb eb--terra">Apply · Teach · Follow along</p>
           <h2>Tell us who you are.</h2>
           <p class="lede">
-            We read everything. We reply to everyone in the discovery-month window.
+            We read everything. We reply to everyone in the trial-month window.
           </p>
 
           <form action="https://formspree.io/f/xgorzbpk" method="POST">
@@ -940,6 +945,12 @@
           <p class="eb">Frequently asked</p>
           <h2>The obvious questions, answered honestly.</h2>
           <div class="faq-list">
+            <details class="faq-item" open>
+              <summary>What's actually happening in September 2026? <span class="plus" aria-hidden="true">+</span></summary>
+              <div class="body">
+                <p>One month. Four sessions in Amsterdam — and online. The founding cohort. We are not running the full one-year program yet — September is where we meet the small group who will help us build it. The full program is described under <a href="/year" style="color: var(--olive); border-bottom: 1px solid var(--olive);">the year</a>.</p>
+              </div>
+            </details>
             <details class="faq-item">
               <summary>Is this accredited? <span class="plus" aria-hidden="true">+</span></summary>
               <div class="body">
@@ -983,10 +994,9 @@
             <div class="tagline">Learn to think before you learn to work.</div>
           </div>
           <nav aria-label="Footer">
-            <a href="/vision">Vision</a>
-            <a href="/theme">Theme</a>
-            <a href="/theme-page">Theme page</a>
-            <a href="/thinker">Thinker</a>
+            <a href="/about">About</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
             <a href="mailto:hello@platouniversity.org">hello@platouniversity.org</a>
           </nav>
         </div>

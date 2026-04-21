@@ -137,6 +137,22 @@ section { padding: 96px 0; }
 .prose em.terracotta { color: var(--terracotta); }
 .prose strong { font-weight: 600; color: var(--ink); }
 
+.prose ul, .prose ol {
+  font-family: var(--font-serif); font-size: clamp(19px, 0.6vw + 16px, 22px);
+  line-height: 1.65; color: var(--fg-2);
+  margin: 0 0 24px; padding-left: 1.4em;
+}
+.prose ul { list-style: none; }
+.prose ul > li { position: relative; margin-bottom: 12px; }
+.prose ul > li::before {
+  content: "—"; position: absolute; left: -1.3em; top: 0;
+  color: var(--terracotta); font-family: var(--font-serif);
+}
+.prose ol { list-style: decimal; }
+.prose ol > li { margin-bottom: 12px; padding-left: 6px; }
+.prose li:last-child { margin-bottom: 0; }
+.prose li > p:last-child { margin-bottom: 0; }
+
 .annot {
   text-decoration: underline; text-decoration-style: dotted;
   text-decoration-color: var(--terracotta);
