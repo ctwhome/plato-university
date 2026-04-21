@@ -318,14 +318,24 @@
         border: 1px solid color-mix(in oklab, var(--ink) 15%, transparent);
         border-radius: 6px;
         box-shadow: var(--shadow-tip);
-        padding: 14px 16px; max-width: 310px; z-index: 99;
+        padding: 14px 16px; width: 320px; max-width: calc(100vw - 24px); z-index: 99;
         opacity: 0; pointer-events: none;
         transform: translateY(6px);
         transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
       }
       #tooltip.on { opacity: 1; transform: translateY(0); }
+      #tooltip .tip-header { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+      #tooltip .tip-header-text { flex: 1; min-width: 0; }
+      #tooltip .tip-img {
+        width: 72px; height: 72px;
+        flex-shrink: 0;
+        object-fit: cover;
+        border-radius: 4px;
+        background: color-mix(in oklab, var(--ink) 6%, transparent);
+        display: none;
+      }
       #tooltip .n { font-family: var(--font-serif); font-weight: 600; font-size: 18px; line-height: 1.2; color: var(--ink); }
-      #tooltip .d { font-family: var(--font-sans); font-size: 11px; color: var(--fg-4); text-transform: uppercase; letter-spacing: 0.05em; margin: 2px 0 8px; }
+      #tooltip .d { font-family: var(--font-sans); font-size: 11px; color: var(--fg-4); text-transform: uppercase; letter-spacing: 0.05em; margin: 2px 0 0; }
       #tooltip .p { font-family: var(--font-sans); font-size: 13px; line-height: 1.55; color: var(--fg-2); margin: 0; }
 
       /* ---------- Featured "problem" card ---------- */
@@ -1032,28 +1042,48 @@
 
     <script>
       // ---------- Annotated terms tooltip ----------
+      // Each entry has a Wikipedia page slug; the tooltip fetches the
+      // page's lead image thumbnail lazily on first hover.
       const ANNOT = {
-        mann:        { n: "Horace Mann",                   d: "1796 – 1859",   p: "US Secretary of Education for Massachusetts who studied Prussian schools in 1843 and brought their age-graded, bell-scheduled model home." },
-        carnegie:    { n: "Andrew Carnegie · Carnegie Unit", d: "1906",         p: "The Carnegie Foundation pension system accidentally standardized American schooling — one unit equals one hour of instruction per week, for a school year." },
-        rockefeller: { n: "John D. Rockefeller",            d: "1839 – 1937",   p: "His General Education Board scaled the industrial school model across America in the early twentieth century." },
-        plato:       { n: "Plato",                          d: "427 – 347 BCE", p: "Athenian philosopher who founded the first Academy. The Socratic method is the intellectual ancestor of this school." },
-        seneca:      { n: "Seneca",                         d: "4 BCE – 65 CE", p: "Roman Stoic whose Letters to Lucilius are one of the most direct guides to living ever written." },
-        montaigne:   { n: "Michel de Montaigne",            d: "1533 – 1592",   p: "French essayist whose Essais invented the personal essay form. He wrote to think, not to perform." },
-        illich:      { n: "Ivan Illich",                    d: "1926 – 2002",   p: "Austrian critic of compulsory schooling. Tools for Conviviality argues that institutions outgrow their purposes." },
-        freire:      { n: "Paulo Freire",                   d: "1921 – 1997",   p: "Brazilian educator whose Pedagogy of the Oppressed reframes teaching as dialogue, not deposit." },
-        hooks:       { n: "bell hooks",                     d: "1952 – 2021",   p: "American writer and educator. Teaching to Transgress treats the classroom as a place of liberation." },
-        gatto:       { n: "John Taylor Gatto",              d: "1935 – 2018",   p: "Three-time NYC Teacher of the Year who quit and wrote Dumbing Us Down — an indictment of compulsory schooling from the inside." },
-        bauhaus:     { n: "Bauhaus",                        d: "1919 – 1933",   p: "German art and design school that dissolved the line between fine art and craft. Its model influenced design education for a century." }
+        mann:        { n: "Horace Mann",                    d: "1796 – 1859",   w: "Horace_Mann",           p: "US Secretary of Education for Massachusetts who studied Prussian schools in 1843 and brought their age-graded, bell-scheduled model home." },
+        carnegie:    { n: "Andrew Carnegie · Carnegie Unit", d: "1906",         w: "Andrew_Carnegie",       p: "The Carnegie Foundation pension system accidentally standardized American schooling — one unit equals one hour of instruction per week, for a school year." },
+        rockefeller: { n: "John D. Rockefeller",             d: "1839 – 1937",  w: "John_D._Rockefeller",   p: "His General Education Board scaled the industrial school model across America in the early twentieth century." },
+        plato:       { n: "Plato",                           d: "427 – 347 BCE", w: "Plato",                p: "Athenian philosopher who founded the first Academy. The Socratic method is the intellectual ancestor of this school." },
+        seneca:      { n: "Seneca",                          d: "4 BCE – 65 CE", w: "Seneca_the_Younger",   p: "Roman Stoic whose Letters to Lucilius are one of the most direct guides to living ever written." },
+        montaigne:   { n: "Michel de Montaigne",             d: "1533 – 1592",  w: "Michel_de_Montaigne",   p: "French essayist whose Essais invented the personal essay form. He wrote to think, not to perform." },
+        illich:      { n: "Ivan Illich",                     d: "1926 – 2002",  w: "Ivan_Illich",           p: "Austrian critic of compulsory schooling. Tools for Conviviality argues that institutions outgrow their purposes." },
+        freire:      { n: "Paulo Freire",                    d: "1921 – 1997",  w: "Paulo_Freire",          p: "Brazilian educator whose Pedagogy of the Oppressed reframes teaching as dialogue, not deposit." },
+        hooks:       { n: "bell hooks",                      d: "1952 – 2021",  w: "Bell_hooks",            p: "American writer and educator. Teaching to Transgress treats the classroom as a place of liberation." },
+        gatto:       { n: "John Taylor Gatto",               d: "1935 – 2018",  w: "John_Taylor_Gatto",     p: "Three-time NYC Teacher of the Year who quit and wrote Dumbing Us Down — an indictment of compulsory schooling from the inside." },
+        bauhaus:     { n: "Bauhaus",                         d: "1919 – 1933",  w: "Bauhaus",               img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Anonymous_photograph_of_Bauhaus_masters_on_the_roof_of_the_studio_building%2C_Bauhaus_Dessau.jpg/330px-Anonymous_photograph_of_Bauhaus_masters_on_the_roof_of_the_studio_building%2C_Bauhaus_Dessau.jpg", p: "German art and design school that dissolved the line between fine art and craft. Its model influenced design education for a century." }
       };
 
       const tip = document.getElementById('tooltip');
-      function showTip(el) {
-        const a = ANNOT[el.dataset.key]; if (!a) return;
-        tip.innerHTML =
-          '<div class="n">' + a.n + '</div>' +
-          '<div class="d">' + a.d + '</div>' +
-          '<p class="p">' + a.p + '</p>';
-        tip.classList.add('on');
+      // Wikipedia thumbnail cache. Values: string URL, null (no image), or a pending Promise.
+      const wikiCache = {};
+      function fetchWikiImage(key) {
+        if (wikiCache[key] !== undefined) return Promise.resolve(wikiCache[key]);
+        const entry = ANNOT[key];
+        if (!entry) return Promise.resolve(null);
+        // Explicit override (used when the default Wikipedia thumbnail is
+        // the wrong subject — e.g. Bauhaus returning the building photo).
+        if (entry.img) { wikiCache[key] = entry.img; return Promise.resolve(entry.img); }
+        const slug = entry.w;
+        if (!slug) return Promise.resolve(null);
+        const p = fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + slug)
+          .then(r => r.ok ? r.json() : null)
+          .then(d => {
+            const url = d && d.thumbnail && d.thumbnail.source ? d.thumbnail.source : null;
+            wikiCache[key] = url;
+            return url;
+          })
+          .catch(() => { wikiCache[key] = null; return null; });
+        wikiCache[key] = p;
+        return p;
+      }
+
+      let activeTrigger = null;
+      function position(el) {
         const r = el.getBoundingClientRect();
         const th = tip.offsetHeight, tw = tip.offsetWidth;
         let top = r.top - th - 10;
@@ -1063,7 +1093,34 @@
         tip.style.top = top + 'px';
         tip.style.left = left + 'px';
       }
-      function hideTip() { tip.classList.remove('on'); }
+      function showTip(el) {
+        const key = el.dataset.key;
+        const a = ANNOT[key]; if (!a) return;
+        activeTrigger = el;
+        tip.innerHTML =
+          '<div class="tip-header">' +
+            '<div class="tip-header-text">' +
+              '<div class="n">' + a.n + '</div>' +
+              '<div class="d">' + a.d + '</div>' +
+            '</div>' +
+            '<img class="tip-img" alt="" />' +
+          '</div>' +
+          '<p class="p">' + a.p + '</p>';
+        tip.classList.add('on');
+        position(el);
+        // Lazily load & insert the Wikipedia thumbnail, if available.
+        const img = tip.querySelector('.tip-img');
+        Promise.resolve(fetchWikiImage(key)).then(url => {
+          if (activeTrigger !== el || !url) return;
+          img.onload = () => {
+            if (activeTrigger !== el) return;
+            img.style.display = 'block';
+            position(el);
+          };
+          img.src = url;
+        });
+      }
+      function hideTip() { activeTrigger = null; tip.classList.remove('on'); }
 
       document.querySelectorAll('.annot').forEach(el => {
         el.addEventListener('mouseenter', () => showTip(el));
