@@ -86,10 +86,10 @@ a:hover { color: var(--ink); }
 .brand-mark {
   display: block; flex-shrink: 0;
   width: 34px; height: 34px;
-  border-radius: 8px;
-  transition: transform var(--dur-base) var(--ease-out);
+  /* <object> renders the SVG; clicks should pass through to the
+     parent <a class="brand"> so the logo still works as a home link. */
+  pointer-events: none;
 }
-.brand:hover .brand-mark { transform: translateY(-1px); }
 .brand em { font-style: italic; color: var(--olive); font-weight: 500; }
 
 .nav-tabs { display: flex; gap: 6px; margin-left: auto; flex-wrap: wrap; }

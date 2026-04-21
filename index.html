@@ -234,10 +234,8 @@
       .brand-mark {
         display: block; flex-shrink: 0;
         width: 34px; height: 34px;
-        border-radius: 8px;
-        transition: transform var(--dur-base) var(--ease-out);
+        pointer-events: none;
       }
-      .brand:hover .brand-mark { transform: translateY(-1px); }
       .brand em { font-style: italic; color: var(--olive); font-weight: 500; }
 
       .nav-tabs { display: flex; gap: 6px; margin-left: auto; flex-wrap: wrap; }
@@ -669,7 +667,7 @@
     <nav class="topnav" aria-label="Primary">
       <div class="topnav-inner">
         <a class="brand" href="/" aria-label="Plato University — home">
-          <img class="brand-mark" src="/logo.svg" alt="" aria-hidden="true" width="34" height="34" />
+          <object class="brand-mark" data="/logo.svg" type="image/svg+xml" aria-hidden="true" tabindex="-1"></object>
           <span>Plato <em>University</em></span>
         </a>
         <div class="nav-tabs">

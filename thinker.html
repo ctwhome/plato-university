@@ -49,7 +49,7 @@
     <nav class="topnav" aria-label="Sections">
       <div class="topnav-inner">
         <a class="brand" href="/" aria-label="Plato University — home">
-          <img class="brand-mark" src="/logo.svg" alt="" aria-hidden="true" width="34" height="34" />
+          <object class="brand-mark" data="/logo.svg" type="image/svg+xml" aria-hidden="true" tabindex="-1"></object>
           <span>Plato <em>University</em></span>
         </a>
         <div class="nav-tabs">
@@ -84,23 +84,22 @@
           <circle cx="120" cy="120" r="97" stroke="#b8593a" stroke-width="0.75"/>
 
           <defs>
-            <path id="thinker-arc" d="M 14.5,120 A 105.5,105.5 0 0,1 225.5,120"/>
+            <path id="thinker-arc" d="M 18,120 A 102,102 0 0,1 222,120"/>
           </defs>
-          <text font-family="Inter, ui-sans-serif, sans-serif" font-size="9"
-                letter-spacing="3.5" fill="#b8593a">
+          <text font-family="Inter, ui-sans-serif, sans-serif" font-size="8.5"
+                font-weight="500" letter-spacing="4" fill="#b8593a">
             <textPath href="#thinker-arc" startOffset="50%" text-anchor="middle">
               PLATO UNIVERSITY · MMXXVI
             </textPath>
           </text>
 
-          <path d="M 80,104 C 85,78 155,78 160,104 C 155,130 85,130 80,104 Z"
-                stroke="#b8593a" stroke-width="1.5"/>
-          <circle cx="120" cy="104" r="14" stroke="#b8593a" stroke-width="1.5"/>
-          <circle cx="120" cy="104" r="5.5" fill="#b8593a"/>
+          <g fill="none" stroke="#b8593a" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M158.85 85.65L141.61 61.00"/><path d="M136.23 66.15L141.61 61.00"/><path d="M149.69 133.85L126.79 139.00"/><path d="M127.07 114.35L126.79 139.00"/><path d="M112.93 85.65L113.21 61.00"/><path d="M90.31 66.15L113.21 61.00"/><path d="M103.77 133.85L98.39 139.00"/><path d="M81.15 114.35L98.39 139.00"/><path d="M158.85 85.65L141.11 100.89"/><path d="M136.23 66.15L104.53 69.32"/><path d="M149.69 133.85L135.47 130.68"/><path d="M127.07 114.35L98.89 99.11"/><path d="M112.93 85.65L141.11 100.89"/><path d="M90.31 66.15L104.53 69.32"/><path d="M103.77 133.85L135.47 130.68"/><path d="M81.15 114.35L98.89 99.11"/><path d="M158.85 85.65L164.12 106.03"/><path d="M136.23 66.15L150.13 93.97"/><path d="M149.69 133.85L164.12 106.03"/><path d="M127.07 114.35L150.13 93.97"/><path d="M112.93 85.65L89.87 106.03"/><path d="M90.31 66.15L75.88 93.97"/><path d="M103.77 133.85L89.87 106.03"/><path d="M81.15 114.35L75.88 93.97"/><path d="M141.11 100.89L135.47 130.68"/><path d="M104.53 69.32L98.89 99.11"/><path d="M141.61 61.00L113.21 61.00"/><path d="M126.79 139.00L98.39 139.00"/><path d="M164.12 106.03L150.13 93.97"/><path d="M89.87 106.03L75.88 93.97"/>
+          </g>
 
-          <line x1="90" y1="140" x2="150" y2="140" stroke="#b8593a" stroke-width="0.75"/>
+          <line x1="88" y1="152" x2="152" y2="152" stroke="#b8593a" stroke-width="0.75"/>
 
-          <text x="120" y="157" font-family="Cormorant Garamond, Georgia, serif"
+          <text x="120" y="172" font-family="Cormorant Garamond, Georgia, serif"
                 font-size="18" letter-spacing="6" fill="#b8593a"
                 text-anchor="middle" font-weight="500">THINKER</text>
         </svg>
