@@ -1133,14 +1133,14 @@
           });
         });
 
-        // ── Problem card: expands from center outward to full width ───
+        // ── Problem card: wipes in left → right as you scroll ─────────
         gsap.from('#problem-card', {
-          clipPath: 'inset(0 50% 0 50% round 16px)',
+          clipPath: 'inset(0 100% 0 0 round 16px)',
           ease: 'power2.inOut',
           scrollTrigger: {
             trigger: '#problem-card',
             start: 'top 85%',
-            end: 'top 30%',
+            end: 'top 25%',
             scrub: 1.2
           }
         });
