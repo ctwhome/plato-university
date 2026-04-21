@@ -142,7 +142,7 @@
                 "name": "What does it cost?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Founding cohort pricing is shared directly with accepted applicants. No student will be turned away for inability to pay in year one. Patrons and scholarships fill the gap."
+                  "text": "The September 2026 founding cohort is free. Pricing for the full one-year program has not been set yet — it will be decided with the founding cohort. No student will be turned away for inability to pay; patrons and scholarships fill the gap."
                 }
               },
               {
@@ -305,7 +305,7 @@
       .btn-terra:hover { opacity: 0.9; }
 
       /* ---------- Annotated terms + tooltip ---------- */
-      .annotated {
+      .annot {
         text-decoration: underline;
         text-decoration-style: dotted;
         text-decoration-color: var(--terracotta);
@@ -532,8 +532,14 @@
       .apply .lede {
         font-family: var(--font-serif);
         font-size: clamp(1.125rem, 1vw + 0.7rem, 1.375rem);
-        line-height: 1.35; color: var(--fg-inv-2); margin: 0 0 40px;
+        line-height: 1.35; color: var(--fg-inv-2); margin: 0 0 16px;
       }
+      .apply .deadline {
+        font-family: var(--font-sans); font-size: 12px;
+        letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--terracotta); margin: 0 0 40px;
+      }
+      .apply .deadline strong { color: var(--cream); font-weight: 500; }
       .apply .field-group { display: grid; gap: 12px; margin-bottom: 24px; }
       .apply .legend {
         font-family: var(--font-serif); font-size: 20px;
@@ -629,8 +635,14 @@
       .footer-row nav a:hover { color: var(--ink); }
       .copy {
         font-family: var(--font-sans); font-size: 12px;
-        color: var(--fg-4); padding: 0 0 32px;
+        color: var(--fg-4); padding: 0 0 8px;
       }
+      .legal {
+        font-family: var(--font-sans); font-size: 11px; line-height: 1.6;
+        color: var(--fg-4); padding: 0 0 32px; margin: 0;
+        max-width: 720px;
+      }
+      .legal em { color: var(--olive); font-style: italic; }
     </style>
   </head>
 
@@ -684,12 +696,12 @@
               <h2>In the age of AI, we are still running a school built for the factory floor.</h2>
               <div class="prose">
                 <p>
-                  In 1843, <span class="annotated" data-key="mann">Horace Mann</span>
+                  In 1843, <span class="annot" data-key="mann">Horace Mann</span>
                   brought the Prussian bell home. The system he copied was built to produce
                   obedient soldiers and reliable workers.
-                  <span class="annotated" data-key="rockefeller">Rockefeller</span>'s General
+                  <span class="annot" data-key="rockefeller">Rockefeller</span>'s General
                   Education Board then scaled it across America, and
-                  <span class="annotated" data-key="carnegie">Carnegie</span> turned learning
+                  <span class="annot" data-key="carnegie">Carnegie</span> turned learning
                   into a stopwatch, calling one unit an hour.
                 </p>
                 <p>
@@ -703,7 +715,7 @@
                   AI collapses the premium on routine specialization. The jobs you train for at
                   eighteen will be automated, transformed, or invented-and-gone-already by the
                   time you graduate. And yet universities still run on the
-                  <span class="annotated" data-key="carnegie">Carnegie Unit</span>.
+                  <span class="annot" data-key="carnegie">Carnegie Unit</span>.
                 </p>
               </div>
             </div>
@@ -725,9 +737,9 @@
               end that proves they can think, make, and lead.
             </p>
             <p>
-              You read <span class="annotated" data-key="plato">Plato</span>, not summaries
-              of <span class="annotated" data-key="plato">Plato</span>. You write
-              <span class="annotated" data-key="montaigne">Montaigne</span>, not essays
+              You read <span class="annot" data-key="plato">Plato</span>, not summaries
+              of <span class="annot" data-key="plato">Plato</span>. You write
+              <span class="annot" data-key="montaigne">Montaigne</span>, not essays
               <em>about</em> him. The examined life becomes a way of living, not an elective
               subject.
             </p>
@@ -796,7 +808,7 @@
               <ul>
                 <li>Socratic method &amp; formal logic</li>
                 <li>Rhetoric and writing</li>
-                <li>The classics: <span class="annotated" data-key="plato">Plato</span>, Aristotle, <span class="annotated" data-key="seneca">Seneca</span>, Epictetus, <span class="annotated" data-key="montaigne">Montaigne</span></li>
+                <li>The classics: <span class="annot" data-key="plato">Plato</span>, Aristotle, <span class="annot" data-key="seneca">Seneca</span>, Epictetus, <span class="annot" data-key="montaigne">Montaigne</span></li>
                 <li>The body: sleep, nutrition, attention, movement</li>
               </ul>
             </article>
@@ -809,7 +821,7 @@
                 <li>Systems and power</li>
                 <li>Ethics in the age of machines</li>
                 <li>AI: fluency, limits, ethics of use</li>
-                <li>Modern thinkers: <span class="annotated" data-key="freire">Freire</span>, <span class="annotated" data-key="illich">Illich</span>, <span class="annotated" data-key="hooks">hooks</span>, <span class="annotated" data-key="gatto">Gatto</span></li>
+                <li>Modern thinkers: <span class="annot" data-key="freire">Freire</span>, <span class="annot" data-key="illich">Illich</span>, <span class="annot" data-key="hooks">hooks</span>, <span class="annot" data-key="gatto">Gatto</span></li>
               </ul>
             </article>
             <article class="tcard">
@@ -859,14 +871,14 @@
         <div class="inner">
           <p>
             In the tradition of
-            <span class="annotated" data-key="plato">Plato</span>,
-            <span class="annotated" data-key="seneca">Seneca</span>,
-            <span class="annotated" data-key="montaigne">Montaigne</span>,
-            <span class="annotated" data-key="illich">Illich</span>,
-            <span class="annotated" data-key="freire">Freire</span>,
-            <span class="annotated" data-key="hooks">bell hooks</span>,
-            <span class="annotated" data-key="gatto">Gatto</span>,
-            and the <span class="annotated" data-key="bauhaus">Bauhaus</span>.
+            <span class="annot" data-key="plato">Plato</span>,
+            <span class="annot" data-key="seneca">Seneca</span>,
+            <span class="annot" data-key="montaigne">Montaigne</span>,
+            <span class="annot" data-key="illich">Illich</span>,
+            <span class="annot" data-key="freire">Freire</span>,
+            <span class="annot" data-key="hooks">bell hooks</span>,
+            <span class="annot" data-key="gatto">Gatto</span>,
+            and the <span class="annot" data-key="bauhaus">Bauhaus</span>.
           </p>
         </div>
       </section>
@@ -897,6 +909,7 @@
 
           <form action="https://formspree.io/f/xgorzbpk" method="POST">
             <input type="hidden" name="_subject" value="New Plato University inquiry" />
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true" />
 
             <div class="field-group">
               <div class="legend">I'm interested as a…</div>
@@ -960,7 +973,7 @@
             <details class="faq-item">
               <summary>What does it cost? <span class="plus" aria-hidden="true">+</span></summary>
               <div class="body">
-                <p>Founding cohort pricing is shared directly with accepted applicants. No student will be turned away for inability to pay in year one. Patrons and scholarships fill the gap.</p>
+                <p>The September 2026 founding cohort is <em>free</em>. Pricing for the full one-year program hasn't been set yet — we'll figure it out together with the founding cohort. When it is set, no student will be turned away for inability to pay; patrons and scholarships will fill the gap.</p>
               </div>
             </details>
             <details class="faq-item">
@@ -1001,6 +1014,7 @@
           </nav>
         </div>
         <p class="copy">© 2026 Plato University. Amsterdam.</p>
+        <p class="legal">&ldquo;Plato University&rdquo; is the project's working name. It is not an accredited Dutch <em>universiteit</em>; it is a private academy. The legal entity behind the project is operated by Jesse Gonzalez (KvK 70565783).</p>
       </div>
     </footer>
 
@@ -1041,7 +1055,7 @@
       }
       function hideTip() { tip.classList.remove('on'); }
 
-      document.querySelectorAll('.annotated').forEach(el => {
+      document.querySelectorAll('.annot').forEach(el => {
         el.addEventListener('mouseenter', () => showTip(el));
         el.addEventListener('mouseleave', hideTip);
         el.addEventListener('focus',     () => showTip(el));
