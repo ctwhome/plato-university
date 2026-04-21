@@ -1133,14 +1133,14 @@
           });
         });
 
-        // ── Problem card clip-reveal (top → bottom as you scroll) ─────
+        // ── Problem card: expands from center outward to full width ───
         gsap.from('#problem-card', {
-          clipPath: 'inset(0 0 100% 0 round 16px)',
+          clipPath: 'inset(0 50% 0 50% round 16px)',
           ease: 'power2.inOut',
           scrollTrigger: {
             trigger: '#problem-card',
-            start: 'top 88%',
-            end: 'bottom 72%',
+            start: 'top 85%',
+            end: 'top 30%',
             scrub: 1.2
           }
         });
