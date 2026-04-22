@@ -540,17 +540,17 @@
           <p class="eyebrow">03 · Three shifts</p>
           <h2 class="display" style="font-size: clamp(1.5rem, 3.2cqw, 3rem);">What changes, part I.</h2>
           <div class="cols">
-            <div class="col">
+            <div class="col fragment">
               <span class="num">i.</span>
               <h3>Primary sources, not summaries.</h3>
               <div class="arrow"></div>
             </div>
-            <div class="col">
+            <div class="col fragment">
               <span class="num">ii.</span>
               <h3>Online core + local city hubs.</h3>
               <div class="arrow"></div>
             </div>
-            <div class="col">
+            <div class="col fragment">
               <span class="num">iii.</span>
               <h3>Portfolio over diploma.</h3>
               <div class="arrow"></div>
@@ -563,17 +563,17 @@
           <p class="eyebrow">03 · Three shifts</p>
           <h2 class="display" style="font-size: clamp(1.5rem, 3.2cqw, 3rem);">What changes, part II.</h2>
           <div class="cols">
-            <div class="col">
+            <div class="col fragment">
               <span class="num">iv.</span>
               <h3>All ages, all edges.</h3>
               <div class="arrow"></div>
             </div>
-            <div class="col">
+            <div class="col fragment">
               <span class="num">v.</span>
               <h3>AI as a tool, not a master.</h3>
               <div class="arrow"></div>
             </div>
-            <div class="col">
+            <div class="col fragment">
               <span class="num">vi.</span>
               <h3>No managers, only mentors.</h3>
               <div class="arrow"></div>
@@ -634,20 +634,20 @@
           <p class="eyebrow">What you leave with</p>
           <h2 class="display" style="font-size: clamp(1.5rem, 3.2cqw, 3rem);">Not a diploma. Something better.</h2>
           <div class="cards">
-            <article class="card-pitch">
+            <article class="card-pitch fragment">
               <p class="eb">01</p>
               <h3>A portfolio.</h3>
             </article>
-            <article class="card-pitch">
+            <article class="card-pitch fragment">
               <p class="eb">02</p>
               <h3>A mentor network.</h3>
             </article>
-            <article class="card-pitch">
+            <article class="card-pitch fragment">
               <p class="eb">03</p>
               <h3>A cohort for decades.</h3>
             </article>
           </div>
-          <p class="footnote">No debt. No diploma. <em>That's the point.</em></p>
+          <p class="footnote fragment">No debt. No diploma. <em>That's the point.</em></p>
         </section>
 
         <!-- 12 · The founding cohort -->
@@ -791,28 +791,10 @@
           stagger: (el) => {
             const eyebrow = el.querySelector(".eyebrow");
             const h = el.querySelector(".display");
-            const cols = el.querySelectorAll(".col");
-            const cards = el.querySelectorAll(".card-pitch");
-            const footnote = el.querySelector(".footnote");
+            // Cols/cards/footnote are fragments — revealed stepwise via next()/prev().
             const tl = gsap.timeline();
             if (eyebrow) tl.from(eyebrow, { opacity: 0, y: 10, duration: 0.4 });
             if (h) tl.from(h, { opacity: 0, y: 14, duration: 0.5 }, "-=0.2");
-            if (cols.length) {
-              tl.from(cols, {
-                opacity: 0, y: 30, scale: 0.96,
-                duration: 0.55, ease: "power2.out", stagger: 0.12,
-              }, "-=0.2");
-              tl.to(el.querySelectorAll(".col .arrow"), {
-                scaleX: 1, duration: 0.5, ease: "power3.out", stagger: 0.12,
-              }, "-=0.5");
-            }
-            if (cards.length) {
-              tl.from(cards, {
-                opacity: 0, y: 36, rotate: -1.5,
-                duration: 0.6, ease: "power2.out", stagger: 0.12,
-              }, "-=0.2");
-            }
-            if (footnote) tl.from(footnote, { opacity: 0, y: 10, duration: 0.5 }, "-=0.2");
           },
           solution: (el) => {
             const eyebrow = el.querySelector(".eyebrow");
@@ -1026,16 +1008,27 @@
         function resetSlide(slide) {
           // Clear inline styles applied by previous animations so re-entry re-animates
           gsap.set(slide.querySelectorAll("*"), { clearProps: "opacity,transform,filter,clip-path,scale,x,y" });
-          // Fragments start hidden; fragment index resets to 0
+          // Fragments start hidden in their type-specific from-state; fragment index resets to 0
           slide.dataset.fragmentIndex = "0";
-          gsap.set(slide.querySelectorAll(".fragment"), { opacity: 0, x: -30 });
+          slide.querySelectorAll(".fragment").forEach((f) => {
+            if (f.classList.contains("fact")) {
+              gsap.set(f, { opacity: 0, x: -30 });
+            } else if (f.classList.contains("col")) {
+              gsap.set(f, { opacity: 0, y: 30, scale: 0.96 });
+              const arrow = f.querySelector(".arrow");
+              if (arrow) gsap.set(arrow, { scaleX: 0 });
+            } else if (f.classList.contains("card-pitch")) {
+              gsap.set(f, { opacity: 0, y: 36, rotate: -1.5 });
+            } else {
+              gsap.set(f, { opacity: 0, y: 16 });
+            }
+          });
           // Reset specific animated states
           slide.querySelectorAll(".fact .year[data-count]").forEach((y) => {
             y.textContent = y.dataset.count;
           });
           slide.querySelectorAll(".fact .rule").forEach((r) => { r.style.width = "0"; });
           slide.querySelectorAll(".sweep").forEach((s) => { s.style.width = "0%"; });
-          slide.querySelectorAll(".col .arrow").forEach((a) => { a.style.transform = "scaleX(0)"; });
           slide.querySelectorAll(".slide--solution .bar, .bar").forEach((b) => { b.style.transform = "scaleY(0)"; });
           slide.querySelectorAll(".accent-line").forEach((l) => { l.style.transform = "scaleX(0)"; });
           slide.querySelectorAll("ul li").forEach((li) => { li.style.opacity = "0"; li.style.transform = "translateY(10px)"; });
@@ -1085,7 +1078,18 @@
             if (caption) tl.fromTo(caption, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.4 }, "-=0.3");
             return tl.duration();
           }
-          gsap.fromTo(frag, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" });
+          if (frag.classList.contains("col")) {
+            const arrow = frag.querySelector(".arrow");
+            const tl = gsap.timeline();
+            tl.to(frag, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power2.out" });
+            if (arrow) tl.to(arrow, { scaleX: 1, duration: 0.5, ease: "power3.out" }, "-=0.3");
+            return tl.duration();
+          }
+          if (frag.classList.contains("card-pitch")) {
+            gsap.to(frag, { opacity: 1, y: 0, rotate: 0, duration: 0.6, ease: "power2.out" });
+            return 0.6;
+          }
+          gsap.to(frag, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" });
           return 0.5;
         }
         function hideFragment(frag) {
@@ -1095,6 +1099,16 @@
             gsap.to(frag, { opacity: 0, x: -30, duration: 0.25, ease: "power2.in" });
             if (rule) gsap.to(rule, { width: 0, duration: 0.2 });
             if (year && year.dataset.count) year.textContent = year.dataset.count;
+            return;
+          }
+          if (frag.classList.contains("col")) {
+            const arrow = frag.querySelector(".arrow");
+            gsap.to(frag, { opacity: 0, y: 30, scale: 0.96, duration: 0.25, ease: "power2.in" });
+            if (arrow) gsap.to(arrow, { scaleX: 0, duration: 0.2 });
+            return;
+          }
+          if (frag.classList.contains("card-pitch")) {
+            gsap.to(frag, { opacity: 0, y: 36, rotate: -1.5, duration: 0.3, ease: "power2.in" });
             return;
           }
           gsap.to(frag, { opacity: 0, y: 10, duration: 0.25, ease: "power2.in" });
