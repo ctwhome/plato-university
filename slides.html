@@ -936,6 +936,10 @@
           // enter animations replay cleanly on revisit.
           resetSlide(next);
 
+          // Hide the incoming slide synchronously so nothing paints at full
+          // opacity before the handler can set child from-states.
+          gsap.set(next, { opacity: 0 });
+
           // Exit animation
           if (prev && prev !== next) {
             if (reducedMotion) {
@@ -952,19 +956,19 @@
             }
           }
 
-          // Enter: base fade-in, then slide-specific timeline
+          // Enter: run the slide-specific handler FIRST so its gsap.from
+          // calls lock children into their hidden start-state in the same
+          // tick. Then fade the slide itself in over a short duration.
           const anim = next.dataset.anim || "stagger";
-          gsap.fromTo(next,
-            { opacity: 0, y: reducedMotion ? 0 : 10 },
-            { opacity: 1, y: 0, duration: reducedMotion ? 0.15 : 0.4, ease: "power2.out",
-              onComplete: () => {
-                if (!reducedMotion && animHandlers[anim]) {
-                  animHandlers[anim](next);
-                }
-                animating = false;
-              }
-            }
-          );
+          if (!reducedMotion && animHandlers[anim]) {
+            animHandlers[anim](next);
+          }
+          gsap.to(next, {
+            opacity: 1,
+            duration: reducedMotion ? 0.15 : 0.25,
+            ease: "power2.out",
+            onComplete: () => { animating = false; },
+          });
 
           current = index;
           updateChrome();
