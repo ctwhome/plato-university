@@ -15,7 +15,10 @@ const server = Bun.serve({
       return new Response("Forbidden", { status: 403 });
     }
 
-    const f = file(local);
+    let f = file(local);
+    if (!(await f.exists()) && !path.includes(".")) {
+      f = file(local + ".html");
+    }
     if (!(await f.exists())) {
       return new Response("Not found", { status: 404 });
     }

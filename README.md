@@ -35,15 +35,11 @@ vercel --prod # ship
 
 Custom domain: `platouniversity.org`.
 
-## Configuring the form
+## Inquiry form
 
-The inquiry form posts to [Formspree](https://formspree.io).
+The inquiry form on `index.html` posts to [Formspree](https://formspree.io). The form ID is hard-coded in the `<form action>`; submissions land in the Formspree inbox connected to `hello@platouniversity.org`.
 
-1. Create a free Formspree account.
-2. Create a new form and grab its form ID (looks like `mblqwxyz`).
-3. Open `index.html` and replace `YOUR_FORMSPREE_ID` with your ID in the `<form>` action URL.
-
-Submissions land in your Formspree inbox and the email you registered with.
+To swap the destination, change the form ID in the `action` URL on `index.html` and update the Formspree account that owns it.
 
 ## Repository
 

@@ -1,0 +1,27 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_shared.css">
+<style>
+.col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.card { padding: 16px; border: 1px solid var(--rule-softer); border-radius: 8px; background: var(--cream-2); }
+.card h3 { margin: 0 0 6px; font-family: var(--font-serif); font-size: 18px; font-weight: 600; }
+.aa { font-family: var(--font-serif); font-size: 52px; line-height: 1; letter-spacing: -0.01em; }
+.bb { font-family: var(--font-sans); font-size: 52px; line-height: 1; letter-spacing: -0.02em; font-weight: 600; }
+.meta { font-family: var(--font-mono); font-size: 10px; color: var(--fg-4); margin-top: 6px; }
+.stack { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-top: 8px; line-height: 1.5; }
+</style></head>
+<body>
+<div class="col">
+<div class="card">
+  <h3>Georgia <span style="font-family:var(--font-sans);font-size:11px;font-weight:400;color:var(--fg-4);letter-spacing:0.04em;">— serif stack</span></h3>
+  <div class="aa">Aa <em style="color:var(--terracotta)">Ii</em></div>
+  <div class="meta">Editorial · system-installed · zero-dependency</div>
+  <div class="stack">Georgia → Iowan Old Style → Palatino Linotype → Book Antiqua → Times New Roman → serif</div>
+</div>
+<div class="card">
+  <h3>System UI <span style="font-family:var(--font-sans);font-size:11px;font-weight:400;color:var(--fg-4);letter-spacing:0.04em;">— sans stack</span></h3>
+  <div class="bb">Aa Ii</div>
+  <div class="meta">UI · native to each OS · zero-dependency</div>
+  <div class="stack">-apple-system → BlinkMacSystemFont → Segoe UI → Roboto → Helvetica Neue → Arial → sans-serif</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,162 @@
+/* =============================================================
+   Plato University — motion system
+   GSAP + ScrollTrigger does the scrubbing; this file holds only
+   initial states (so content doesn't flash before GSAP runs) and
+   the dodecahedron mark styles.
+   ============================================================= */
+
+/* Respect reduced-motion. When set, we disable all reveals: content
+   is painted in its final state, no scroll-scrubbed tweening. */
+@media (prefers-reduced-motion: reduce) {
+  .m-reveal,
+  .m-rule,
+  .m-stagger > *,
+  .m-dodec svg path,
+  .m-lineage .annot,
+  .m-annot-sweep::before {
+    transform: none !important;
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
+}
+
+/* Guard: until GSAP has set initial states, keep content visible.
+   Once <body> gets .motion-ready, initial states take effect. */
+body:not(.motion-ready) .m-reveal,
+body:not(.motion-ready) .m-rule,
+body:not(.motion-ready) .m-stagger > *,
+body:not(.motion-ready) .m-lineage .annot {
+  /* noop — GSAP has not set states yet, so nothing to hide */
+}
+
+/* -------------------------------------------------------------
+   Section scale-reveal
+   ------------------------------------------------------------- */
+.m-reveal {
+  will-change: transform;
+  transform-origin: top center;
+}
+
+/* -------------------------------------------------------------
+   Rule-line draw
+   ------------------------------------------------------------- */
+.m-rule {
+  transform-origin: left center;
+  will-change: transform;
+}
+
+/* -------------------------------------------------------------
+   Stagger containers (children animate in sequence with scrub)
+   ------------------------------------------------------------- */
+.m-stagger > * {
+  will-change: transform;
+}
+
+/* -------------------------------------------------------------
+   Lineage parade (index hero of philosophers)
+   ------------------------------------------------------------- */
+.m-lineage .annot {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* -------------------------------------------------------------
+   Annotation scroll-highlight sweep
+   A terracotta underline that "fills" as you scroll past.
+   The ::before pseudo draws a background band that gets clipped
+   by a CSS variable --sweep that GSAP animates 0% → 100%.
+   ------------------------------------------------------------- */
+.m-annot-sweep {
+  position: relative;
+  --sweep: 0%;
+  background-image: linear-gradient(
+    to right,
+    color-mix(in oklab, var(--terracotta) 28%, transparent) 0%,
+    color-mix(in oklab, var(--terracotta) 28%, transparent) var(--sweep),
+    transparent var(--sweep),
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 42%;
+  background-position: 0 78%;
+  transition: none;
+}
+
+/* -------------------------------------------------------------
+   Dodecahedron mark
+   ------------------------------------------------------------- */
+.dodec-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--olive);
+  line-height: 0;
+}
+.dodec-mark svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.dodec-mark svg .dodec-group {
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+}
+.dodec-mark svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.dodec-mark--hero    { width: clamp(180px, 22vw, 280px); }
+.dodec-mark--md      { width: 96px; }
+.dodec-mark--sm      { width: 28px; }
+.dodec-mark--terra   { color: var(--terracotta); }
+.dodec-mark--ink     { color: var(--ink); }
+.dodec-mark--cream   { color: color-mix(in oklab, var(--cream) 85%, transparent); }
+
+/* Breathing idle animation — used when GSAP is not driving rotation
+   (e.g. prefers-reduced-motion disables GSAP idle). This CSS animation
+   is disabled under prefers-reduced-motion by the media query above. */
+@keyframes dodec-idle-breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.02); }
+}
+
+/* -------------------------------------------------------------
+   Hero pin (desktop only) — give the pinned hero enough scroll
+   room and a dark text bed behind the motion. Non-desktop viewports
+   behave normally (no pin).
+   ------------------------------------------------------------- */
+.m-hero-pin-wrap {
+  position: relative;
+}
+
+/* Floating page-dodec that sits top-right of a page hero.
+   Mobile: stacked above the headline, smaller. Desktop: absolutely
+   positioned so it doesn't take vertical room. */
+.page-dodec {
+  display: block;
+  margin: 0 0 32px;
+}
+@media (min-width: 900px) {
+  .page-dodec {
+    position: absolute;
+    top: 0; right: 0;
+    margin: 0;
+    width: clamp(120px, 14vw, 180px);
+  }
+}
+
+/* -------------------------------------------------------------
+   Cursor hint: annotated terms lift slightly when hovered, so the
+   highlight sweep meets a small translate-y — makes them feel
+   interactive without adding a new gesture.
+   ------------------------------------------------------------- */
+.m-annot-sweep:hover,
+.m-annot-sweep:focus-visible {
+  --sweep: 100%;
+}

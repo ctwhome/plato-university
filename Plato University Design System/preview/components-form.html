@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_shared.css">
+<style>
+body { background: var(--ink); color: var(--cream); padding: 24px 28px; }
+.stack { display: grid; gap: 12px; max-width: 420px; }
+.input { width: 100%; background: transparent; border: 1px solid rgba(250,247,242,0.3); color: var(--cream); padding: 12px 14px; border-radius: 4px; font-family: var(--font-sans); font-size: 14px; box-sizing: border-box; }
+.input::placeholder { color: rgba(250,247,242,0.5); }
+.lg { font-family: var(--font-serif); font-size: 18px; margin-bottom: 2px; }
+.row { display: flex; gap: 12px; align-items: center; font-family: var(--font-sans); font-size: 14px; }
+.radio { width: 16px; height: 16px; border: 1px solid rgba(250,247,242,0.4); border-radius: 50%; display: grid; place-items: center; }
+.radio.on { background: var(--terracotta); border-color: var(--terracotta); }
+.radio.on::after { content:""; width: 6px; height: 6px; border-radius: 50%; background: var(--cream); }
+.btn { background: var(--terracotta); border: 1px solid var(--terracotta); color: var(--cream); padding: 13px 20px; border-radius: 4px; font-family: var(--font-sans); font-size: 14px; font-weight: 500; cursor: pointer; }
+</style></head>
+<body>
+<div class="stack">
+  <div class="lg">I'm interested as a…</div>
+  <div class="row"><span class="radio on"></span><span>Student</span></div>
+  <div class="row"><span class="radio"></span><span>Mentor / teacher</span></div>
+  <input class="input" placeholder="Your name" />
+  <input class="input" placeholder="Email" />
+  <button class="btn">Send</button>
+</div>
+</body></html>

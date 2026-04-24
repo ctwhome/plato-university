@@ -1,0 +1,1326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#000000" />
+
+    <title>Plato University · Pitch deck</title>
+    <meta
+      name="description"
+      content="Plato University pitch deck — a 3-minute, 16:9 deck covering the problem, the concept, the one-year program, and the founding cohort in September 2026."
+    />
+    <meta name="robots" content="noindex, follow" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/colors_and_type.css" />
+
+    <style>
+      /* Match index.html's override of the design system's system-font
+         defaults with Cormorant Garamond + Inter. */
+      :root {
+        --font-serif: "Cormorant Garamond", Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Times New Roman", ui-serif, serif;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0; padding: 0;
+        height: 100%; width: 100%;
+        background: #000;
+        overflow: hidden;
+        color: var(--ink);
+        font-family: var(--font-sans);
+      }
+
+      /* ---------- The 16:9 stage ---------- */
+      .deck {
+        position: fixed; inset: 0;
+        display: grid; place-items: center;
+        background: #000;
+      }
+      .stage {
+        aspect-ratio: 16 / 9;
+        width: min(100vw, calc(100vh * 16 / 9));
+        height: min(100vh, calc(100vw * 9 / 16));
+        position: relative;
+        overflow: hidden;
+        background: var(--cream);
+        container-type: size;
+      }
+
+      /* ---------- Fragments (stepwise-revealed items) ---------- */
+      /* Start hidden so nothing flashes before the controller runs. */
+      .fragment { opacity: 0; }
+
+      /* ---------- Slide layering ---------- */
+      .slide {
+        position: absolute; inset: 0;
+        padding: 8cqh 10cqw;
+        display: flex; flex-direction: column;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateZ(0);
+        will-change: opacity, transform, filter;
+      }
+      .slide.is-active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        z-index: 2;
+      }
+      .slide.is-exit { z-index: 1; visibility: visible; }
+
+      /* ---------- Typography inside the stage (container-query units) ---------- */
+      .slide .eyebrow {
+        font-family: var(--font-sans);
+        font-size: clamp(12px, 1.1cqw, 18px);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--olive);
+        margin: 0 0 3cqh;
+      }
+      .slide .eyebrow--terra { color: var(--terracotta); }
+
+      .slide .display {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        line-height: 1.02;
+        letter-spacing: -0.012em;
+        font-size: clamp(2.25rem, 8cqw, 8rem);
+        color: var(--ink);
+        margin: 0;
+        text-wrap: balance;
+      }
+      .slide .display em { font-style: italic; font-weight: 500; }
+      .slide .display .terra { color: var(--terracotta); font-style: italic; }
+      .slide .display .olive { color: var(--olive); font-style: italic; }
+
+      .slide .lede {
+        font-family: var(--font-serif);
+        font-size: clamp(1rem, 2.4cqw, 2rem);
+        line-height: 1.35;
+        color: var(--fg-2);
+        margin: 3cqh 0 0;
+      }
+
+      .slide .kicker {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(0.9rem, 1.6cqw, 1.5rem);
+        color: var(--olive);
+        margin: 2cqh 0 0;
+      }
+
+      /* ---------- Slide 01: cover ---------- */
+      .slide--cover { justify-content: center; align-items: flex-start; }
+      .slide--cover .wordmark {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        font-size: clamp(3rem, 12cqw, 14rem);
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        margin: 0;
+        color: var(--ink);
+      }
+      .slide--cover .wordmark em {
+        font-style: italic;
+        color: var(--olive);
+        font-weight: 500;
+      }
+      .slide--cover .tagline {
+        font-family: var(--font-serif);
+        font-size: clamp(1rem, 2.4cqw, 2rem);
+        color: var(--fg-2);
+        margin: 4cqh 0 0;
+        position: relative;
+        display: inline-block;
+      }
+      .slide--cover .tagline .sweep {
+        position: absolute;
+        left: 0; bottom: -0.3em;
+        width: 0%;
+        height: 3px;
+        background: var(--terracotta);
+      }
+      .slide--cover .dateline {
+        font-family: var(--font-sans);
+        font-size: clamp(0.7rem, 1cqw, 1rem);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--fg-4);
+        margin: 4cqh 0 0;
+      }
+      .slide--cover .dateline em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        color: var(--terracotta);
+        letter-spacing: 0;
+        text-transform: none;
+        font-size: 1.1em;
+      }
+
+      /* ---------- Slide 03: three facts ---------- */
+      .facts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4cqw;
+        margin-top: 3cqh;
+      }
+      .fact {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5cqh;
+      }
+      .fact .photo {
+        width: clamp(56px, 9cqw, 120px);
+        aspect-ratio: 1 / 1;
+        background: color-mix(in oklab, var(--ink) 6%, transparent);
+        border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+        border-radius: 4px;
+        overflow: hidden;
+        display: flex; align-items: center; justify-content: center;
+        margin-bottom: 0.5cqh;
+      }
+      .fact .photo img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        filter: grayscale(100%) sepia(12%) contrast(0.95);
+        opacity: 0.72;
+        display: block;
+      }
+      .fact .photo svg {
+        width: 62%; height: 62%;
+        opacity: 0.55;
+      }
+      .fact .year {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        font-size: clamp(2rem, 6cqw, 6rem);
+        line-height: 1;
+        color: var(--ink);
+        letter-spacing: -0.012em;
+      }
+      .fact .year em { font-style: italic; color: var(--olive); }
+      .fact .caption {
+        font-family: var(--font-sans);
+        font-size: clamp(0.75rem, 1.15cqw, 1rem);
+        line-height: 1.4;
+        color: var(--fg-2);
+      }
+      .fact .rule {
+        height: 2px;
+        background: var(--terracotta);
+        width: 0;
+        transform-origin: left center;
+      }
+
+      /* ---------- Slide 04: highlight sweep ---------- */
+      .slide--highlight .display .phrase-a { color: var(--fg-4); }
+      .slide--highlight .display .phrase-b {
+        position: relative;
+        display: inline-block;
+        background-image: linear-gradient(90deg, var(--highlight), var(--highlight));
+        background-repeat: no-repeat;
+        background-position: 0 85%;
+        background-size: 0% 38%;
+        padding: 0 0.1em;
+        color: var(--terracotta);
+        font-style: italic;
+      }
+
+      /* ---------- Slides 05/06/11: stagger columns ---------- */
+      .cols {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4cqw;
+        margin-top: 5cqh;
+      }
+      .col {
+        display: flex;
+        flex-direction: column;
+        gap: 2cqh;
+      }
+      .col .num {
+        font-family: var(--font-serif);
+        font-style: italic;
+        color: var(--terracotta);
+        font-size: clamp(1rem, 1.8cqw, 1.6rem);
+      }
+      .col h3 {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        font-size: clamp(1.2rem, 3.2cqw, 3rem);
+        line-height: 1.1;
+        margin: 0;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      .col .arrow {
+        width: 3cqw; min-width: 18px;
+        height: 2px;
+        background: var(--olive);
+        transform-origin: left center;
+        transform: scaleX(0);
+      }
+
+      /* ---------- Slide 07: solution ---------- */
+      .slide--solution .stack {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2cqw;
+        margin-top: 6cqh;
+        align-items: end;
+        height: 18cqh;
+      }
+      .slide--solution .bar {
+        height: 100%;
+        background: color-mix(in oklab, var(--cream-2) 60%, var(--cream));
+        border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+        border-radius: 6px;
+        transform: scaleY(0);
+        transform-origin: bottom center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 2cqh 2cqw;
+      }
+      .slide--solution .bar .label {
+        font-family: var(--font-serif);
+        font-style: italic;
+        color: var(--olive);
+        font-size: clamp(0.85rem, 1.4cqw, 1.3rem);
+      }
+
+      /* ---------- Slides 08/09/10: trimester ---------- */
+      .slide--trimester { justify-content: center; }
+      .slide--trimester .ghost {
+        position: absolute;
+        right: 4cqw; bottom: -4cqh;
+        font-family: var(--font-serif);
+        font-weight: 500;
+        font-style: italic;
+        font-size: clamp(10rem, 42cqw, 42rem);
+        line-height: 0.85;
+        color: color-mix(in oklab, var(--ink) 6%, transparent);
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+      }
+      .slide--trimester > * { position: relative; z-index: 1; }
+      .slide--trimester ul {
+        list-style: none;
+        margin: 4cqh 0 0;
+        padding: 0;
+        display: grid;
+        gap: 1.4cqh;
+        font-family: var(--font-sans);
+        font-size: clamp(0.9rem, 1.5cqw, 1.4rem);
+        color: var(--fg-2);
+      }
+      .slide--trimester ul li {
+        display: flex;
+        gap: 1.5cqw;
+        opacity: 0;
+      }
+      .slide--trimester ul li::before {
+        content: "→";
+        color: var(--olive);
+      }
+      .slide--trimester--ship .accent-line {
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        height: 3px;
+        background: var(--terracotta);
+        transform: scaleX(0);
+        transform-origin: left center;
+      }
+
+      /* ---------- Slide 11: leave-with cards ---------- */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3cqw;
+        margin-top: 5cqh;
+      }
+      .card-pitch {
+        background: color-mix(in oklab, var(--cream-2) 60%, var(--cream));
+        border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+        border-radius: var(--radius-box);
+        padding: 3cqh 3cqw;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5cqh;
+      }
+      .card-pitch .eb {
+        font-family: var(--font-sans);
+        font-size: clamp(0.65rem, 0.95cqw, 0.85rem);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--olive);
+      }
+      .card-pitch h3 {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        font-size: clamp(1.2rem, 3cqw, 2.6rem);
+        line-height: 1.1;
+        margin: 0;
+        color: var(--ink);
+      }
+      .slide--leave .footnote {
+        font-family: var(--font-serif);
+        font-style: italic;
+        color: var(--terracotta);
+        font-size: clamp(0.9rem, 1.8cqw, 1.6rem);
+        margin: 4cqh 0 0;
+      }
+
+      /* ---------- Slide 11: Twelve books ---------- */
+      .slide--books .books {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4cqw;
+        margin-top: 4cqh;
+      }
+      .slide--books .term { display: flex; flex-direction: column; gap: 1.5cqh; }
+      .slide--books .term-label {
+        font-family: var(--font-sans);
+        font-size: clamp(10px, 1cqw, 14px);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--terracotta);
+        margin: 0 0 0.5cqh;
+      }
+      .slide--books ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 1.6cqh;
+      }
+      .slide--books li {
+        display: grid;
+        grid-template-columns: 2.4cqw 1fr;
+        column-gap: 1cqw;
+        align-items: baseline;
+      }
+      .slide--books li .n {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(0.85rem, 1.25cqw, 1.2rem);
+        color: var(--terracotta);
+        line-height: 1.1;
+      }
+      .slide--books li .t {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        font-size: clamp(0.95rem, 1.6cqw, 1.5rem);
+        line-height: 1.2;
+        color: var(--ink);
+        display: block;
+      }
+      .slide--books li .a {
+        font-family: var(--font-sans);
+        font-size: clamp(0.7rem, 0.95cqw, 0.9rem);
+        color: var(--fg-3);
+        display: block;
+        margin-top: 0.3cqh;
+      }
+
+      /* ---------- Slide 12: CTA ---------- */
+      .slide--cta { justify-content: center; align-items: flex-start; text-align: left; }
+      .slide--cta .date-counter {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        font-style: italic;
+        font-size: clamp(2.5rem, 10cqw, 10rem);
+        line-height: 1;
+        color: var(--terracotta);
+        letter-spacing: -0.012em;
+        position: relative;
+      }
+      .slide--cta .place {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        font-size: clamp(2rem, 7cqw, 7rem);
+        line-height: 1.02;
+        margin: 2cqh 0 0;
+        color: var(--ink);
+      }
+      .slide--cta .place span { display: inline-block; }
+      .slide--cta .detail {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(1rem, 2.2cqw, 2rem);
+        color: var(--fg-3);
+        margin: 3cqh 0 0;
+      }
+      .slide--cta .cta-btn {
+        display: inline-block;
+        margin-top: 5cqh;
+        padding: 2cqh 4cqw;
+        background: var(--ink);
+        color: var(--cream);
+        font-family: var(--font-sans);
+        font-size: clamp(0.9rem, 1.4cqw, 1.3rem);
+        letter-spacing: 0.02em;
+        border-radius: var(--radius-field);
+        border: 1px solid var(--ink);
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      /* ---------- Deck chrome (progress, counter, hint) ---------- */
+      .chrome {
+        position: absolute; inset: 0;
+        pointer-events: none;
+        z-index: 10;
+      }
+      .progress {
+        position: absolute; left: 0; right: 0; bottom: 0;
+        height: 2px;
+        background: color-mix(in oklab, var(--ink) 10%, transparent);
+      }
+      .progress > span {
+        display: block; height: 100%;
+        background: var(--terracotta);
+        width: 0%;
+        transition: width 380ms var(--ease-out);
+      }
+      .counter {
+        position: absolute; right: 3cqw; top: 3cqh;
+        font-family: var(--font-sans);
+        font-size: clamp(10px, 1cqw, 14px);
+        letter-spacing: 0.18em;
+        color: var(--fg-4);
+      }
+      .counter b {
+        color: var(--ink); font-weight: 500;
+        font-family: var(--font-serif);
+        font-style: italic;
+        letter-spacing: 0;
+      }
+      .hint {
+        position: fixed; left: 14px; bottom: 14px;
+        color: color-mix(in oklab, #fff 55%, transparent);
+        font-family: var(--font-sans);
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        pointer-events: none;
+        transition: opacity 400ms ease;
+      }
+      .hint.off { opacity: 0; }
+
+      /* ---------- Reduced motion override ---------- */
+      @media (prefers-reduced-motion: reduce) {
+        .slide {
+          transition: opacity 150ms linear !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="deck" id="deck">
+      <div class="stage" id="stage">
+
+        <!-- 01 · Cover -->
+        <section class="slide slide--cover" data-anim="cover">
+          <h1 class="wordmark">Plato <em>University</em></h1>
+          <p class="tagline">Learn to think before you learn to work.<span class="sweep" aria-hidden="true"></span></p>
+          <p class="dateline">Discovery month · <em>September 2026</em> · Amsterdam</p>
+        </section>
+
+        <!-- 02 · The problem -->
+        <section class="slide" data-anim="type">
+          <p class="eyebrow">01 · The problem</p>
+          <h2 class="display">The industrial schooling model is <em class="terra">broken.</em></h2>
+        </section>
+
+        <!-- 03 · Three forgotten facts -->
+        <section class="slide" data-anim="facts">
+          <p class="eyebrow">How we got here</p>
+          <h2 class="display" style="font-size: clamp(1.5rem, 3.2cqw, 3rem);">Three forgotten facts.</h2>
+          <div class="facts">
+            <div class="fact fragment">
+              <div class="photo" data-wiki="Horace_Mann" aria-hidden="true"></div>
+              <div class="year" data-count="1843">1843</div>
+              <div class="rule"></div>
+              <p class="caption">Horace Mann imports the Prussian bell — age-graded, factory-timed classrooms.</p>
+            </div>
+            <div class="fact fragment">
+              <div class="photo" data-wiki="Andrew_Carnegie" aria-hidden="true"></div>
+              <div class="year" data-count="1906">1906</div>
+              <div class="rule"></div>
+              <p class="caption">The Carnegie Unit makes learning equal to seat-time. Hours become credits.</p>
+            </div>
+            <div class="fact fragment">
+              <div class="photo" data-mark="dodeca" aria-hidden="true"></div>
+              <div class="year"><em>Today</em></div>
+              <div class="rule"></div>
+              <p class="caption">Your degree is obsolete before graduation. AI eats the syllabus faster than faculties can rewrite it.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04 · The concept -->
+        <section class="slide slide--highlight" data-anim="highlight">
+          <p class="eyebrow">02 · The concept</p>
+          <h2 class="display">
+            <span class="phrase-a"><em>Learn to think</em></span>
+            <br />
+            <span class="phrase-b">before you learn to work.</span>
+          </h2>
+        </section>
+
+        <!-- 05 · Three shifts (1–3) -->
+        <section class="slide" data-anim="stagger">
+          <p class="eyebrow">03 · Three shifts</p>
+          <h2 class="display" style="font-size: clamp(1.5rem, 3.2cqw, 3rem);">What changes, part I.</h2>
+          <div class="cols">
+            <div class="col fragment">
+              <span class="num">i.</span>
+              <h3>Primary sources, not summaries.</h3>
+              <div class="arrow"></div>
+            </div>
+            <div class="col fragment">
+              <span class="num">ii.</span>
+              <h3>Online core + local city hubs.</h3>
+              <div class="arrow"></div>
+            </div>
+            <div class="col fragment">
+              <span class="num">iii.</span>
+              <h3>Portfolio over diploma.</h3>
+              <div class="arrow"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 06 · Three more shifts (4–6) -->
+        <section class="slide" data-anim="stagger">
+          <p class="eyebrow">03 · Three shifts</p>
+          <h2 class="display" style="font-size: clamp(1.5rem, 3.2cqw, 3rem);">What changes, part II.</h2>
+          <div class="cols">
+            <div class="col fragment">
+              <span class="num">iv.</span>
+              <h3>All ages, all edges.</h3>
+              <div class="arrow"></div>
+            </div>
+            <div class="col fragment">
+              <span class="num">v.</span>
+              <h3>AI as a tool, not a master.</h3>
+              <div class="arrow"></div>
+            </div>
+            <div class="col fragment">
+              <span class="num">vi.</span>
+              <h3>No managers, only mentors.</h3>
+              <div class="arrow"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 07 · The solution -->
+        <section class="slide slide--solution" data-anim="solution">
+          <p class="eyebrow">04 · The solution</p>
+          <h2 class="display"><em>Three trimesters.</em> <span class="terra">Four months each.</span></h2>
+          <div class="stack">
+            <div class="bar"><span class="label">Foundations</span></div>
+            <div class="bar"><span class="label">The World as It Is</span></div>
+            <div class="bar"><span class="label">Ship Something</span></div>
+          </div>
+        </section>
+
+        <!-- 08 · Trimester 1 -->
+        <section class="slide slide--trimester" data-anim="trimester">
+          <div class="ghost">01</div>
+          <p class="eyebrow">Trimester 1 · Months 1–4</p>
+          <h2 class="display">You learn to <em class="olive">think.</em></h2>
+          <ul>
+            <li>The Socratic method — dialogue as discipline.</li>
+            <li>The classics — Plato, Seneca, Montaigne, bell hooks.</li>
+            <li>The body — reading, writing, walking, attention.</li>
+          </ul>
+        </section>
+
+        <!-- 09 · Trimester 2 -->
+        <section class="slide slide--trimester" data-anim="trimester">
+          <div class="ghost">02</div>
+          <p class="eyebrow">Trimester 2 · Months 5–8</p>
+          <h2 class="display">You learn how the world <em class="olive">actually works.</em></h2>
+          <ul>
+            <li>Economics — incentives, markets, money.</li>
+            <li>Systems &amp; power — institutions, networks, consent.</li>
+            <li>AI — its fluency, its limits, its economics.</li>
+          </ul>
+        </section>
+
+        <!-- 10 · Trimester 3 -->
+        <section class="slide slide--trimester slide--trimester--ship" data-anim="trimester">
+          <div class="ghost">03</div>
+          <p class="eyebrow eyebrow--terra">Trimester 3 · Months 9–12</p>
+          <h2 class="display">You learn by <em class="terra">making.</em></h2>
+          <ul>
+            <li>A directed project with a mentor.</li>
+            <li>A public defense of your work.</li>
+            <li>A portfolio — the artifact you leave with.</li>
+          </ul>
+          <div class="accent-line"></div>
+        </section>
+
+        <!-- 11 · Twelve books -->
+        <section class="slide slide--books" data-anim="books">
+          <p class="eyebrow">The founding reading list</p>
+          <h2 class="display" style="font-size: clamp(1.5rem, 3.2cqw, 3rem);">Twelve books. Read <em class="olive">closely</em>. Discussed weekly.</h2>
+          <div class="books">
+            <div class="term fragment">
+              <p class="term-label">Term I · Foundations</p>
+              <ol>
+                <li><span class="n">i.</span><div><span class="t">Phaedrus</span><span class="a">Plato — c. 370 BCE</span></div></li>
+                <li><span class="n">ii.</span><div><span class="t">Meditations on First Philosophy</span><span class="a">Descartes — 1641</span></div></li>
+                <li><span class="n">iii.</span><div><span class="t">Frankenstein</span><span class="a">Mary Shelley — 1818</span></div></li>
+                <li><span class="n">iv.</span><div><span class="t">Computing Machinery &amp; Intelligence</span><span class="a">Alan Turing — 1950</span></div></li>
+              </ol>
+            </div>
+            <div class="term fragment">
+              <p class="term-label">Term II · The world as it is</p>
+              <ol>
+                <li><span class="n">v.</span><div><span class="t">The Human Condition</span><span class="a">Hannah Arendt — 1958</span></div></li>
+                <li><span class="n">vi.</span><div><span class="t">Tools for Conviviality</span><span class="a">Ivan Illich — 1973</span></div></li>
+                <li><span class="n">vii.</span><div><span class="t">Pedagogy of the Oppressed</span><span class="a">Paulo Freire — 1968</span></div></li>
+                <li><span class="n">viii.</span><div><span class="t">A Cyborg Manifesto</span><span class="a">Donna Haraway — 1985</span></div></li>
+              </ol>
+            </div>
+            <div class="term fragment">
+              <p class="term-label">Term III · Ship something</p>
+              <ol>
+                <li><span class="n">ix.</span><div><span class="t">The Sovereignty of Good</span><span class="a">Iris Murdoch — 1970</span></div></li>
+                <li><span class="n">x.</span><div><span class="t">Teaching to Transgress</span><span class="a">bell hooks — 1994</span></div></li>
+                <li><span class="n">xi.</span><div><span class="t">Attention and Interpretation</span><span class="a">Wilfred Bion — 1970</span></div></li>
+                <li><span class="n">xii.</span><div><span class="t">— one of your own choosing, defended</span><span class="a">Student pick</span></div></li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- 12 · What you leave with -->
+        <section class="slide slide--leave" data-anim="stagger">
+          <p class="eyebrow">What you leave with</p>
+          <h2 class="display" style="font-size: clamp(1.5rem, 3.2cqw, 3rem);">Not a diploma. Something better.</h2>
+          <div class="cards">
+            <article class="card-pitch fragment">
+              <p class="eb">01</p>
+              <h3>A portfolio.</h3>
+            </article>
+            <article class="card-pitch fragment">
+              <p class="eb">02</p>
+              <h3>A mentor network.</h3>
+            </article>
+            <article class="card-pitch fragment">
+              <p class="eb">03</p>
+              <h3>A cohort for decades.</h3>
+            </article>
+          </div>
+          <p class="footnote fragment">No debt. No diploma. <em>That's the point.</em></p>
+        </section>
+
+        <!-- 13 · The founding cohort -->
+        <section class="slide slide--cta" data-anim="cta">
+          <p class="eyebrow eyebrow--terra">The founding cohort</p>
+          <div class="date-counter" data-date>September 2026</div>
+          <h2 class="place">Amsterdam <em class="olive">— Hub #1.</em></h2>
+          <p class="detail">One month. Four sessions. A small group who helps us build what year one becomes.</p>
+          <a class="cta-btn" href="/#apply">Apply →</a>
+        </section>
+
+        <div class="chrome">
+          <div class="counter" aria-hidden="true">
+            <b id="slide-num">01</b> / <span id="slide-total">12</span>
+          </div>
+          <div class="progress"><span id="progress-bar"></span></div>
+        </div>
+      </div>
+    </main>
+
+    <div class="hint" id="hint">← → · space · F fullscreen · swipe</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+
+    <script defer>
+      window.addEventListener("DOMContentLoaded", () => {
+        const slides = Array.from(document.querySelectorAll(".slide"));
+        const total = slides.length;
+        const slideNumEl = document.getElementById("slide-num");
+        const slideTotalEl = document.getElementById("slide-total");
+        const progressEl = document.getElementById("progress-bar");
+        const stage = document.getElementById("stage");
+        const deck = document.getElementById("deck");
+        const hintEl = document.getElementById("hint");
+
+        slideTotalEl.textContent = String(total).padStart(2, "0");
+
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let current = 0;
+        let animating = false;
+
+        // Parse hash (#s=5) for deep-linking
+        const fromHash = () => {
+          const m = /#s=(\d+)/.exec(location.hash);
+          if (!m) return 0;
+          const i = parseInt(m[1], 10) - 1;
+          return Math.max(0, Math.min(total - 1, i));
+        };
+
+        // ---------- Lazy Wikipedia thumbnails for slide 3 photos ----------
+        // Mirrors the fetch pattern in index.html's tooltip. Each .photo[data-wiki]
+        // resolves once, caches the URL, and injects an <img> when ready.
+        const wikiCache = {};
+        function fetchWikiImage(slug) {
+          if (wikiCache[slug] !== undefined) return Promise.resolve(wikiCache[slug]);
+          const p = fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + slug)
+            .then((r) => (r.ok ? r.json() : null))
+            .then((d) => {
+              const url = d && d.thumbnail && d.thumbnail.source ? d.thumbnail.source : null;
+              wikiCache[slug] = url;
+              return url;
+            })
+            .catch(() => { wikiCache[slug] = null; return null; });
+          wikiCache[slug] = p;
+          return p;
+        }
+        const DODECA_SVG = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--olive)"><polygon points="50,8 78,24 82,56 60,82 40,82 18,56 22,24"/><polygon points="50,8 62,32 50,52 38,32"/><polyline points="62,32 78,24"/><polyline points="38,32 22,24"/><polyline points="50,52 60,82"/><polyline points="50,52 40,82"/></svg>';
+        document.querySelectorAll(".fact .photo").forEach((ph) => {
+          const slug = ph.dataset.wiki;
+          if (ph.dataset.mark === "dodeca") {
+            ph.innerHTML = DODECA_SVG;
+            return;
+          }
+          if (!slug) return;
+          fetchWikiImage(slug).then((url) => {
+            if (!url) return;
+            const img = new Image();
+            img.alt = "";
+            img.src = url;
+            img.loading = "lazy";
+            ph.innerHTML = "";
+            ph.appendChild(img);
+          });
+        });
+
+        // Exit variants so consecutive transitions don't feel identical
+        const exitVariants = [
+          (el) => gsap.to(el, { opacity: 0, x: "-6%", duration: 0.55, ease: "power2.in" }),
+          (el) => gsap.to(el, { opacity: 0, scale: 0.94, filter: "blur(6px)", duration: 0.55, ease: "power2.in" }),
+          (el) => gsap.to(el, { opacity: 0, x: "-12%", duration: 0.5, ease: "power3.in" }),
+        ];
+
+        const animHandlers = {
+          cover: (el) => {
+            const wordmark = el.querySelector(".wordmark");
+            const tagline = el.querySelector(".tagline");
+            const sweep = tagline.querySelector(".sweep");
+            const dateline = el.querySelector(".dateline");
+            const tl = gsap.timeline();
+            wrapLetters(wordmark);
+            tl.from(wordmark.querySelectorAll(".ltr"), {
+              yPercent: 110, opacity: 0, duration: 0.7, ease: "power3.out", stagger: 0.03,
+            })
+              .from(tagline, { opacity: 0, y: 20, duration: 0.6, ease: "power2.out" }, "-=0.2")
+              .fromTo(sweep,
+                { width: "0%" },
+                { width: "100%", duration: 0.8, ease: "power2.out" },
+                "-=0.3")
+              .from(dateline, { opacity: 0, y: 10, duration: 0.5, ease: "power2.out" }, "-=0.5");
+          },
+          type: (el) => {
+            const h = el.querySelector(".display");
+            const eyebrow = el.querySelector(".eyebrow");
+            const tl = gsap.timeline();
+            if (eyebrow) tl.from(eyebrow, { opacity: 0, y: 10, duration: 0.4 });
+            typewriter(h, tl);
+          },
+          facts: (el) => {
+            const eyebrow = el.querySelector(".eyebrow");
+            const h = el.querySelector(".display");
+            // Facts themselves are fragments — revealed stepwise via next()/prev().
+            const tl = gsap.timeline();
+            if (eyebrow) tl.from(eyebrow, { opacity: 0, y: 10, duration: 0.4 });
+            if (h) tl.from(h, { opacity: 0, y: 14, duration: 0.5 }, "-=0.2");
+          },
+          highlight: (el) => {
+            const eyebrow = el.querySelector(".eyebrow");
+            const a = el.querySelector(".phrase-a");
+            const b = el.querySelector(".phrase-b");
+            const tl = gsap.timeline();
+            if (eyebrow) tl.from(eyebrow, { opacity: 0, y: 10, duration: 0.4 });
+            tl.from(a, { opacity: 0, y: 16, duration: 0.6 })
+              .from(b, { opacity: 0, y: 16, duration: 0.6 }, "-=0.25")
+              .to(b, {
+                backgroundSize: "100% 38%",
+                duration: 0.8,
+                ease: "power2.out",
+              }, "-=0.2");
+          },
+          stagger: (el) => {
+            const eyebrow = el.querySelector(".eyebrow");
+            const h = el.querySelector(".display");
+            // Cols/cards/footnote are fragments — revealed stepwise via next()/prev().
+            const tl = gsap.timeline();
+            if (eyebrow) tl.from(eyebrow, { opacity: 0, y: 10, duration: 0.4 });
+            if (h) tl.from(h, { opacity: 0, y: 14, duration: 0.5 }, "-=0.2");
+          },
+          solution: (el) => {
+            const eyebrow = el.querySelector(".eyebrow");
+            const h = el.querySelector(".display");
+            const bars = el.querySelectorAll(".bar");
+            const labels = el.querySelectorAll(".bar .label");
+            const tl = gsap.timeline();
+            if (eyebrow) tl.from(eyebrow, { opacity: 0, y: 10, duration: 0.4 });
+            if (h) tl.from(h, { opacity: 0, y: 14, duration: 0.5 }, "-=0.2");
+            tl.to(bars, {
+              scaleY: 1,
+              duration: 0.7,
+              ease: "power3.out",
+              stagger: 0.12,
+            }, "-=0.1");
+            tl.from(labels, { opacity: 0, y: 10, duration: 0.4, stagger: 0.1 }, "-=0.3");
+          },
+          trimester: (el) => {
+            const ghost = el.querySelector(".ghost");
+            const eyebrow = el.querySelector(".eyebrow");
+            const h = el.querySelector(".display");
+            const items = el.querySelectorAll("ul li");
+            const line = el.querySelector(".accent-line");
+            const tl = gsap.timeline();
+            if (ghost) tl.from(ghost, { opacity: 0, x: 80, duration: 1.1, ease: "power3.out" });
+            if (eyebrow) tl.from(eyebrow, { opacity: 0, y: 10, duration: 0.4 }, "-=0.9");
+            if (h) tl.fromTo(h,
+              { clipPath: "inset(0 100% 0 0)", opacity: 1 },
+              { clipPath: "inset(0 0% 0 0)", duration: 0.8, ease: "power3.out" },
+              "-=0.7");
+            tl.to(items, {
+              opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.12,
+            }, "-=0.4");
+            if (line) tl.to(line, { scaleX: 1, duration: 0.9, ease: "power3.out" }, "-=0.6");
+          },
+          books: (el) => {
+            const eyebrow = el.querySelector(".eyebrow");
+            const h = el.querySelector(".display");
+            // Terms are fragments — revealed stepwise via next()/prev().
+            const tl = gsap.timeline();
+            if (eyebrow) tl.from(eyebrow, { opacity: 0, y: 10, duration: 0.4 });
+            if (h) tl.from(h, { opacity: 0, y: 14, duration: 0.5 }, "-=0.2");
+          },
+          cta: (el) => {
+            const eyebrow = el.querySelector(".eyebrow");
+            const counter = el.querySelector(".date-counter");
+            const place = el.querySelector(".place");
+            const detail = el.querySelector(".detail");
+            const btn = el.querySelector(".cta-btn");
+            const tl = gsap.timeline();
+            if (eyebrow) tl.from(eyebrow, { opacity: 0, y: 10, duration: 0.4 });
+
+            // Date counter scrub: roll through months from Jan → Sep 2026.
+            const months = [
+              "January 2026", "February 2026", "March 2026",
+              "April 2026", "May 2026", "June 2026",
+              "July 2026", "August 2026", "September 2026",
+            ];
+            const idx = { i: 0 };
+            tl.from(counter, { opacity: 0, y: 10, duration: 0.3 }, "-=0.1");
+            tl.to(idx, {
+              i: months.length - 1,
+              duration: 1.1,
+              ease: "power2.out",
+              onUpdate: () => { counter.textContent = months[Math.round(idx.i)]; },
+            }, "-=0.1");
+
+            // Letter settle on city name
+            if (place) {
+              wrapLetters(place);
+              tl.from(place.querySelectorAll(".ltr"), {
+                opacity: 0, y: -12,
+                duration: 0.35, ease: "power2.out", stagger: 0.03,
+              }, "-=0.2");
+            }
+            if (detail) tl.from(detail, { opacity: 0, y: 10, duration: 0.5 }, "-=0.1");
+            if (btn) {
+              tl.from(btn, { opacity: 0, y: 10, duration: 0.4 }, "-=0.2");
+              tl.to(btn, {
+                scale: 1.035, duration: 1.1, ease: "sine.inOut",
+                repeat: -1, yoyo: true,
+              });
+            }
+          },
+        };
+
+        // Split a text node into <span class="ltr"> per character
+        function wrapLetters(el) {
+          if (el.dataset.wrapped === "1") return;
+          const children = Array.from(el.childNodes);
+          const frag = document.createDocumentFragment();
+          children.forEach((node) => {
+            if (node.nodeType === 3) {
+              node.textContent.split("").forEach((ch) => {
+                if (ch === " ") { frag.appendChild(document.createTextNode(" ")); return; }
+                const s = document.createElement("span");
+                s.className = "ltr";
+                s.style.display = "inline-block";
+                s.textContent = ch;
+                frag.appendChild(s);
+              });
+            } else if (node.nodeType === 1) {
+              const clone = node.cloneNode(false);
+              wrapLettersInner(node, clone);
+              frag.appendChild(clone);
+            }
+          });
+          el.innerHTML = "";
+          el.appendChild(frag);
+          el.dataset.wrapped = "1";
+        }
+        function wrapLettersInner(src, dst) {
+          Array.from(src.childNodes).forEach((node) => {
+            if (node.nodeType === 3) {
+              node.textContent.split("").forEach((ch) => {
+                if (ch === " ") { dst.appendChild(document.createTextNode(" ")); return; }
+                const s = document.createElement("span");
+                s.className = "ltr";
+                s.style.display = "inline-block";
+                s.textContent = ch;
+                dst.appendChild(s);
+              });
+            } else if (node.nodeType === 1) {
+              const c = node.cloneNode(false);
+              wrapLettersInner(node, c);
+              dst.appendChild(c);
+            }
+          });
+        }
+
+        function typewriter(el, tl) {
+          const full = el.innerHTML;
+          const plain = el.textContent;
+          // Type the text character by character from the plain string,
+          // then swap in the rich innerHTML once done (keeps <em>/<span>).
+          el.innerHTML = "";
+          const caret = document.createElement("span");
+          caret.textContent = "▍";
+          caret.style.color = "var(--terracotta)";
+          caret.style.opacity = "0.9";
+          el.appendChild(caret);
+          const progress = { n: 0 };
+          tl.to(progress, {
+            n: plain.length,
+            duration: Math.max(0.8, plain.length * 0.025),
+            ease: "none",
+            onUpdate: () => {
+              const n = Math.round(progress.n);
+              el.textContent = plain.slice(0, n);
+              el.appendChild(caret);
+            },
+            onComplete: () => {
+              el.innerHTML = full;
+            },
+          });
+        }
+
+        // ---------- Render slide N ----------
+        function setActive(index, direction = 1) {
+          if (index < 0 || index >= total) return;
+          if (index === current && slides[current].classList.contains("is-active")) return;
+
+          const prev = slides[current];
+          const next = slides[index];
+
+          animating = true;
+          gsap.killTweensOf(next);
+          if (prev && prev !== next) gsap.killTweensOf(prev);
+
+          // Mark next active
+          slides.forEach((s) => s.classList.remove("is-active", "is-exit"));
+          if (prev && prev !== next) prev.classList.add("is-exit");
+          next.classList.add("is-active");
+          next.style.visibility = "visible";
+
+          // Reset inner animated elements on the incoming slide so their
+          // enter animations replay cleanly on revisit.
+          resetSlide(next);
+
+          // Hide the incoming slide synchronously so nothing paints at full
+          // opacity before the handler can set child from-states.
+          gsap.set(next, { opacity: 0 });
+
+          // Exit animation
+          if (prev && prev !== next) {
+            if (reducedMotion) {
+              gsap.to(prev, { opacity: 0, duration: 0.12, onComplete: () => {
+                prev.classList.remove("is-exit");
+              }});
+            } else {
+              const exit = exitVariants[index % exitVariants.length];
+              exit(prev);
+              gsap.delayedCall(0.6, () => {
+                prev.classList.remove("is-exit");
+                gsap.set(prev, { clearProps: "all" });
+              });
+            }
+          }
+
+          // Enter: run the slide-specific handler FIRST so its gsap.from
+          // calls lock children into their hidden start-state in the same
+          // tick. Then fade the slide itself in over a short duration.
+          const anim = next.dataset.anim || "stagger";
+          if (!reducedMotion && animHandlers[anim]) {
+            animHandlers[anim](next);
+          }
+          gsap.to(next, {
+            opacity: 1,
+            duration: reducedMotion ? 0.15 : 0.25,
+            ease: "power2.out",
+            onComplete: () => { animating = false; },
+          });
+
+          current = index;
+          updateChrome();
+          updateHash();
+        }
+
+        function resetSlide(slide) {
+          // Clear inline styles applied by previous animations so re-entry re-animates
+          gsap.set(slide.querySelectorAll("*"), { clearProps: "opacity,transform,filter,clip-path,scale,x,y" });
+          // Fragments start hidden in their type-specific from-state; fragment index resets to 0
+          slide.dataset.fragmentIndex = "0";
+          slide.querySelectorAll(".fragment").forEach((f) => {
+            if (f.classList.contains("fact")) {
+              gsap.set(f, { opacity: 0, x: -30 });
+            } else if (f.classList.contains("col")) {
+              gsap.set(f, { opacity: 0, y: 30, scale: 0.96 });
+              const arrow = f.querySelector(".arrow");
+              if (arrow) gsap.set(arrow, { scaleX: 0 });
+            } else if (f.classList.contains("card-pitch")) {
+              gsap.set(f, { opacity: 0, y: 36, rotate: -1.5 });
+            } else if (f.classList.contains("term")) {
+              gsap.set(f, { opacity: 0, y: 20 });
+              gsap.set(f.querySelectorAll("li"), { opacity: 0, y: 16 });
+            } else {
+              gsap.set(f, { opacity: 0, y: 16 });
+            }
+          });
+          // Reset specific animated states
+          slide.querySelectorAll(".fact .year[data-count]").forEach((y) => {
+            y.textContent = y.dataset.count;
+          });
+          slide.querySelectorAll(".fact .rule").forEach((r) => { r.style.width = "0"; });
+          slide.querySelectorAll(".sweep").forEach((s) => { s.style.width = "0%"; });
+          slide.querySelectorAll(".slide--solution .bar, .bar").forEach((b) => { b.style.transform = "scaleY(0)"; });
+          slide.querySelectorAll(".accent-line").forEach((l) => { l.style.transform = "scaleX(0)"; });
+          slide.querySelectorAll("ul li").forEach((li) => { li.style.opacity = "0"; li.style.transform = "translateY(10px)"; });
+          const hl = slide.querySelector(".phrase-b");
+          if (hl) hl.style.backgroundSize = "0% 38%";
+          const counterEl = slide.querySelector(".date-counter[data-date]");
+          if (counterEl) counterEl.textContent = "January 2026";
+        }
+
+        function updateChrome() {
+          slideNumEl.textContent = String(current + 1).padStart(2, "0");
+          const pct = ((current + 1) / total) * 100;
+          progressEl.style.width = pct + "%";
+        }
+
+        function updateHash() {
+          const newHash = "#s=" + (current + 1);
+          if (location.hash !== newHash) {
+            history.replaceState(null, "", newHash);
+          }
+        }
+
+        // ---------- Fragments (stepwise reveals within a slide) ----------
+        function fragmentsIn(slide) {
+          return Array.from(slide.querySelectorAll(".fragment"));
+        }
+        function revealFragment(frag) {
+          if (frag.classList.contains("fact")) {
+            const photo = frag.querySelector(".photo");
+            const year = frag.querySelector(".year");
+            const rule = frag.querySelector(".rule");
+            const caption = frag.querySelector(".caption");
+            const target = parseInt((year && year.dataset.count) || "0", 10);
+            const tl = gsap.timeline();
+            tl.to(frag, { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" });
+            if (photo) tl.fromTo(photo, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.55, ease: "power2.out" }, "-=0.4");
+            if (target > 0 && year) {
+              const counter = { v: 0 };
+              tl.to(counter, {
+                v: target,
+                duration: 0.9,
+                ease: "power2.out",
+                onUpdate: () => { year.textContent = Math.round(counter.v); },
+              }, "-=0.4");
+            }
+            if (rule) tl.to(rule, { width: "60%", duration: 0.5, ease: "power3.out" }, "-=0.5");
+            if (caption) tl.fromTo(caption, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.4 }, "-=0.3");
+            return tl.duration();
+          }
+          if (frag.classList.contains("col")) {
+            const arrow = frag.querySelector(".arrow");
+            const tl = gsap.timeline();
+            tl.to(frag, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power2.out" });
+            if (arrow) tl.to(arrow, { scaleX: 1, duration: 0.5, ease: "power3.out" }, "-=0.3");
+            return tl.duration();
+          }
+          if (frag.classList.contains("card-pitch")) {
+            gsap.to(frag, { opacity: 1, y: 0, rotate: 0, duration: 0.6, ease: "power2.out" });
+            return 0.6;
+          }
+          if (frag.classList.contains("term")) {
+            const label = frag.querySelector(".term-label");
+            const items = frag.querySelectorAll("li");
+            const tl = gsap.timeline();
+            tl.to(frag, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" });
+            if (label) tl.fromTo(label, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35 }, "-=0.25");
+            tl.fromTo(items,
+              { opacity: 0, y: 16 },
+              { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: 0.08 },
+              "-=0.2");
+            return tl.duration();
+          }
+          gsap.to(frag, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" });
+          return 0.5;
+        }
+        function hideFragment(frag) {
+          if (frag.classList.contains("fact")) {
+            const rule = frag.querySelector(".rule");
+            const year = frag.querySelector(".year");
+            gsap.to(frag, { opacity: 0, x: -30, duration: 0.25, ease: "power2.in" });
+            if (rule) gsap.to(rule, { width: 0, duration: 0.2 });
+            if (year && year.dataset.count) year.textContent = year.dataset.count;
+            return;
+          }
+          if (frag.classList.contains("col")) {
+            const arrow = frag.querySelector(".arrow");
+            gsap.to(frag, { opacity: 0, y: 30, scale: 0.96, duration: 0.25, ease: "power2.in" });
+            if (arrow) gsap.to(arrow, { scaleX: 0, duration: 0.2 });
+            return;
+          }
+          if (frag.classList.contains("card-pitch")) {
+            gsap.to(frag, { opacity: 0, y: 36, rotate: -1.5, duration: 0.3, ease: "power2.in" });
+            return;
+          }
+          if (frag.classList.contains("term")) {
+            gsap.to(frag, { opacity: 0, y: 20, duration: 0.25, ease: "power2.in" });
+            gsap.to(frag.querySelectorAll("li"), { opacity: 0, y: 16, duration: 0.2 });
+            return;
+          }
+          gsap.to(frag, { opacity: 0, y: 10, duration: 0.25, ease: "power2.in" });
+        }
+
+        function next() {
+          const slide = slides[current];
+          const frags = fragmentsIn(slide);
+          const fi = parseInt(slide.dataset.fragmentIndex || "0", 10);
+          if (frags.length > fi) {
+            revealFragment(frags[fi]);
+            slide.dataset.fragmentIndex = String(fi + 1);
+            return;
+          }
+          setActive(Math.min(current + 1, total - 1), 1);
+        }
+        function prev() {
+          const slide = slides[current];
+          const frags = fragmentsIn(slide);
+          const fi = parseInt(slide.dataset.fragmentIndex || "0", 10);
+          if (fi > 0) {
+            hideFragment(frags[fi - 1]);
+            slide.dataset.fragmentIndex = String(fi - 1);
+            return;
+          }
+          setActive(Math.max(current - 1, 0), -1);
+        }
+
+        // ---------- Keyboard ----------
+        window.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+            e.preventDefault(); next();
+          } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+            e.preventDefault(); prev();
+          } else if (e.key === "Home") {
+            e.preventDefault(); setActive(0, -1);
+          } else if (e.key === "End") {
+            e.preventDefault(); setActive(total - 1, 1);
+          } else if (e.key === "f" || e.key === "F") {
+            e.preventDefault(); toggleFullscreen();
+          } else if (e.key === "Escape" && document.fullscreenElement) {
+            // browser handles it; nothing to do.
+          }
+        });
+
+        // ---------- Click-to-advance (ignores interactive elements) ----------
+        stage.addEventListener("click", (e) => {
+          const tag = e.target.tagName;
+          if (tag === "A" || tag === "BUTTON" || e.target.closest("a,button")) return;
+          next();
+        });
+
+        // ---------- Touch: swipe ----------
+        let touchStartX = 0, touchStartY = 0;
+        stage.addEventListener("touchstart", (e) => {
+          const t = e.changedTouches[0];
+          touchStartX = t.clientX; touchStartY = t.clientY;
+        }, { passive: true });
+        stage.addEventListener("touchend", (e) => {
+          const t = e.changedTouches[0];
+          const dx = t.clientX - touchStartX;
+          const dy = t.clientY - touchStartY;
+          if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+            if (dx < 0) next(); else prev();
+          }
+        }, { passive: true });
+
+        // ---------- Fullscreen ----------
+        function toggleFullscreen() {
+          if (!document.fullscreenElement) {
+            deck.requestFullscreen?.();
+          } else {
+            document.exitFullscreen?.();
+          }
+        }
+
+        // ---------- Hash-based deep link ----------
+        window.addEventListener("hashchange", () => {
+          const i = fromHash();
+          if (i !== current) setActive(i, i > current ? 1 : -1);
+        });
+
+        // ---------- Auto-hide hint ----------
+        let hintTimer = setTimeout(() => hintEl.classList.add("off"), 4500);
+        ["keydown", "click", "touchstart"].forEach((ev) => {
+          window.addEventListener(ev, () => {
+            clearTimeout(hintTimer);
+            hintEl.classList.add("off");
+          }, { once: true });
+        });
+
+        // ---------- Initial state ----------
+        // Pre-reset every slide so animated elements start from hidden state.
+        slides.forEach(resetSlide);
+        setActive(fromHash(), 1);
+      });
+    </script>
+  </body>
+</html>

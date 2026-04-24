@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200" role="img" aria-label="Plato University">
+  <g id="dodec" fill="none" stroke="#b8593a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M77.69 -28.70L43.21 -78.00"/>
+    <path d="M32.45 -67.70L43.21 -78.00"/>
+    <path d="M59.38 67.70L13.57 78.00"/>
+    <path d="M14.14 28.70L13.57 78.00"/>
+    <path d="M-14.14 -28.70L-13.57 -78.00"/>
+    <path d="M-59.38 -67.70L-13.57 -78.00"/>
+    <path d="M-32.45 67.70L-43.21 78.00"/>
+    <path d="M-77.69 28.70L-43.21 78.00"/>
+    <path d="M77.69 -28.70L42.22 1.77"/>
+    <path d="M32.45 -67.70L-30.94 -61.36"/>
+    <path d="M59.38 67.70L30.94 61.36"/>
+    <path d="M14.14 28.70L-42.22 -1.77"/>
+    <path d="M-14.14 -28.70L42.22 1.77"/>
+    <path d="M-59.38 -67.70L-30.94 -61.36"/>
+    <path d="M-32.45 67.70L30.94 61.36"/>
+    <path d="M-77.69 28.70L-42.22 -1.77"/>
+    <path d="M77.69 -28.70L88.24 12.06"/>
+    <path d="M32.45 -67.70L60.27 -12.06"/>
+    <path d="M59.38 67.70L88.24 12.06"/>
+    <path d="M14.14 28.70L60.27 -12.06"/>
+    <path d="M-14.14 -28.70L-60.27 12.06"/>
+    <path d="M-59.38 -67.70L-88.24 -12.06"/>
+    <path d="M-32.45 67.70L-60.27 12.06"/>
+    <path d="M-77.69 28.70L-88.24 -12.06"/>
+    <path d="M42.22 1.77L30.94 61.36"/>
+    <path d="M-30.94 -61.36L-42.22 -1.77"/>
+    <path d="M43.21 -78.00L-13.57 -78.00"/>
+    <path d="M13.57 78.00L-43.21 78.00"/>
+    <path d="M88.24 12.06L60.27 -12.06"/>
+    <path d="M-60.27 12.06L-88.24 -12.06"/>
+  </g>
+  <script>
+    <![CDATA[
+    (function () {
+      var PHI = (1 + Math.sqrt(5)) / 2;
+      var IP = 1 / PHI;
+      // Canonical regular dodecahedron vertices (20)
+      var V = [
+        [1,1,1],[1,1,-1],[1,-1,1],[1,-1,-1],
+        [-1,1,1],[-1,1,-1],[-1,-1,1],[-1,-1,-1],
+        [0,IP,PHI],[0,IP,-PHI],[0,-IP,PHI],[0,-IP,-PHI],
+        [IP,PHI,0],[IP,-PHI,0],[-IP,PHI,0],[-IP,-PHI,0],
+        [PHI,0,IP],[PHI,0,-IP],[-PHI,0,IP],[-PHI,0,-IP]
+      ];
+      // 30 edges — vertex index pairs
+      var E = [
+        [0,12],[1,12],[2,13],[3,13],[4,14],[5,14],[6,15],[7,15],
+        [0,8],[1,9],[2,10],[3,11],[4,8],[5,9],[6,10],[7,11],
+        [0,16],[1,17],[2,16],[3,17],[4,18],[5,19],[6,18],[7,19],
+        [8,10],[9,11],[12,14],[13,15],[16,17],[18,19]
+      ];
+
+      var paths = document.querySelectorAll('#dodec path');
+      if (paths.length !== E.length) return;
+
+      var SCALE = 50;        // fits comfortably inside -100..100 viewBox
+      // Pitch (X-axis) and yaw (Y-axis) rotate at different, coprime
+      // periods so the tumble never repeats in a visible timespan.
+      var PITCH_PERIOD = 61;  // seconds per full revolution around X
+      var YAW_PERIOD   = 47;  // seconds per full revolution around Y
+      var START_PITCH  = 0.384; // ~22° — matches the static fallback pose
+      var START_YAW    = 0.489; // ~28° — matches the static fallback pose
+
+      var reduce = (typeof matchMedia === 'function') &&
+        matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function render(pitch, yaw) {
+        var cy = Math.cos(yaw), sy = Math.sin(yaw);
+        var cx = Math.cos(pitch), sx = Math.sin(pitch);
+        var proj = [];
+        for (var v = 0; v < V.length; v++) {
+          var x = V[v][0], y = V[v][1], z = V[v][2];
+          // X-rotation (pitch): rotate (y,z)
+          var y1 = y * cx - z * sx;
+          var z1 = y * sx + z * cx;
+          // Y-rotation (yaw): rotate (x,z)
+          var x2 = x * cy + z1 * sy;
+          // orthographic project (drop z), flip y for SVG
+          proj.push([x2 * SCALE, -y1 * SCALE]);
+        }
+        for (var k = 0; k < E.length; k++) {
+          var i = E[k][0], j = E[k][1];
+          var p1 = proj[i], p2 = proj[j];
+          paths[k].setAttribute(
+            'd',
+            'M' + p1[0].toFixed(2) + ' ' + p1[1].toFixed(2) +
+            'L' + p2[0].toFixed(2) + ' ' + p2[1].toFixed(2)
+          );
+        }
+      }
+
+      if (reduce) { render(START_PITCH, START_YAW); return; }
+
+      var start;
+      function tick(t) {
+        if (!start) start = t;
+        var elapsed = (t - start) / 1000;
+        var pitch = START_PITCH + (elapsed * 2 * Math.PI) / PITCH_PERIOD;
+        var yaw   = START_YAW   + (elapsed * 2 * Math.PI) / YAW_PERIOD;
+        render(pitch, yaw);
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+    ]]>
+  </script>
+</svg>

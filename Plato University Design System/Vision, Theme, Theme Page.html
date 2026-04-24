@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plato University — Vision, Theme, Theme Page</title>
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  /* =============================================================
+     Shell — shared across Vision / Theme / Theme Page
+     ============================================================= */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--fg-1); }
+
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in oklab, var(--cream) 92%, transparent);
+    backdrop-filter: saturate(120%);
+    -webkit-backdrop-filter: saturate(120%);
+    border-bottom: 1px solid var(--rule-softer);
+  }
+  .topnav-inner {
+    max-width: 1120px; margin: 0 auto;
+    padding: 14px 24px;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .brand {
+    display: inline-flex; align-items: baseline; gap: 4px;
+    font-family: var(--font-serif); font-size: 18px;
+    text-decoration: none; color: var(--ink);
+  }
+  .brand .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--terracotta); display: inline-block; margin-right: 8px; transform: translateY(-1px); }
+  .brand em { font-style: italic; color: var(--olive); font-weight: 500; }
+  .nav-tabs { display: flex; gap: 6px; margin-left: auto; }
+  .tab {
+    appearance: none; border: 0; background: transparent;
+    font-family: var(--font-sans); font-size: 12px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--fg-3); padding: 8px 14px; border-radius: 9999px;
+    cursor: pointer; transition: color 180ms var(--ease-out), background 180ms var(--ease-out);
+  }
+  .tab:hover { color: var(--fg-1); }
+  .tab[aria-selected="true"] { color: var(--ink); background: var(--cream-2); }
+  .tab .idx {
+    display: inline-block;
+    font-family: var(--font-serif); font-style: italic; font-weight: 500;
+    text-transform: none; letter-spacing: 0;
+    color: var(--terracotta); margin-right: 6px; font-size: 13px;
+  }
+
+  /* =============================================================
+     Page scaffolding
+     ============================================================= */
+  .page { display: none; }
+  .page.is-active { display: block; }
+
+  .wrap-sm  { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+  .wrap-md  { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .wrap-lg  { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .wrap-xl  { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  section { padding: 96px 0; }
+  @media (max-width: 720px) { section { padding: 72px 0; } }
+
+  .rule-line { height: 1px; background: var(--rule); max-width: 1040px; margin: 0 auto; }
+  .rule-soft { height: 1px; background: var(--rule-soft); max-width: 640px; margin: 24px auto; }
+
+  .eyebrow-block {
+    font-family: var(--font-sans); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.22em; font-weight: 500;
+    color: var(--olive); margin-bottom: 28px;
+  }
+  .eyebrow-block.is-terracotta { color: var(--terracotta); }
+  .eyebrow-block .bullet { margin: 0 10px; color: var(--fg-5); }
+
+  .lede { font-family: var(--font-serif); font-size: clamp(22px, 2.1vw + 12px, 30px); line-height: 1.35; color: var(--fg-2); }
+  .prose p { font-family: var(--font-serif); font-size: clamp(19px, 0.6vw + 16px, 22px); line-height: 1.65; color: var(--fg-2); margin: 0 0 24px; }
+  .prose p.small { font-family: var(--font-sans); font-size: 16px; line-height: 1.65; color: var(--fg-3); }
+  .prose em { color: var(--olive); font-style: italic; }
+  .prose em.terracotta { color: var(--terracotta); }
+  .prose strong { font-weight: 600; color: var(--ink); }
+
+  .annot { text-decoration: underline; text-decoration-style: dotted; text-decoration-color: var(--terracotta); text-decoration-thickness: 1.5px; text-underline-offset: 4px; cursor: help; }
+
+  .sig {
+    font-family: var(--font-serif); font-style: italic; font-size: 20px;
+    color: var(--fg-3); margin-top: 40px;
+  }
+  .sig .who { display: block; font-style: normal; font-size: 13px; font-family: var(--font-sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-4); margin-top: 6px; }
+
+  /* =============================================================
+     VISION
+     ============================================================= */
+  .vision-hero { padding-top: 140px; padding-bottom: 40px; }
+  .vision-hero h1 {
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: clamp(46px, 6.5vw + 10px, 96px);
+    line-height: 1.02; letter-spacing: -0.015em;
+    margin: 0 0 40px;
+  }
+  .vision-hero h1 em { color: var(--olive); font-style: italic; }
+  .vision-hero .attribution {
+    margin-top: 80px;
+    display: flex; align-items: center; gap: 16px;
+    font-family: var(--font-sans); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.22em; color: var(--fg-4);
+  }
+  .vision-hero .attribution .line { flex: 1; height: 1px; background: var(--rule-soft); }
+
+  .thesis-stack { display: grid; gap: 56px; }
+  .thesis-stack .num {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 56px; color: var(--terracotta); line-height: 1;
+    display: block; margin-bottom: 12px;
+  }
+  .thesis-stack h3 {
+    font-family: var(--font-serif); font-size: clamp(28px, 2.2vw + 16px, 38px);
+    line-height: 1.15; margin: 0 0 16px; font-weight: 500;
+  }
+
+  .pull-quote {
+    font-family: var(--font-serif); font-style: italic; font-weight: 500;
+    font-size: clamp(30px, 3vw + 16px, 48px); line-height: 1.22;
+    color: var(--ink); text-align: center;
+    padding: 24px 0;
+    position: relative;
+  }
+  .pull-quote::before, .pull-quote::after {
+    content: ""; display: block; width: 48px; height: 1px;
+    background: var(--terracotta); margin: 24px auto;
+  }
+  .pull-quote cite {
+    display: block; font-style: normal; font-family: var(--font-sans);
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--fg-4); margin-top: 20px;
+  }
+
+  .principles {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; gap: 20px;
+  }
+  .principles li {
+    display: grid; grid-template-columns: 32px 1fr; gap: 14px;
+    padding-bottom: 20px; border-bottom: 1px solid var(--rule-softer);
+  }
+  .principles li:last-child { border-bottom: 0; }
+  .principles .arrow {
+    font-family: var(--font-serif); color: var(--olive); font-size: 24px; line-height: 1; padding-top: 3px;
+  }
+  .principles b {
+    font-family: var(--font-serif); font-weight: 500; font-size: 21px; display: block; margin-bottom: 4px; color: var(--ink);
+  }
+  .principles span {
+    font-family: var(--font-sans); font-size: 15px; line-height: 1.6; color: var(--fg-3);
+  }
+
+  .inverse-block { background: var(--ink); color: var(--cream); padding: 128px 0; }
+  .inverse-block h2 {
+    font-family: var(--font-serif); font-size: clamp(40px, 4.5vw + 10px, 72px);
+    font-weight: 500; line-height: 1.08; letter-spacing: -0.01em;
+    margin: 0 0 48px; color: var(--cream);
+  }
+  .inverse-block h2 em { color: var(--terracotta); font-style: italic; }
+  .inverse-block p { color: color-mix(in oklab, var(--cream) 78%, transparent); font-family: var(--font-serif); font-size: clamp(20px, 0.8vw + 14px, 24px); line-height: 1.55; }
+  .inverse-block .small { font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 55%, transparent); }
+
+  /* =============================================================
+     THEME — the cohort theme poster / spec
+     ============================================================= */
+  .theme-hero {
+    padding: 120px 0 80px;
+    position: relative;
+  }
+  .theme-hero .meta-row {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 32px;
+    font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--fg-4);
+  }
+  .theme-hero .meta-row .dot-sm { width: 6px; height: 6px; background: var(--terracotta); border-radius: 50%; }
+  .theme-hero .supertitle {
+    font-family: var(--font-serif); font-style: italic; font-size: 22px; color: var(--olive);
+    margin-bottom: 16px;
+  }
+  .theme-hero h1 {
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: clamp(56px, 8vw + 10px, 124px);
+    line-height: 0.98; letter-spacing: -0.025em;
+    margin: 0 0 8px; color: var(--ink);
+  }
+  .theme-hero h1 em { color: var(--olive); font-style: italic; }
+  .theme-hero .subtitle {
+    font-family: var(--font-serif); font-weight: 500; font-style: italic;
+    font-size: clamp(28px, 2.6vw + 14px, 44px);
+    line-height: 1.12; color: var(--terracotta);
+    margin: 12px 0 0;
+  }
+  .theme-hero .caption {
+    margin-top: 56px; max-width: 560px;
+    font-family: var(--font-serif); font-size: 22px; line-height: 1.5; color: var(--fg-2);
+  }
+
+  .theme-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .theme-pillars > div { padding: 48px 40px; border-right: 1px solid var(--rule-softer); }
+  .theme-pillars > div:last-child { border-right: 0; }
+  .theme-pillars .kicker { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 20px; display: block; }
+  .theme-pillars .roman { font-family: var(--font-serif); font-style: italic; font-size: 48px; color: var(--olive); line-height: 1; margin-bottom: 20px; }
+  .theme-pillars h3 { font-family: var(--font-serif); font-size: 24px; font-weight: 500; line-height: 1.2; margin: 0 0 14px; }
+  .theme-pillars p { font-family: var(--font-sans); font-size: 14.5px; line-height: 1.65; color: var(--fg-3); margin: 0; }
+  @media (max-width: 860px) {
+    .theme-pillars { grid-template-columns: 1fr; }
+    .theme-pillars > div { border-right: 0; border-bottom: 1px solid var(--rule-softer); }
+    .theme-pillars > div:last-child { border-bottom: 0; }
+  }
+
+  /* Reading list */
+  .reading-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; border-top: 1px solid var(--rule-softer); }
+  .reading-list li {
+    display: grid; grid-template-columns: 40px 1fr auto;
+    gap: 24px; padding: 22px 0; align-items: baseline;
+    border-bottom: 1px solid var(--rule-softer);
+  }
+  .reading-list .n { font-family: var(--font-serif); font-style: italic; color: var(--terracotta); font-size: 18px; }
+  .reading-list .t { font-family: var(--font-serif); font-size: 21px; line-height: 1.35; color: var(--ink); }
+  .reading-list .t .sub { display: block; font-family: var(--font-sans); font-size: 13px; color: var(--fg-4); margin-top: 2px; }
+  .reading-list .a { font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-4); white-space: nowrap; }
+
+  /* Question list */
+  .questions { display: grid; gap: 0; }
+  .questions .q {
+    padding: 32px 0;
+    border-top: 1px solid var(--rule-softer);
+    display: grid; grid-template-columns: 60px 1fr; gap: 24px; align-items: baseline;
+  }
+  .questions .q:last-child { border-bottom: 1px solid var(--rule-softer); }
+  .questions .q .num { font-family: var(--font-serif); font-style: italic; font-size: 28px; color: var(--olive); }
+  .questions .q .text { font-family: var(--font-serif); font-size: clamp(22px, 1.4vw + 14px, 28px); line-height: 1.3; color: var(--ink); }
+
+  /* Cohort shape */
+  .shape-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .shape-grid .cell {
+    padding: 24px;
+    background: var(--cream-2);
+    border: 1px solid var(--rule-softer);
+    border-radius: var(--radius-box);
+  }
+  .shape-grid .k { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--olive); margin-bottom: 16px; }
+  .shape-grid .v { font-family: var(--font-serif); font-size: 26px; line-height: 1.2; color: var(--ink); }
+  .shape-grid .v em { color: var(--terracotta); font-style: italic; }
+  .shape-grid .foot { font-family: var(--font-sans); font-size: 13px; color: var(--fg-3); margin-top: 12px; line-height: 1.55; }
+  @media (max-width: 860px) { .shape-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .shape-grid { grid-template-columns: 1fr; } }
+
+  /* =============================================================
+     THEME PAGE — public-facing landing-style
+     ============================================================= */
+  .tp-hero {
+    position: relative;
+    padding: 120px 0 80px;
+    overflow: hidden;
+  }
+  .tp-hero .kicker {
+    font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--terracotta);
+    margin-bottom: 24px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .tp-hero .kicker::before { content: ""; width: 24px; height: 1px; background: var(--terracotta); display: inline-block; }
+  .tp-hero h1 {
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: clamp(44px, 5.5vw + 12px, 82px);
+    line-height: 1.02; letter-spacing: -0.015em;
+    margin: 0 0 32px;
+  }
+  .tp-hero h1 em { color: var(--olive); font-style: italic; }
+  .tp-hero .tag {
+    font-family: var(--font-serif); font-size: clamp(22px, 1.2vw + 14px, 30px);
+    line-height: 1.4; color: var(--fg-2); max-width: 700px;
+  }
+  .tp-hero .meta {
+    margin-top: 40px; display: flex; gap: 36px; flex-wrap: wrap;
+    font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-4);
+  }
+  .tp-hero .meta b { color: var(--ink); font-weight: 600; }
+
+  .tp-why {
+    display: grid; grid-template-columns: 1fr 2fr; gap: 80px;
+    align-items: start;
+  }
+  .tp-why h2 { font-family: var(--font-serif); font-weight: 500; font-size: clamp(32px, 2.4vw + 14px, 44px); line-height: 1.1; margin: 0; }
+  .tp-why h2 em { color: var(--olive); font-style: italic; }
+  .tp-why .body p { font-family: var(--font-serif); font-size: 20px; line-height: 1.6; color: var(--fg-2); margin: 0 0 20px; }
+  .tp-why .body p:last-child { margin-bottom: 0; }
+  @media (max-width: 860px) { .tp-why { grid-template-columns: 1fr; gap: 36px; } }
+
+  /* Three moves */
+  .moves { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px; }
+  .moves .move {
+    padding: 32px; background: var(--cream); border: 1px solid var(--rule-softer); border-radius: var(--radius-lg);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .moves .move .n { font-family: var(--font-serif); font-style: italic; font-size: 44px; color: var(--terracotta); line-height: 1; }
+  .moves .move h3 { font-family: var(--font-serif); font-size: 24px; font-weight: 500; margin: 0; line-height: 1.2; }
+  .moves .move p { font-family: var(--font-sans); font-size: 15px; line-height: 1.65; color: var(--fg-3); margin: 0; }
+  .moves .move .kicker { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--olive); }
+  @media (max-width: 860px) { .moves { grid-template-columns: 1fr; } }
+
+  /* Three lenses — large landscape-card spread */
+  .lenses { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .lenses .lens {
+    padding: 40px 28px 36px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-xl);
+    display: flex; flex-direction: column; gap: 20px;
+    min-height: 360px;
+  }
+  .lenses .lens.dark { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .lenses .lens.dark h3 { color: var(--cream); }
+  .lenses .lens.dark p { color: color-mix(in oklab, var(--cream) 75%, transparent); }
+  .lenses .lens.dark .tag { color: var(--terracotta); }
+  .lenses .lens .tag { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--olive); }
+  .lenses .lens h3 { font-family: var(--font-serif); font-size: 30px; font-weight: 500; line-height: 1.15; margin: 0; }
+  .lenses .lens h3 em { font-style: italic; color: var(--terracotta); }
+  .lenses .lens p { font-family: var(--font-sans); font-size: 15px; line-height: 1.7; color: var(--fg-3); margin: 0; }
+  .lenses .lens .roman { font-family: var(--font-serif); font-style: italic; font-size: 64px; line-height: 1; color: var(--olive); margin-top: auto; }
+  .lenses .lens.dark .roman { color: var(--terracotta); }
+  @media (max-width: 860px) { .lenses { grid-template-columns: 1fr; } }
+
+  /* Quotebar */
+  .quotebar {
+    background: var(--cream-2);
+    padding: 80px 0;
+    border-top: 1px solid var(--rule-softer);
+    border-bottom: 1px solid var(--rule-softer);
+  }
+  .quotebar blockquote {
+    margin: 0;
+    font-family: var(--font-serif); font-weight: 500; font-style: italic;
+    font-size: clamp(28px, 3vw + 12px, 44px);
+    line-height: 1.25; color: var(--ink);
+  }
+  .quotebar cite {
+    display: block; font-style: normal; font-family: var(--font-sans);
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--fg-4); margin-top: 28px;
+  }
+
+  /* Apply CTA (ink) */
+  .cta {
+    background: var(--ink); color: var(--cream);
+    padding: 120px 0;
+  }
+  .cta h2 { font-family: var(--font-serif); font-size: clamp(36px, 4vw + 10px, 60px); font-weight: 500; color: var(--cream); line-height: 1.08; margin: 0 0 24px; }
+  .cta h2 em { color: var(--terracotta); font-style: italic; }
+  .cta p { font-family: var(--font-serif); font-size: 21px; line-height: 1.5; color: color-mix(in oklab, var(--cream) 72%, transparent); margin: 0 0 40px; max-width: 580px; }
+  .cta .btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .cta a.btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px; border-radius: var(--radius-lg);
+    font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+    letter-spacing: 0.04em; text-decoration: none; transition: opacity 180ms var(--ease-out);
+  }
+  .cta a.btn:hover { opacity: 0.9; }
+  .cta a.btn.primary { background: var(--terracotta); color: var(--cream); }
+  .cta a.btn.ghost { background: transparent; color: var(--cream); border: 1px solid color-mix(in oklab, var(--cream) 30%, transparent); }
+  .cta a.btn .arr { font-family: var(--font-serif); font-style: italic; font-size: 18px; transform: translateY(-1px); }
+  .cta .foot { font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 50%, transparent); margin-top: 48px; }
+
+  footer.site {
+    padding: 56px 0 72px;
+    border-top: 1px solid var(--rule-softer);
+    font-family: var(--font-sans); font-size: 13px; color: var(--fg-4);
+  }
+  footer.site .row { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  footer.site em { font-style: italic; color: var(--olive); }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     Top nav with three tabs (Vision / Theme / Theme page)
+     ========================================================= -->
+<nav class="topnav" role="tablist" aria-label="Document sections">
+  <div class="topnav-inner">
+    <a class="brand" href="#vision">
+      <span class="dot" aria-hidden="true"></span>
+      Plato <em>University</em>
+    </a>
+    <div class="nav-tabs">
+      <button class="tab" role="tab" data-tab="vision" aria-selected="true">
+        <span class="idx">i.</span>Vision
+      </button>
+      <button class="tab" role="tab" data-tab="theme" aria-selected="false">
+        <span class="idx">ii.</span>Theme
+      </button>
+      <button class="tab" role="tab" data-tab="theme-page" aria-selected="false">
+        <span class="idx">iii.</span>Theme page
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- =========================================================
+     PAGE 1 — VISION
+     A long-form founder's letter. Editorial print, not a pitch.
+     ========================================================= -->
+<main class="page is-active" id="page-vision">
+
+  <section class="vision-hero">
+    <div class="wrap-lg">
+      <p class="eyebrow-block is-terracotta">The vision <span class="bullet">·</span> 2026 — 2036</p>
+      <h1>
+        We are still running a school built for the factory floor.<br>
+        <em>We're building the one that comes after.</em>
+      </h1>
+      <p class="lede" style="max-width: 720px;">
+        Plato University is a one-year academy for the AI era. Philosophy first. Portfolio last.
+        It is small, city-rooted, unapologetically literary, and — for the right kind of mind —
+        the most honest schooling available in the decade ahead.
+      </p>
+      <div class="attribution">
+        <span>A letter from the founder</span>
+        <span class="line"></span>
+        <span>Amsterdam · Spring 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top: 40px;">
+    <div class="wrap-md prose">
+      <p>
+        The modern university was built to produce a very particular kind of person:
+        a reliable employee for the industrial economy. Rows, bells, grades, majors,
+        and the <span class="annot">Carnegie Unit</span> — these aren't timeless
+        features of education. They're nineteenth-century inventions, designed for a
+        nineteenth-century problem.
+      </p>
+      <p>
+        That problem has been solved. The economy it was built for is already dissolving.
+        What replaces it is not a new syllabus. It is a different <em>shape</em>.
+      </p>
+      <p>
+        We think the replacement looks less like the research university and more like
+        <span class="annot">Plato's Academy</span> — a small community of people reading
+        primary sources, asking hard questions, defending their work in front of one
+        another, and walking home through a city they know by name.
+      </p>
+    </div>
+  </section>
+
+  <div class="rule-line" style="margin: 40px auto 24px;"></div>
+
+  <section>
+    <div class="wrap-md">
+      <p class="eyebrow-block">The thesis, in four movements</p>
+      <div class="thesis-stack">
+
+        <div>
+          <span class="num">i.</span>
+          <h3>AI has made "how to do the job" the cheap part.</h3>
+          <div class="prose">
+            <p>
+              Within a decade, almost every technical skill that carries a premium today
+              will be a commodity. What remains rare — and worth paying for — is the
+              capacity to <em>judge</em> what is worth doing, to <em>argue</em> for it, and
+              to <em>make</em> it well. That is not a technical skill. That is a
+              philosophical one.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <span class="num">ii.</span>
+          <h3>The answer is not more job-training. It is less.</h3>
+          <div class="prose">
+            <p>
+              Bootcamps, nanodegrees, and micro-credentials all double down on the premise
+              the industrial university got wrong — that the point of school is employability.
+              That premise was always fragile. AI just made it untenable.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <span class="num">iii.</span>
+          <h3>Cities are the campus.</h3>
+          <div class="prose">
+            <p>
+              A university does not need a quad. It needs a room with chairs arranged in a
+              circle, a seminar that meets weekly, and a city that can hold both. Amsterdam
+              is hub one. Every city with five or more students becomes its own hub. This is
+              not online school. This is online reading, in-person thinking.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <span class="num">iv.</span>
+          <h3>We graduate thinkers with a portfolio and a defended capstone.</h3>
+          <div class="prose">
+            <p>
+              Not a diploma. Not a transcript. A body of work and a half-hour of hard
+              questions survived in front of a room of mentors. We think this is a
+              <em class="terracotta">better</em> credential than the one our institutions
+              still sell. In five years we expect the market to agree.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="rule-line"></div>
+
+  <section>
+    <div class="wrap-md">
+      <blockquote class="pull-quote">
+        Learn to think before you learn to work.
+        <cite>The tagline, and the whole program in seven words.</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <div class="rule-line"></div>
+
+  <section>
+    <div class="wrap-md">
+      <p class="eyebrow-block">What we're building</p>
+      <ul class="principles">
+        <li>
+          <span class="arrow">→</span>
+          <div><b>Philosophy first, portfolio last.</b><span>The first trimester reads. The last trimester ships.</span></div>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <div><b>Primary sources, not summaries.</b><span>We read Plato, Montaigne, Seneca, Freire, Illich, Gatto, hooks — not commentaries on them.</span></div>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <div><b>No managers, only mentors.</b><span>Every student has a working mentor in the city they live in. No one reports to anyone.</span></div>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <div><b>All ages, all edges.</b><span>Seventeen or seventy — we take the mind, not the résumé.</span></div>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <div><b>AI as a tool, not a master.</b><span>We use AI hard. We are not ruled by it. Students leave knowing the difference.</span></div>
+        </li>
+        <li>
+          <span class="arrow">→</span>
+          <div><b>No debt, no diploma.</b><span>One affordable tuition. One defended capstone. No Carnegie Unit. And that's the point.</span></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Against/For (inverted) -->
+  <section class="inverse-block">
+    <div class="wrap-md">
+      <p class="small" style="margin-bottom: 32px;">What we are against · what we are for</p>
+      <h2>
+        We are against credentialism, debt, early specialization, and the
+        Prussian bell. We are for the <em>examined life</em>, made portable.
+      </h2>
+      <p>
+        The industrial university has an enemy: itself, eighty years on. Ours has an
+        enemy too — the quiet assumption that a young person should spend a decade of
+        their life buying the right to be employable. We reject it. We think you can
+        build a better life, and a better body of work, in one year of serious reading
+        and serious making, inside the city you already live in.
+      </p>
+      <p style="margin-top: 24px;">
+        That is the whole bet.
+      </p>
+      <div class="sig">
+        — with conviction, the founding team
+        <span class="who">Plato University · Amsterdam</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div class="wrap-lg row">
+      <span>© 2026 Plato <em>University</em>. Amsterdam.</span>
+      <span>Vision &nbsp;·&nbsp; Theme &nbsp;·&nbsp; Apply</span>
+    </div>
+  </footer>
+
+</main>
+
+<!-- =========================================================
+     PAGE 2 — THEME
+     The intellectual theme of the founding cohort.
+     More "cohort poster / curricular spec" than marketing.
+     ========================================================= -->
+<main class="page" id="page-theme">
+
+  <section class="theme-hero">
+    <div class="wrap-lg">
+      <div class="meta-row">
+        <span class="dot-sm"></span>
+        <span>Founding cohort</span>
+        <span style="color:var(--fg-5);">·</span>
+        <span>Sep 2026 — Jun 2027</span>
+        <span style="color:var(--fg-5);">·</span>
+        <span>Amsterdam</span>
+      </div>
+      <p class="supertitle">The theme of the year —</p>
+      <h1>Thinking in the<br>Age of the <em>Machine.</em></h1>
+      <p class="subtitle">What does it mean to have a mind, now that minds can be bought by the hour?</p>
+      <p class="caption">
+        Every Plato University cohort is organized around a single question that runs
+        through the whole year. The founding cohort asks the one we think the decade
+        will demand an answer to.
+      </p>
+    </div>
+  </section>
+
+  <div class="theme-pillars">
+    <div>
+      <div class="roman">i.</div>
+      <span class="kicker">Trimester one</span>
+      <h3>What is a mind?</h3>
+      <p>
+        Plato, Descartes, Ryle, Turing, Searle, Dennett. The oldest question, read
+        cleanly, in the order it actually developed. We do not skip to the good part.
+      </p>
+    </div>
+    <div>
+      <div class="roman">ii.</div>
+      <span class="kicker">Trimester two</span>
+      <h3>What is a machine?</h3>
+      <p>
+        From Babbage's engine to the transformer. Not a survey — a close reading of
+        the four papers and two books that explain why our moment exists, and what it
+        owes to the ones before it.
+      </p>
+    </div>
+    <div>
+      <div class="roman">iii.</div>
+      <span class="kicker">Trimester three</span>
+      <h3>What is a life, now that the two can be confused?</h3>
+      <p>
+        The practical trimester. Every student ships a project defending an
+        answer — an essay, a tool, a company, a piece of writing, a syllabus.
+        Their capstone.
+      </p>
+    </div>
+  </div>
+
+  <!-- 12 questions of the year -->
+  <section>
+    <div class="wrap-md">
+      <p class="eyebrow-block is-terracotta">The twelve questions</p>
+      <h2 style="font-family: var(--font-serif); font-weight: 500; font-size: clamp(32px, 2.6vw + 14px, 44px); line-height: 1.12; margin: 0 0 48px;">
+        Each seminar answers one.
+      </h2>
+      <div class="questions">
+        <div class="q"><span class="num">i.</span><span class="text">Can a machine think? What would it take to know?</span></div>
+        <div class="q"><span class="num">ii.</span><span class="text">Is the mind a kind of computation, or only sometimes?</span></div>
+        <div class="q"><span class="num">iii.</span><span class="text">What is judgment, and can it be automated?</span></div>
+        <div class="q"><span class="num">iv.</span><span class="text">Is language a tool we built, or a house we live in?</span></div>
+        <div class="q"><span class="num">v.</span><span class="text">What does it mean to know something, versus to <em style="color:var(--terracotta);font-style:italic;">retrieve</em> it?</span></div>
+        <div class="q"><span class="num">vi.</span><span class="text">Who owns a thought produced with a machine's help?</span></div>
+        <div class="q"><span class="num">vii.</span><span class="text">What is a good life when most labor becomes optional?</span></div>
+        <div class="q"><span class="num">viii.</span><span class="text">Is education the transfer of skills, or the formation of a person?</span></div>
+        <div class="q"><span class="num">ix.</span><span class="text">What does a city owe its young — and what do the young owe the city?</span></div>
+        <div class="q"><span class="num">x.</span><span class="text">Should we trust a mind we did not raise?</span></div>
+        <div class="q"><span class="num">xi.</span><span class="text">What is the honest work of a human being in 2036?</span></div>
+        <div class="q"><span class="num">xii.</span><span class="text">Having read, argued, and built — what will you defend?</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule-line"></div>
+
+  <!-- Reading list -->
+  <section>
+    <div class="wrap-md">
+      <p class="eyebrow-block">The founding reading list</p>
+      <h2 style="font-family: var(--font-serif); font-weight: 500; font-size: clamp(32px, 2.6vw + 14px, 44px); line-height: 1.12; margin: 0 0 40px;">
+        Twelve books. Read <em style="color:var(--olive);font-style:italic;">closely</em>. Discussed weekly.
+      </h2>
+      <ul class="reading-list">
+        <li><span class="n">i.</span><span class="t">Phaedrus<span class="sub">Plato — c. 370 BCE</span></span><span class="a">Term I</span></li>
+        <li><span class="n">ii.</span><span class="t">Meditations on First Philosophy<span class="sub">Descartes — 1641</span></span><span class="a">Term I</span></li>
+        <li><span class="n">iii.</span><span class="t">The Concept of Mind<span class="sub">Gilbert Ryle — 1949</span></span><span class="a">Term I</span></li>
+        <li><span class="n">iv.</span><span class="t">Computing Machinery and Intelligence<span class="sub">Alan Turing — 1950</span></span><span class="a">Term I</span></li>
+        <li><span class="n">v.</span><span class="t">The Structure of Scientific Revolutions<span class="sub">Thomas Kuhn — 1962</span></span><span class="a">Term II</span></li>
+        <li><span class="n">vi.</span><span class="t">Tools for Conviviality<span class="sub">Ivan Illich — 1973</span></span><span class="a">Term II</span></li>
+        <li><span class="n">vii.</span><span class="t">Pedagogy of the Oppressed<span class="sub">Paulo Freire — 1968</span></span><span class="a">Term II</span></li>
+        <li><span class="n">viii.</span><span class="t">A Pattern Language<span class="sub">Christopher Alexander — 1977</span></span><span class="a">Term II</span></li>
+        <li><span class="n">ix.</span><span class="t">The Craftsman<span class="sub">Richard Sennett — 2008</span></span><span class="a">Term III</span></li>
+        <li><span class="n">x.</span><span class="t">Teaching to Transgress<span class="sub">bell hooks — 1994</span></span><span class="a">Term III</span></li>
+        <li><span class="n">xi.</span><span class="t">Attention and Interpretation<span class="sub">Wilfred Bion — 1970</span></span><span class="a">Term III</span></li>
+        <li><span class="n">xii.</span><span class="t">— one book of your own choosing, defended<span class="sub">Student-selected capstone text</span></span><span class="a">Term III</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="rule-line"></div>
+
+  <!-- Shape of the year -->
+  <section>
+    <div class="wrap-lg">
+      <p class="eyebrow-block">The shape of the year</p>
+      <h2 style="font-family: var(--font-serif); font-weight: 500; font-size: clamp(32px, 2.6vw + 14px, 44px); line-height: 1.12; margin: 0 0 40px;">
+        Four months each. One theme throughout.
+      </h2>
+      <div class="shape-grid">
+        <div class="cell">
+          <div class="k">Students</div>
+          <div class="v">Thirty <em>— max.</em></div>
+          <div class="foot">Seminar-sized. If the room doesn't fit a conversation, the number is wrong.</div>
+        </div>
+        <div class="cell">
+          <div class="k">Seminars</div>
+          <div class="v">One hundred <em>and forty-four.</em></div>
+          <div class="foot">Twelve per month, twelve months. One question per seminar.</div>
+        </div>
+        <div class="cell">
+          <div class="k">Mentors</div>
+          <div class="v">One <em>per student.</em></div>
+          <div class="foot">A working adult, in your city, whose job is not to grade you.</div>
+        </div>
+        <div class="cell">
+          <div class="k">Capstone</div>
+          <div class="v">One <em>defended publicly.</em></div>
+          <div class="foot">Thirty minutes of questions in front of the room. Pass or not.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule-line"></div>
+
+  <section>
+    <div class="wrap-md">
+      <blockquote class="pull-quote">
+        The theme is not a slogan. It is the <em style="color:var(--olive);font-style:italic;">only question</em> on the syllabus.
+        <cite>— Reading notes, seminar one.</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div class="wrap-lg row">
+      <span>© 2026 Plato <em>University</em>. Amsterdam.</span>
+      <span>Cohort 01 · "Thinking in the Age of the Machine"</span>
+    </div>
+  </footer>
+
+</main>
+
+<!-- =========================================================
+     PAGE 3 — THEME PAGE
+     A public-facing landing page for the theme,
+     aimed at prospective students. Sits alongside /apply.
+     ========================================================= -->
+<main class="page" id="page-theme-page">
+
+  <section class="tp-hero">
+    <div class="wrap-lg">
+      <span class="kicker">Cohort 01 <span style="letter-spacing:0.3em;opacity:0.6;">&nbsp;·&nbsp;</span> September 2026</span>
+      <h1>The question the year is organized around is<br>the question <em>of</em> the year.</h1>
+      <p class="tag">
+        For the founding cohort of Plato University, we chose one. It runs through every
+        seminar, every reading, every mentor conversation, and every capstone defense.
+        You will leave with a <em style="color:var(--olive);font-style:italic;">defended</em> answer.
+      </p>
+      <div class="meta">
+        <span>Theme <b style="color:var(--ink);">Thinking in the Age of the Machine</b></span>
+        <span>Discipline <b style="color:var(--ink);">Philosophy, close reading, practice</b></span>
+        <span>Seats <b style="color:var(--ink);">30</b></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule-line"></div>
+
+  <section>
+    <div class="wrap-xl tp-why">
+      <h2>Why <em>this</em><br>question,<br>this year.</h2>
+      <div class="body">
+        <p>
+          Most schools organize the year around a calendar. We organize it around a problem.
+          The problem of the founding cohort is the one we think will define the decade: the
+          quiet reshaping of what it means to have a mind, now that minds can be hired by
+          the hour.
+        </p>
+        <p>
+          This is not a technology question. It is an older question — asked by
+          <span class="annot">Plato</span>, <span class="annot">Descartes</span>, and
+          <span class="annot">Turing</span>, each in the vocabulary of their own century.
+          It's our turn.
+        </p>
+        <p>
+          You will not be taught the answer. You will be given the texts, the room, the
+          mentors, and the year — and you will be asked to arrive at one, defend it, and
+          live with the consequences.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three moves of the theme -->
+  <section>
+    <div class="wrap-xl">
+      <p class="eyebrow-block is-terracotta" style="text-align:center; margin-bottom: 12px;">How the theme moves</p>
+      <h2 style="text-align:center; font-family: var(--font-serif); font-weight: 500; font-size: clamp(32px, 2.6vw + 14px, 44px); line-height: 1.12; margin: 0 auto; max-width: 720px;">
+        Three trimesters. Three moves. One argument.
+      </h2>
+      <div class="moves">
+        <div class="move">
+          <span class="kicker">Trimester I · Foundations</span>
+          <span class="n">01</span>
+          <h3>Read the mind.</h3>
+          <p>
+            Four months with the thinkers who defined what a mind is — from Plato's
+            chariot to Turing's imitation game. Close reading, weekly seminars, short
+            written arguments.
+          </p>
+        </div>
+        <div class="move">
+          <span class="kicker">Trimester II · The world as it is</span>
+          <span class="n">02</span>
+          <h3>Read the machine.</h3>
+          <p>
+            Four months with the thinkers who explain our moment — Illich on tools,
+            Kuhn on paradigms, Freire on learning, Sennett on craft. The books that
+            make sense of the present.
+          </p>
+        </div>
+        <div class="move">
+          <span class="kicker">Trimester III · Ship something</span>
+          <span class="n">03</span>
+          <h3>Defend an answer.</h3>
+          <p>
+            Four months to make the thing you will stake your year on — an essay, a
+            tool, a company, a syllabus, a book. Defended publicly in front of the
+            cohort and mentors.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule-line"></div>
+
+  <!-- Three lenses spread -->
+  <section>
+    <div class="wrap-xl">
+      <p class="eyebrow-block">Three lenses on the theme</p>
+      <h2 style="font-family: var(--font-serif); font-weight: 500; font-size: clamp(32px, 2.6vw + 14px, 44px); line-height: 1.12; margin: 0 0 40px; max-width: 720px;">
+        We don't ask the question once. We ask it from three angles.
+      </h2>
+      <div class="lenses">
+        <div class="lens">
+          <span class="tag">Philosophical</span>
+          <h3>What kind of thing <em>is</em> a mind?</h3>
+          <p>
+            The metaphysics of thought. Consciousness, judgment, qualia, the mereology of
+            mental life. We read the canon straight — no secondary literature, no shortcuts.
+          </p>
+          <div class="roman">i.</div>
+        </div>
+        <div class="lens dark">
+          <span class="tag">Historical</span>
+          <h3>How did <em>we</em> get here?</h3>
+          <p>
+            A close reading of the four papers and two books that explain how the
+            transformer became a cultural event. Not a timeline — a genealogy. You will
+            understand the machines, not just use them.
+          </p>
+          <div class="roman">ii.</div>
+        </div>
+        <div class="lens">
+          <span class="tag">Practical</span>
+          <h3>What should I <em>do</em> about it?</h3>
+          <p>
+            Every student answers this concretely. A thing built in public, defended in
+            front of the cohort, and mentored by a working adult in the city you live in.
+            This is the trimester that changes your career.
+          </p>
+          <div class="roman">iii.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote bar -->
+  <section class="quotebar">
+    <div class="wrap-md" style="text-align:center;">
+      <blockquote>
+        "The unexamined life is not worth living."<br>
+        <span style="color:var(--terracotta);">So examine one.</span>
+      </blockquote>
+      <cite>Socrates, and the syllabus.</cite>
+    </div>
+  </section>
+
+  <!-- Inverse CTA -->
+  <section class="cta">
+    <div class="wrap-md">
+      <p style="font-family:var(--font-sans); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta); margin: 0 0 24px;">Applications open <span style="color: color-mix(in oklab, var(--cream) 60%, transparent); margin-left:8px;">— through 30 June 2026</span></p>
+      <h2>Thirty seats.<br>One <em>year.</em> One question.</h2>
+      <p>
+        Applications are read in order received. There is no essay prompt — we will send
+        you one after you sign up. There is no application fee.
+      </p>
+      <div class="btn-row">
+        <a href="#apply" class="btn primary">Apply to cohort 01 <span class="arr">→</span></a>
+        <a href="#vision" class="btn ghost" data-goto="vision">Read the full vision</a>
+      </div>
+      <div class="foot">Amsterdam &nbsp;·&nbsp; Rotterdam &nbsp;·&nbsp; Berlin &nbsp;·&nbsp; Lisbon &nbsp;·&nbsp; Tallinn &nbsp;·&nbsp; +your city, if five of you apply</div>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div class="wrap-lg row">
+      <span>© 2026 Plato <em>University</em>. Amsterdam.</span>
+      <span>The theme page · Cohort 01</span>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  // ---------------------------------------------------------
+  // Tab switcher — persist selection in localStorage.
+  // ---------------------------------------------------------
+  const tabs  = document.querySelectorAll('.tab');
+  const pages = document.querySelectorAll('.page');
+  const KEY = 'plato-vt-tab';
+
+  function go(tab) {
+    tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.tab === tab));
+    pages.forEach(p => p.classList.toggle('is-active', p.id === 'page-' + tab));
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    try { localStorage.setItem(KEY, tab); } catch(e){}
+  }
+
+  tabs.forEach(t => t.addEventListener('click', () => go(t.dataset.tab)));
+
+  document.querySelectorAll('[data-goto]').forEach(a => {
+    a.addEventListener('click', e => { e.preventDefault(); go(a.dataset.goto); });
+  });
+
+  try {
+    const saved = localStorage.getItem(KEY);
+    if (saved && ['vision','theme','theme-page'].includes(saved)) go(saved);
+  } catch(e){}
+</script>
+
+</body>
+</html>

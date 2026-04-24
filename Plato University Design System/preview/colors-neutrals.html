@@ -1,0 +1,27 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_shared.css">
+<style>
+.grid { grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.sw { height: 72px; border-radius: 6px; display: flex; flex-direction: column; justify-content: flex-end; padding: 8px 10px; font-family: var(--font-sans); font-size: 10px; border: 1px solid var(--rule-softer); }
+.sw b { display:block; font-weight: 600; font-size: 11px; }
+.sw span { font-family: var(--font-mono); opacity: 0.7; font-size: 9px; }
+.title { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.18em; font-size: 10px; color: var(--fg-4); margin-bottom: 8px; }
+</style></head>
+<body>
+<div class="title">Cream surfaces</div>
+<div class="grid">
+  <div class="sw" style="background:#faf7f2;"><b>base</b><span>#FAF7F2</span></div>
+  <div class="sw" style="background:#f2ede3;"><b>sunk</b><span>#F2EDE3</span></div>
+  <div class="sw" style="background:#e8e0d0;"><b>sunk-2</b><span>#E8E0D0</span></div>
+  <div class="sw" style="background:#1a1a1a;color:#faf7f2;border-color:transparent;"><b>inverse</b><span>#1A1A1A</span></div>
+  <div class="sw" style="background:rgba(26,26,26,0.06);"><b>rule-softer</b><span>ink / 6%</span></div>
+</div>
+<div class="title" style="margin-top:14px;">Ink opacity scale (on cream)</div>
+<div class="grid">
+  <div class="sw" style="background:rgba(26,26,26,1);color:#faf7f2;"><b>fg-1</b><span>100%</span></div>
+  <div class="sw" style="background:rgba(26,26,26,0.85);color:#faf7f2;"><b>fg-2</b><span>85%</span></div>
+  <div class="sw" style="background:rgba(26,26,26,0.70);color:#faf7f2;"><b>fg-3</b><span>70%</span></div>
+  <div class="sw" style="background:rgba(26,26,26,0.55);color:#faf7f2;"><b>fg-4</b><span>55%</span></div>
+  <div class="sw" style="background:rgba(26,26,26,0.35);color:#faf7f2;"><b>fg-5</b><span>35%</span></div>
+</div>
+</body></html>

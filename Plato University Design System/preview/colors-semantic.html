@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_shared.css">
+<style>
+.list { display: grid; gap: 6px; }
+.row { display: grid; grid-template-columns: 120px 1fr 140px; align-items: center; gap: 14px; padding: 8px 12px; border-radius: 6px; font-family: var(--font-sans); font-size: 12px; }
+.tok { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); }
+.use { font-size: 11px; color: var(--fg-3); }
+.chip { width: 26px; height: 26px; border-radius: 4px; display: inline-block; border: 1px solid var(--rule-softer); }
+.r { display: flex; align-items: center; gap: 10px; }
+</style></head>
+<body>
+<div class="list">
+  <div class="row"><div class="r"><span class="chip" style="background:#6b7a4f"></span><b>Primary / Success / Info</b></div><span class="tok">--olive #6B7A4F</span><span class="use">Eyebrows, italic marks</span></div>
+  <div class="row"><div class="r"><span class="chip" style="background:#b8593a"></span><b>Secondary / Accent / Warn / Error</b></div><span class="tok">--terracotta #B8593A</span><span class="use">CTAs, emphasis, focus ring</span></div>
+  <div class="row"><div class="r"><span class="chip" style="background:#1a1a1a"></span><b>Neutral (inverse surface)</b></div><span class="tok">--ink #1A1A1A</span><span class="use">Apply form, dark blocks</span></div>
+  <div class="row"><div class="r"><span class="chip" style="background:#faf7f2"></span><b>Base</b></div><span class="tok">--cream #FAF7F2</span><span class="use">Page background</span></div>
+  <div class="row"><div class="r"><span class="chip" style="background:rgba(255,210,80,0.48)"></span><b>Highlight</b></div><span class="tok">rgba(255,210,80,.48)</span><span class="use">Scroll-triggered sweep</span></div>
+</div>
+</body></html>
