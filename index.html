@@ -406,6 +406,73 @@
         margin-right: 0.4rem;
         vertical-align: middle;
       }
+
+      /* ── AEI-style occupational bar chart ───────────────────────── */
+      .aei-chart {
+        display: grid;
+        grid-template-columns: minmax(11rem, 16rem) 1fr auto;
+        row-gap: 0.65rem;
+        column-gap: 1rem;
+        align-items: center;
+        font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+        font-size: 0.85rem;
+      }
+      .aei-chart .aei-label {
+        color: rgba(26, 26, 26, 0.82);
+        line-height: 1.25;
+      }
+      .aei-chart .aei-bar-track {
+        position: relative;
+        height: 0.7rem;
+        background: rgba(26, 26, 26, 0.06);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .aei-chart .aei-bar-fill {
+        position: absolute;
+        top: 0; left: 0; bottom: 0;
+        background: #b8593a;
+        border-radius: 2px;
+        width: 0;
+        transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .aei-chart .aei-bar-fill.is-secondary { background: #6b7a4f; }
+      .aei-chart .aei-value {
+        font-variant-numeric: tabular-nums;
+        font-weight: 600;
+        color: rgba(26, 26, 26, 0.75);
+        min-width: 2.6rem;
+        text-align: right;
+      }
+      @media (max-width: 640px) {
+        .aei-chart { grid-template-columns: 1fr auto; row-gap: 0.3rem; }
+        .aei-chart .aei-label { grid-column: 1 / -1; font-size: 0.8rem; }
+        .aei-chart .aei-bar-track { grid-column: 1 / 2; }
+        .aei-chart .aei-value { grid-column: 2 / 3; }
+      }
+
+      /* Augmentation vs automation split bar */
+      .aei-split {
+        display: flex;
+        height: 2.4rem;
+        border-radius: 3px;
+        overflow: hidden;
+        font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 0.8rem;
+        letter-spacing: 0.03em;
+        color: #faf7f2;
+      }
+      .aei-split > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0.75rem;
+        white-space: nowrap;
+      }
+      .aei-split .aug { background: #6b7a4f; }
+      .aei-split .aut { background: #b8593a; }
+      .aei-split .oth { background: rgba(26, 26, 26, 0.25); color: rgba(250, 247, 242, 0.85); }
     </style>
   </head>
 
@@ -502,52 +569,144 @@
       <!-- The data: automation risk -->
       <section id="automation-data" class="mx-auto max-w-5xl px-6 py-20 md:py-32">
         <p class="font-sans text-xs uppercase tracking-[0.2em] text-terracotta mb-6">
-          The data · why this matters
+          The data · what is actually happening
         </p>
         <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-8">
           Which jobs are machines coming for?
         </h2>
         <p class="font-serif text-xl md:text-2xl text-ink/80 leading-snug max-w-3xl mb-14">
-          Not a prediction. A map of probabilities, drawn from the best public studies we have.
-          We think decisions about a year of your life should be made in front of data,
-          not behind it.
+          Forget forecasts. Since 2025 we have had something new — a live index of
+          which jobs are being touched by AI <em>right now</em>, drawn from tens of
+          millions of real conversations. Anthropic publishes it quarterly.
+          The picture is clearer than the headlines suggest.
         </p>
 
-        <!-- Three headline numbers -->
+        <!-- Three AEI headline numbers -->
         <div class="grid gap-10 md:grid-cols-3 border-y border-ink/10 py-10 mb-16">
           <div>
-            <p class="font-serif text-5xl md:text-6xl leading-none text-terracotta">47%</p>
+            <p class="font-serif text-5xl md:text-6xl leading-none text-terracotta">49%</p>
             <p class="font-sans text-sm mt-4 text-ink/75 leading-relaxed">
-              of US jobs at <em>high risk</em> of computerization within two decades.
-              <br /><span class="text-ink/50">Frey &amp; Osborne, Oxford, 2013.</span>
+              of occupations have at least <em>a quarter of their tasks</em> being
+              performed with Claude.
+              <br /><span class="text-ink/50">Anthropic Economic Index, March 2026.</span>
             </p>
           </div>
           <div>
-            <p class="font-serif text-5xl md:text-6xl leading-none text-terracotta">300M</p>
+            <p class="font-serif text-5xl md:text-6xl leading-none text-terracotta">12×</p>
             <p class="font-sans text-sm mt-4 text-ink/75 leading-relaxed">
-              full-time jobs worldwide exposed to automation by generative AI.
-              <br /><span class="text-ink/50">Goldman Sachs Research, 2023.</span>
+              speed-up observed on tasks that normally require a college-level education
+              (16+ years of schooling).
+              <br /><span class="text-ink/50">Anthropic Economic Index, January 2026.</span>
             </p>
           </div>
           <div>
-            <p class="font-serif text-5xl md:text-6xl leading-none text-terracotta">80%</p>
+            <p class="font-serif text-5xl md:text-6xl leading-none text-terracotta">35%</p>
             <p class="font-sans text-sm mt-4 text-ink/75 leading-relaxed">
-              of US workers could have at least 10% of their tasks affected by LLMs.
-              <br /><span class="text-ink/50">Eloundou et al., OpenAI &amp; UPenn, 2023.</span>
+              of all Claude.ai conversations are Computer &amp; Mathematical tasks
+              — coding is being eaten first.
+              <br /><span class="text-ink/50">Anthropic Economic Index, March 2026.</span>
             </p>
           </div>
         </div>
 
-        <!-- Cloud intro + legend -->
+        <!-- AEI occupational-mix chart -->
+        <div class="max-w-4xl mb-16">
+          <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive mb-3">
+            Chart 1 · Where AI is actually landing
+          </p>
+          <h3 class="font-serif text-2xl md:text-3xl leading-snug mb-3">
+            Occupational mix of Claude.ai conversations
+          </h3>
+          <p class="font-sans text-sm md:text-base text-ink/70 leading-relaxed mb-8 max-w-2xl">
+            Each bar is the share of real Claude.ai traffic tagged to a US Bureau of
+            Labor Statistics occupation family (O*NET). The top five families account
+            for roughly three-quarters of everything people ask AI to help with.
+          </p>
+
+          <div class="aei-chart" data-animate-bars>
+            <div class="aei-label">Computer &amp; Mathematical<br /><span class="text-ink/45 text-xs">software, data, analysis</span></div>
+            <div class="aei-bar-track"><div class="aei-bar-fill" data-width="100"></div></div>
+            <div class="aei-value">35%</div>
+
+            <div class="aei-label">Educational Instruction &amp; Library<br /><span class="text-ink/45 text-xs">tutoring, lesson design, research</span></div>
+            <div class="aei-bar-track"><div class="aei-bar-fill" data-width="43"></div></div>
+            <div class="aei-value">15%</div>
+
+            <div class="aei-label">Arts, Design, Entertainment &amp; Media<br /><span class="text-ink/45 text-xs">writing, visual, production</span></div>
+            <div class="aei-bar-track"><div class="aei-bar-fill" data-width="31"></div></div>
+            <div class="aei-value">11%</div>
+
+            <div class="aei-label">Office &amp; Administrative Support<br /><span class="text-ink/45 text-xs">admin, scheduling, docs</span></div>
+            <div class="aei-bar-track"><div class="aei-bar-fill" data-width="23"></div></div>
+            <div class="aei-value">8%</div>
+
+            <div class="aei-label">Business &amp; Financial Operations<br /><span class="text-ink/45 text-xs">analysts, accountants, ops</span></div>
+            <div class="aei-bar-track"><div class="aei-bar-fill" data-width="17"></div></div>
+            <div class="aei-value">6%</div>
+
+            <div class="aei-label">Life, Physical &amp; Social Sciences<br /><span class="text-ink/45 text-xs">researchers, analysts</span></div>
+            <div class="aei-bar-track"><div class="aei-bar-fill" data-width="14"></div></div>
+            <div class="aei-value">5%</div>
+
+            <div class="aei-label">Management<br /><span class="text-ink/45 text-xs">strategy, people, planning</span></div>
+            <div class="aei-bar-track"><div class="aei-bar-fill" data-width="11"></div></div>
+            <div class="aei-value">4%</div>
+
+            <div class="aei-label">All other occupations<br /><span class="text-ink/45 text-xs">trades, care, service, production…</span></div>
+            <div class="aei-bar-track"><div class="aei-bar-fill is-secondary" data-width="46"></div></div>
+            <div class="aei-value">16%</div>
+          </div>
+
+          <p class="font-sans text-xs text-ink/50 mt-6 leading-relaxed">
+            Source: Anthropic Economic Index, <em>Economic Primitives</em> (January 2026)
+            and <em>Learning Curves</em> (March 2026).
+            Education tasks rose from 9% to 15% in a single year — the fastest-growing
+            category.
+          </p>
+        </div>
+
+        <!-- AEI augmentation-vs-automation split -->
+        <div class="max-w-4xl mb-20">
+          <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive mb-3">
+            Chart 2 · Not replacement. Collaboration — for now.
+          </p>
+          <h3 class="font-serif text-2xl md:text-3xl leading-snug mb-3">
+            Automation vs. augmentation on Claude.ai
+          </h3>
+          <p class="font-sans text-sm md:text-base text-ink/70 leading-relaxed mb-6 max-w-2xl">
+            Every conversation is classified as either <em>automation</em> (the AI does
+            the task) or <em>augmentation</em> (the human iterates with the AI). In
+            late 2025 the balance tipped: most Claude.ai use is now collaboration, not
+            substitution.
+          </p>
+
+          <div class="aei-split" role="img" aria-label="52 percent augmentation, 45 percent automation, 3 percent other">
+            <div class="aug" style="flex-basis:52%">Augmentation&nbsp;·&nbsp;52%</div>
+            <div class="aut" style="flex-basis:45%">Automation&nbsp;·&nbsp;45%</div>
+            <div class="oth" style="flex-basis:3%">3%</div>
+          </div>
+
+          <p class="font-sans text-xs text-ink/50 mt-4 leading-relaxed">
+            Source: Anthropic Economic Index, November 2025 data release. The same
+            split on the 1P API is roughly inverted (~75% automation) — programmatic
+            traffic is dominated by task completion.
+          </p>
+        </div>
+
+        <!-- Long view: Frey-Osborne profession cloud -->
         <div class="max-w-3xl">
           <p class="font-sans text-xs uppercase tracking-[0.2em] text-olive mb-3">
-            A cloud of professions, sized by estimated risk
+            The long view · occupational exposure
           </p>
+          <h3 class="font-serif text-2xl md:text-3xl leading-snug mb-3">
+            A cloud of professions, sized by long-run automation risk
+          </h3>
           <p class="font-sans text-sm md:text-base text-ink/70 leading-relaxed mb-6">
-            Bigger &amp; warmer = higher probability of task-level automation. Numbers are
-            consolidated from the sources below — probabilities, not verdicts. The striking
-            thing is not the scale. It is who sits where: the jobs once considered "safe
-            knowledge work" are now larger than the jobs once called "just manual labor."
+            The live index shows what is happening. The older Oxford and OpenAI studies
+            give the shape of what <em>could</em> happen. Bigger &amp; warmer = higher
+            estimated probability of task-level automation. The surprise is who sits
+            where: the jobs once called "safe knowledge work" are now larger than the
+            jobs once dismissed as "just manual labor."
           </p>
           <ul class="font-sans text-xs text-ink/65 flex flex-wrap gap-x-5 gap-y-2 mb-2">
             <li><span class="risk-legend-swatch" style="background:#b8593a"></span>&ge; 90%</li>
@@ -610,21 +769,25 @@
           </p>
           <div class="font-serif text-lg md:text-xl leading-relaxed text-ink/85 space-y-4">
             <p>
-              Automation risk is not destiny. A 90% probability means a task <em>can</em>
-              be automated with current methods — not that it will be, or that it will be
-              next year, or that the job disappears when the task does.
+              This is not a prediction of mass unemployment. The live AEI data shows
+              most AI use today is <em>augmentation</em> — humans iterating with a
+              machine — not replacement. That balance could flip, or hold, or reverse.
+              Nobody knows yet.
             </p>
             <p>
-              The 2013 Oxford study under-counted how much language models would eat
-              creative and knowledge work. The 2023 studies may over-count near-term
-              disruption. Both are useful. Neither is the last word.
+              What the data does make undeniable: the tasks being redistributed to
+              machines are concentrated in exactly the work a twenty-first-century
+              university trains students for — writing, coding, analysis, admin, basic
+              design. The old Oxford numbers under-counted this. The newer index is
+              catching up in real time.
             </p>
             <p class="text-terracotta italic">
               The honest summary: the floor is moving under almost every desk.
             </p>
             <p>
-              Which is why what you train <em>to be</em> at eighteen is the wrong bet, and
-              what you train <em>to do</em> — think, read, argue, make, judge — still holds.
+              Which is why what you train <em>to be</em> at eighteen is the wrong bet,
+              and what you train <em>to do</em> — think, read, argue, judge, make —
+              still holds.
             </p>
           </div>
         </div>
@@ -632,12 +795,18 @@
         <!-- Sources -->
         <p class="font-sans text-xs text-ink/50 mt-10 max-w-3xl leading-relaxed">
           <span class="uppercase tracking-[0.15em] text-ink/60">Sources ·</span>
+          Anthropic, <em>Anthropic Economic Index: Economic Primitives</em>
+          (<a href="https://www.anthropic.com/research/anthropic-economic-index-january-2026-report" class="underline decoration-ink/30 hover:decoration-ink/60">January 2026</a>) ·
+          Anthropic, <em>Anthropic Economic Index: Learning Curves</em>
+          (<a href="https://www.anthropic.com/research/economic-index-march-2026-report" class="underline decoration-ink/30 hover:decoration-ink/60">March 2026</a>) ·
+          Anthropic, <em>Introducing the Anthropic Economic Index</em>
+          (<a href="https://www.anthropic.com/news/the-anthropic-economic-index" class="underline decoration-ink/30 hover:decoration-ink/60">February 2025</a>) ·
+          World Economic Forum, <em>Future of Jobs Report</em> (2025) ·
           Frey &amp; Osborne, <em>The Future of Employment</em> (Oxford, 2013 / rev. 2017) ·
-          Eloundou, Manning, Mishkin &amp; Rock, <em>GPTs are GPTs: An Early Look at the Labor Market Impact Potential of LLMs</em> (2023) ·
-          Goldman Sachs Research, <em>The Potentially Large Effects of AI on Economic Growth</em> (2023) ·
-          McKinsey Global Institute, <em>Generative AI and the Future of Work in America</em> (2023) ·
-          OECD, <em>Automation, Skills Use and Training</em> (2018) ·
-          World Economic Forum, <em>Future of Jobs Report</em> (2023, 2025).
+          Eloundou et&nbsp;al., <em>GPTs are GPTs</em> (OpenAI &amp; UPenn, 2023) ·
+          Goldman Sachs Research, <em>The Potentially Large Effects of AI on Economic Growth</em> (2023).
+          The AEI raw dataset is public on
+          <a href="https://huggingface.co/datasets/Anthropic/EconomicIndex" class="underline decoration-ink/30 hover:decoration-ink/60">Hugging Face</a>.
         </p>
       </section>
 
@@ -1381,6 +1550,32 @@
             transformOrigin: 'left center',
             ease: 'none',
             scrollTrigger: { trigger: rule, start: 'top 92%', end: 'top 38%', scrub: 1.2 }
+          });
+        });
+
+        // ── AEI bar chart: fill each bar to its data-width on reveal ──
+        document.querySelectorAll('.aei-bar-fill').forEach(function (bar) {
+          var target = parseFloat(bar.getAttribute('data-width')) || 0;
+          gsap.fromTo(bar,
+            { width: '0%' },
+            {
+              width: target + '%',
+              ease: 'power3.out',
+              duration: 1.1,
+              scrollTrigger: { trigger: bar, start: 'top 88%', toggleActions: 'play none none none' }
+            }
+          );
+        });
+
+        // AEI split bar: grow each segment from left on reveal
+        gsap.utils.toArray('.aei-split > div').forEach(function (seg, i) {
+          gsap.from(seg, {
+            scaleX: 0,
+            transformOrigin: 'left center',
+            ease: 'power3.out',
+            duration: 0.8,
+            delay: i * 0.12,
+            scrollTrigger: { trigger: '.aei-split', start: 'top 88%', toggleActions: 'play none none none' }
           });
         });
 
