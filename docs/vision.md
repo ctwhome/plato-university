@@ -52,6 +52,8 @@ The fictional family in Matt Ross's *Captain Fantastic* (2016) trains its childr
 
 ## The shape of the program (v1, one-year pilot)
 
+> Working sketch. The final structure — faculty and mentor model, hub operations, curriculum details — is decided with the founding cohort during the September 2026 discovery month.
+
 **Three trimesters, ~4 months each. Online core with weekly in-person sessions in your city hub.**
 
 ### Trimester 1 — Foundations (months 1–4)
@@ -71,14 +73,14 @@ The fictional family in Matt Ross's *Captain Fantastic* (2016) trains its childr
 
 ### Trimester 3 — Ship Something (months 9–12)
 *You learn by making.*
-- Directed personal project with a mentor
+- Directed personal project with guidance from an experienced practitioner
 - Public defense of your work at the end
 - Portfolio documentation — the artifact you leave with
 
 ### What you leave with
 - A portfolio of your thinking, writing, and making
 - A defended capstone project
-- A mentor network
+- A network of peers and practitioners
 - A cohort that will be your peers for decades
 - No debt
 - No diploma — and that's the point
@@ -126,7 +128,7 @@ Anyone who would rather be a thinker than a cog.
 ## What success looks like at 12 months
 
 - 30 founding students finish the pilot.
-- 10 founding mentors stay on for year two.
+- 10 teachers / practitioners stay on for year two.
 - 20+ serious public artifacts (essays, projects, films, companies, arguments) ship out of the cohort.
 - One city hub (Amsterdam) runs weekly without us having to push it.
 - A waitlist for cohort two.

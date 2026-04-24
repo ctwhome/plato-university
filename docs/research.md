@@ -105,6 +105,7 @@ Shorter still: *Plato, for the age of the machine.*
 - Which city is hub #1? Amsterdam is the default assumption — but why not Athens?
 - What's our stance on AI tooling in coursework — required, optional, banned in certain subjects?
 - Faculty model: full-time, visiting, volunteer-mentors, alumni?
+- **Decision checkpoint:** the September 2026 discovery month is where faculty / mentor model, hub operations, and program-detail questions get resolved. Everything in `docs/vision.md` §"shape of the program" is a working sketch until then.
 
 ---
 
